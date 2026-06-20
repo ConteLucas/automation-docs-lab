@@ -1,0 +1,41 @@
+// Grafo MACRO — bot DDT (manifest atual + Estado 0 DISPATCH planeado)
+// Render: dot -Tpng macro-fsm.dot -o macro-fsm.png
+// Online: https://dreampuf.github.io/GraphvizOnline/
+
+digraph macro_fsm {
+    rankdir=LR;
+    size="10,6";
+    fontsize=11;
+    node [shape=circle, fontsize=10, style=solid];
+    edge [fontsize=9];
+
+    // --- estados ---
+    DISPATCH [shape=doublecircle, label="0\nDISPATCH"];
+    LOGIN    [label="LOGIN\n(subgrafo)"];
+    LVL_0    [label="LVL_0\n(subgrafo)"];
+    RM_POP   [label="RM_POP_UP\n(subgrafo)"];
+    DONE     [shape=doublecircle, label="DONE"];
+
+    // --- entrada (planeado: hoje SessionPolicy entra em LOGIN) ---
+    DISPATCH -> LOGIN   [label="enter\n(tela login)"];
+    DISPATCH -> LVL_0   [label="enter\n(tutorial)"];
+    DISPATCH -> RM_POP  [label="enter\n(popup)"];
+
+    // --- BRANCH do manifest (GOTO) ---
+    LOGIN -> LVL_0  [label="BRANCH\n04.png tutorial"];
+    LOGIN -> RM_POP [label="BRANCH\npopup / ddt-times"];
+    LVL_0 -> RM_POP [label="BRANCH\n09.png popup"];
+
+    // --- manifest referencia GOTO:STEP_POP_UP:1 (macro inexistente) ---
+    // LOGIN -> STEP_POP_UP [label="BRANCH popup-request", style=dotted, color=red];
+
+    // --- saida do subgrafo RM_POP_UP ---
+    RM_POP -> DISPATCH [label="COMPLETE\nGET_LEVEL"];
+    RM_POP -> DONE     [label="COMPLETE\n(task ok)"];
+
+    // --- recuperacao (planeado: hoje vai a ERROR na task) ---
+    LOGIN -> DISPATCH [label="FAIL", style=dashed];
+    LVL_0 -> DISPATCH [label="FAIL", style=dashed];
+    RM_POP -> DISPATCH [label="FAIL", style=dashed];
+    DISPATCH -> DONE    [label="task ok\nsem macro"];
+}
