@@ -33,21 +33,21 @@ Documentation for issues that have been resolved or approaches that were replace
 
 These files were merged into new comprehensive guides:
 
-**Merged into SCREENSHOT-GUIDE.md:**
+**Merged into guia-captura-screenshot.md:**
 - SCREEN-VALIDATION.md
 - MEDIAPROJECTION-IMPLEMENTATION.md
 
-**Merged into VISION-API.md:**
+**Merged into guia-vision-api-templates.md:**
 - VISION-INTEGRATION.md
 - VISION-INTEGRATION-COMPLETE.md
 
-**Merged into LOGGING-GUIDE.md:**
+**Merged into guia-sistema-logs.md:**
 - LOG-STANDARDIZATION.md
 - UNIFIED-LOGGING.md
 - UNIFIED-LOGS-BOT-GAME.md
 - MONITORING.md
 
-**Merged into UI-GUIDE.md:**
+**Merged into guia-interface-flutuante.md:**
 - FLOATING-WINDOW.md
 - UI-IMPROVEMENTS.md
 
@@ -77,8 +77,8 @@ These docs may be useful for:
 
 **For current documentation, see:**
 - [../INDEX.md](../INDEX.md) - Main documentation index
-- [../STATUS.md](../STATUS.md) - Current system status
-- [../QUICK-REFERENCE.md](../QUICK-REFERENCE.md) - Quick commands
+- [../ref-status-projeto.md](../ref-status-projeto.md) - Current system status
+- [../ref-comandos-rapidos.md](../ref-comandos-rapidos.md) - Quick commands
 
 ## 🗑️ Deletion Policy
 
@@ -93,10 +93,10 @@ Instead of these archived docs, use:
 
 | Old Doc(s) | New Doc | Why Better |
 |------------|---------|------------|
-| MEDIAPROJECTION-*, SCREEN-* | SCREENSHOT-GUIDE.md | Consolidated, up-to-date |
-| VISION-* | VISION-API.md | Complete, current implementation |
-| LOG-*, UNIFIED-*, MONITORING | LOGGING-GUIDE.md | Unified approach |
-| FLOATING-*, UI-* | UI-GUIDE.md | Current UI state |
+| MEDIAPROJECTION-*, SCREEN-* | guia-captura-screenshot.md | Consolidated, up-to-date |
+| VISION-* | guia-vision-api-templates.md | Complete, current implementation |
+| LOG-*, UNIFIED-*, MONITORING | guia-sistema-logs.md | Unified approach |
+| FLOATING-*, UI-* | guia-interface-flutuante.md | Current UI state |
 
 ---
 

@@ -180,7 +180,7 @@ Objetivo: explicar **o que aconteceu** em um pedido/detalhe quando der erro, lig
 
 ## 8. Revisão da modelagem e gaps
 
-**Revisão crítica (o que faz sentido, o que está consistente e onde estão os gaps):** ver **[CORE-MODEL-REVIEW.md](CORE-MODEL-REVIEW.md)**.
+**Revisão crítica (o que faz sentido, o que está consistente e onde estão os gaps):** ver **[core-revisao-modelo-dados.md](core-revisao-modelo-dados.md)**.
 
 Resumo dos pontos a fechar antes/durante implementação:
 

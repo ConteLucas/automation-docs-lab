@@ -1,6 +1,6 @@
 # Revisão da modelagem: Core (REQUEST, REQUEST_DETAIL, etc.)
 
-Documento de revisão crítica: o que faz sentido, o que está consistente e onde estão os gaps. Complementa o [CORE-REQUESTS-STRATEGY.md](CORE-REQUESTS-STRATEGY.md).
+Documento de revisão crítica: o que faz sentido, o que está consistente e onde estão os gaps. Complementa o [core-estrategia-requests-api.md](core-estrategia-requests-api.md).
 
 ---
 

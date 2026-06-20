@@ -50,7 +50,7 @@ Não é “Clean Architecture completa” (não há camada de entidades de domí
 
 ## 4. Grafo do BotFactory (dependências criadas pelo Factory)
 
-**Diagramas (grafo + sequência):** ver **[diagram-fluxo.md](diagram-fluxo.md)** — arquivo único de referência. Atualize-o quando alterar BotFactory, Orchestrator ou use cases. O grafo mostra **tudo o que o BotFactory instancia** e **quem depende de quem**; a seta A → B significa “BotFactory passa A como dependência de B” (B recebe A no construtor, ou B usa A internamente — e.g. VisionRepositoryImpl usa VisionDtoMapper; o Factory não injeta o mapper).
+**Diagramas (grafo + sequência):** ver **[arq-diagrama-sequencia-botfactory.md](arq-diagrama-sequencia-botfactory.md)** — arquivo único de referência. Atualize-o quando alterar BotFactory, Orchestrator ou use cases. O grafo mostra **tudo o que o BotFactory instancia** e **quem depende de quem**; a seta A → B significa “BotFactory passa A como dependência de B” (B recebe A no construtor, ou B usa A internamente — e.g. VisionRepositoryImpl usa VisionDtoMapper; o Factory não injeta o mapper).
 
 
 **Resumo do grafo:** BotFactory recebe `Context`, `FloatingLogWindow` e `onMainLog`. Cria a árvore de objetos (logging, VisionApiService, repositórios, validators, use cases, orchestrator, start/stop use cases) e retorna apenas **BotViewModel**. VisionDtoMapper não é instanciado nem injetado pelo Factory; VisionRepositoryImpl usa o mapper internamente para converter DTO → Entity.
@@ -59,7 +59,7 @@ Não é “Clean Architecture completa” (não há camada de entidades de domí
 
 ## 5. Diagrama de sequência
 
-O diagrama de sequência (inicialização, start do bot, loop do Orchestrator, Vision DTO→Entity) está em **[diagram-fluxo.md](diagram-fluxo.md)** (sec. 2).
+O diagrama de sequência (inicialização, start do bot, loop do Orchestrator, Vision DTO→Entity) está em **[arq-diagrama-sequencia-botfactory.md](arq-diagrama-sequencia-botfactory.md)** (sec. 2).
 
 ---
 
@@ -72,9 +72,9 @@ O diagrama de sequência (inicialização, start do bot, loop do Orchestrator, V
 - **Grafo do BotFactory (sec. 4):** mostra tudo o que o Factory instancia e as dependências entre componentes (quem recebe quem).
 - **Diagrama de sequência (sec. 5):** fluxo de inicialização, start do bot e loop do Orchestrator; no fluxo Vision, aparece **LensResponse (DTO)** → **VisionDtoMapper.toScreenMatch()** → **ScreenMatch (entity)**.
 
-Para alterar no futuro: edite **[diagram-fluxo.md](diagram-fluxo.md)** em sintonia com `BotFactory`, `AutomationOrchestrator`, `FlowLoginUseCase`, `ScreenValidator`, `VisionRepositoryImpl` e `VisionDtoMapper`.
+Para alterar no futuro: edite **[arq-diagrama-sequencia-botfactory.md](arq-diagrama-sequencia-botfactory.md)** em sintonia com `BotFactory`, `AutomationOrchestrator`, `FlowLoginUseCase`, `ScreenValidator`, `VisionRepositoryImpl` e `VisionDtoMapper`.
 
-**Task do Core e plano `flow_step` / `flow_step_image`:** ver **[ORCHESTRATOR-TASK-CORE-FLOW.md](ORCHESTRATOR-TASK-CORE-FLOW.md)** (diagramas, lacunas de API e plano de implementação no `AutomationOrchestrator`).
+**Task do Core e plano `flow_step` / `flow_step_image`:** ver **[guia-orquestrador-task-core.md](guia-orquestrador-task-core.md)** (diagramas, lacunas de API e plano de implementação no `AutomationOrchestrator`).
 
 ---
 

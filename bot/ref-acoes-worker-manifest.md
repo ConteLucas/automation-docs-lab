@@ -2,7 +2,7 @@
 
 Referência de **onde o valor é definido** e **como o bot Android o interpreta** ao executar o plano vindo do Core (`claim-next` → `TaskWorkerPlan`).
 
-**Relacionado:** [ORCHESTRATOR-TASK-CORE-FLOW.md](ORCHESTRATOR-TASK-CORE-FLOW.md), Core `FlowStepWorkerActionWire`, bot `ExecuteWorkerPlanUseCase`.
+**Relacionado:** [guia-orquestrador-task-core.md](guia-orquestrador-task-core.md), Core `FlowStepWorkerActionWire`, bot `ExecuteWorkerPlanUseCase`.
 
 ---
 

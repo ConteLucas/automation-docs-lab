@@ -2,7 +2,7 @@
 
 Documento de referência: **como o fluxo se encaixa no domínio do Core**, **diagramas** e **como evoluir o `AutomationOrchestrator`** no `automation-bot-ddt` sem acoplar regras de negócio ao lugar errado.
 
-**Relacionado:** [ARCHITECTURE-FLOW.md](ARCHITECTURE-FLOW.md), [diagram-fluxo.md](diagram-fluxo.md), [WORKER-ACTIONS-WORKER-PLAN.md](WORKER-ACTIONS-WORKER-PLAN.md) (CLICK / WAIT_APPEAR / IF_VISIBLE no executor do plano). No Core: `TaskEntity`, `FlowStepJpaRepository`, `FlowStepImageJpaRepository`, `TaskController` (`/api/tasks/claim-next`).
+**Relacionado:** [arq-fluxo-camadas-e-diagramas.md](arq-fluxo-camadas-e-diagramas.md), [arq-diagrama-sequencia-botfactory.md](arq-diagrama-sequencia-botfactory.md), [ref-acoes-worker-manifest.md](ref-acoes-worker-manifest.md) (CLICK / WAIT_APPEAR / IF_VISIBLE no executor do plano). No Core: `TaskEntity`, `FlowStepJpaRepository`, `FlowStepImageJpaRepository`, `TaskController` (`/api/tasks/claim-next`).
 
 ---
 
@@ -107,7 +107,7 @@ Usar **`templateImage`** (e não `templateBase64`) no JSON agregado do Core: dei
 
 ## 7. Como implementar no app Orchestrator (plano por camadas)
 
-Alinhar ao padrão já descrito em [ARCHITECTURE-FLOW.md](ARCHITECTURE-FLOW.md): Orchestrator **só decide o ciclo**; use cases **executam**; repositórios **falam com Core / arquivos / Vision**.
+Alinhar ao padrão já descrito em [arq-fluxo-camadas-e-diagramas.md](arq-fluxo-camadas-e-diagramas.md): Orchestrator **só decide o ciclo**; use cases **executam**; repositórios **falam com Core / arquivos / Vision**.
 
 ### 7.1 Camada de dados (novo)
 

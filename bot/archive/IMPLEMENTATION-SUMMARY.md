@@ -46,7 +46,7 @@ A complete, clean architecture for validating game screens using template matchi
    - Component descriptions
    - Future enhancements
 
-8. **`docs/QUICK-REFERENCE.md`**
+8. **`docs/ref-comandos-rapidos.md`**
    - Visual flow diagram
    - File structure
    - Component status table

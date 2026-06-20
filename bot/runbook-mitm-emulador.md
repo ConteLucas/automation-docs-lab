@@ -4,7 +4,7 @@ Guia **cirúrgico** para pôr o mitm no Mac a interceptar o **jogo DDT** no emul
 
 **Última validação:** 2026-06-09 (AVD `device-default_12`, API 30)
 
-Guia de arquitetura: [DDT-HYBRID-LOGIN-SERVER.md](DDT-HYBRID-LOGIN-SERVER.md)
+Guia de arquitetura: [guia-login-servidor-mitm.md](guia-login-servidor-mitm.md)
 
 ---
 

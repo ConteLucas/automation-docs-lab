@@ -430,9 +430,9 @@ docker stop ddt-vision-api && docker rm ddt-vision-api
 
 ## 📚 Related Documentation
 
-- [SCREENSHOT-GUIDE.md](SCREENSHOT-GUIDE.md) - Screenshot capture
+- [guia-captura-screenshot.md](guia-captura-screenshot.md) - Screenshot capture
 - [Template README](../app/src/main/assets/templates/ddt/login/README.md) - Template guide
-- [QUICK-REFERENCE.md](QUICK-REFERENCE.md) - Quick commands
+- [ref-comandos-rapidos.md](ref-comandos-rapidos.md) - Quick commands
 
 ## 🎓 Key Learnings
 

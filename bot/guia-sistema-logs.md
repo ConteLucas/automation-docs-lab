@@ -393,8 +393,8 @@ AutoLogger.i("Password: 12345")  // Never!
 
 ## 📚 Related Documentation
 
-- [QUICK-REFERENCE.md](QUICK-REFERENCE.md) - Quick commands
-- [DEVELOPMENT.md](DEVELOPMENT.md) - Development guide
+- [ref-comandos-rapidos.md](ref-comandos-rapidos.md) - Quick commands
+- [dev-workflow-build-testes.md](dev-workflow-build-testes.md) - Development guide
 - [utils/scripts/bot/](../../utils/scripts/bot/) - Script documentation
 
 ## 🎓 Key Learnings

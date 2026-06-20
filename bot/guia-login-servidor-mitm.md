@@ -60,7 +60,7 @@ Guia do fluxo validado em POC: **login por Accessibility no bot**, **entrada no 
 
 ## 1. SETUP do emulador (uma vez por AVD)
 
-**Runbook mitm + cert (copiar/colar):** [MITM-EMULATOR-RUNBOOK.md](MITM-EMULATOR-RUNBOOK.md)
+**Runbook mitm + cert (copiar/colar):** [runbook-mitm-emulador.md](runbook-mitm-emulador.md)
 
 **Passo a passo desmembrado (recomendado):** [scripts/ddt/emulator-setup/README.md](../../../scripts/ddt/emulator-setup/README.md)
 
@@ -298,5 +298,5 @@ tail -5 .local/ddt-traffic/mitmdump.log | grep rewrite
 - Captura e análise de tráfego: `scripts/ddt/capture-traffic.sh help`
 - Worker plan / `serverValue`: `TaskWorkerPlanResponseDto.kt`
 - Templates pós-login: `automation-bot-ddt/app/src/main/assets/templates/ddt/post_login/`
-- Orquestrador Core: `docs/bot-ddt/docs/ORCHESTRATOR-TASK-CORE-FLOW.md`
+- Orquestrador Core: [guia-orquestrador-task-core.md](guia-orquestrador-task-core.md)
 

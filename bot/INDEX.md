@@ -1,251 +1,144 @@
-# 📚 Documentation Index
+# Índice da documentação — Bot Android
 
-Complete navigation for all automation bot documentation.
+Navegação dos guias do worker (`automation-bot-lab`). Os nomes dos ficheiros seguem um prefixo que indica o tipo de conteúdo.
 
-**Last Updated**: 2026-03-03 (v3)
+**Convenção de nomes**
 
-## 🚀 Quick Start
+| Prefixo | Significado | Exemplo |
+|---------|-------------|---------|
+| `guia-` | Como fazer / operacional | `guia-execucao-task-core.md` |
+| `ref-` | Referência rápida ou consulta | `ref-comandos-rapidos.md` |
+| `arq-` | Arquitetura e diagramas | `arq-visao-geral-bot.md` |
+| `dev-` | Desenvolvimento e contribuição | `dev-padroes-codigo.md` |
+| `core-` | Integração com o Core API | `core-estrategia-requests-api.md` |
+| `runbook-` | Procedimento copiar/colar (ops) | `runbook-mitm-emulador.md` |
+| `testes-` | Relatórios de testes | `testes-resumo.md` |
 
-| Document | Purpose | Read Time |
-|----------|---------|-----------|
-| [SETUP.md](SETUP.md) | Initial project setup | 5 min |
-| [QUICK-REFERENCE.md](QUICK-REFERENCE.md) | Common commands and workflows | 3 min |
-| [STATUS.md](STATUS.md) | Current project status | 2 min |
-
-## 📖 Core Guides
-
-### Essential Documentation
-
-| Guide | What It Covers | When to Read |
-|-------|----------------|--------------|
-| [DDT-HYBRID-LOGIN-SERVER.md](DDT-HYBRID-LOGIN-SERVER.md) | Login A11y + mitm rewrite (S10/S12) + setup emulador | Automatizar entrada no servidor DDT |
-| [MITM-EMULATOR-RUNBOOK.md](MITM-EMULATOR-RUNBOOK.md) | Cert system + mitm no Mac (copiar/colar) | Arrancar mitm/DDT sem remount failed |
-| [SCREENSHOT-GUIDE.md](SCREENSHOT-GUIDE.md) | MediaProjection screenshot system | Understanding capture |
-| [VISION-API.md](VISION-API.md) | Template matching and detection | Using Vision API |
-| [LOGGING-GUIDE.md](LOGGING-GUIDE.md) | Unified logging system | Debugging and monitoring |
-| [UI-GUIDE.md](UI-GUIDE.md) | Floating window and click effects | UI customization |
-
-### Technical Details
-
-| Document | Content | Audience |
-|----------|---------|----------|
-| [DOCUMENTATION.md](DOCUMENTATION.md) | Architecture and MVVM structure | Developers |
-| [CODE-STANDARDS.md](CODE-STANDARDS.md) | Coding conventions and patterns | Contributors |
-| [DEVELOPMENT.md](DEVELOPMENT.md) | Development workflow | Team members |
-| [ANDROID-PERMISSIONS-EXPLAINED.md](ANDROID-PERMISSIONS-EXPLAINED.md) | Permission system details | Android devs |
-| [ACCESSIBILITY-GUIDE.md](ACCESSIBILITY-GUIDE.md) | Click system via Accessibility | Integration devs |
-
-## 🎯 By Topic
-
-### Screenshots & Capture
-- **[SCREENSHOT-GUIDE.md](SCREENSHOT-GUIDE.md)** - Complete MediaProjection guide
-  - How it works
-  - Setup and configuration
-  - Troubleshooting
-  - Performance metrics
-
-### Vision & Detection
-- **[VISION-API.md](VISION-API.md)** - Template matching system
-  - Endpoints (`/lens`, `/match`, `/ocr`)
-  - Template creation best practices
-  - Dual-method validation
-  - Debug techniques
-
-### Logging & Monitoring
-- **[LOGGING-GUIDE.md](LOGGING-GUIDE.md)** - Unified logging
-  - AutoLogger usage
-  - Floating log window
-  - Log files and cleanup
-  - Best practices
-
-### User Interface
-- **[UI-GUIDE.md](UI-GUIDE.md)** - UI components
-  - FloatingLogWindow
-  - ClickEffectOverlay
-  - MainActivity
-  - Customization
-
-### Automation
-- **[ACCESSIBILITY-GUIDE.md](ACCESSIBILITY-GUIDE.md)** - Click system
-  - Accessibility Service setup
-  - Click execution
-  - Permissions
-
-### Development
-- **[DEVELOPMENT.md](DEVELOPMENT.md)** - Developer workflow
-  - Build and deploy
-  - Testing
-  - Common tasks
-
-- **[CODE-STANDARDS.md](CODE-STANDARDS.md)** - Code quality
-  - Naming conventions
-  - Architecture patterns
-  - Best practices
-
-### Architecture
-- **[DOCUMENTATION.md](DOCUMENTATION.md)** - System design
-  - MVVM pattern
-  - Clean architecture
-  - Component responsibilities
-
-### Setup & Configuration
-- **[SETUP.md](SETUP.md)** - Initial setup
-  - Requirements
-  - Installation
-  - First run
-
-- **[ANDROID-PERMISSIONS-EXPLAINED.md](ANDROID-PERMISSIONS-EXPLAINED.md)** - Permissions
-  - Why each permission
-  - How to grant
-  - Troubleshooting
-
-## 🔍 By Task
-
-### "I want to..."
-
-**...understand the system:**
-1. Start: [STATUS.md](STATUS.md)
-2. Overview: [DOCUMENTATION.md](DOCUMENTATION.md)
-3. Deep dive: Core guides above
-
-**...set up the project:**
-1. [SETUP.md](SETUP.md)
-2. [QUICK-REFERENCE.md](QUICK-REFERENCE.md)
-3. Test with [../../utils/scripts/bot/check-health.sh](../../utils/scripts/bot/check-health.sh)
-
-**...add a new screen detection:**
-1. [VISION-API.md](VISION-API.md) - Template creation
-2. [SCREENSHOT-GUIDE.md](SCREENSHOT-GUIDE.md) - Capture mechanics
-3. [DEVELOPMENT.md](DEVELOPMENT.md) - Add to `GameScreen.kt`
-
-**...debug detection issues:**
-1. [VISION-API.md](VISION-API.md) - Debug techniques
-2. `./run/view-debug.sh` - Visual debug
-3. [LOGGING-GUIDE.md](LOGGING-GUIDE.md) - Check logs
-
-**...customize the UI:**
-1. [UI-GUIDE.md](UI-GUIDE.md) - UI components
-2. [LOGGING-GUIDE.md](LOGGING-GUIDE.md) - Log display
-
-**...troubleshoot errors:**
-1. [QUICK-REFERENCE.md](QUICK-REFERENCE.md) - Common issues
-2. Specific guide for component (see topics above)
-3. [../../utils/scripts/bot/check-health.sh](../../utils/scripts/bot/check-health.sh) - System check
-
-**...contribute code:**
-1. [CODE-STANDARDS.md](CODE-STANDARDS.md) - Standards
-2. [DEVELOPMENT.md](DEVELOPMENT.md) - Workflow
-3. [DOCUMENTATION.md](DOCUMENTATION.md) - Architecture
-
-## 📊 Documentation Stats
-
-### Active Documentation (13 files)
-
-```
-Core Guides:        4 files (SCREENSHOT, VISION, LOGGING, UI)
-Technical Docs:     5 files (DOCUMENTATION, CODE, DEVELOPMENT, PERMISSIONS, ACCESSIBILITY)
-Quick Reference:    4 files (INDEX, STATUS, QUICK-REF, SETUP)
-
-Total:             13 files (~90KB)
-```
-
-### Archived Documentation (30 files)
-
-Historical docs preserved in `archive/` folder:
-- Bug fixes and specific solutions
-- Implementation details (already applied)
-- Alternative approaches (not used)
-- Refactoring documentation
-
-## 🎓 Reading Paths
-
-### For New Developers
-
-```
-1. STATUS.md           (What is this?)
-2. SETUP.md            (How do I set it up?)
-3. QUICK-REFERENCE.md  (What can I do?)
-4. DOCUMENTATION.md    (How does it work?)
-5. Specific guides     (Deep dives)
-```
-
-### For Contributors
-
-```
-1. CODE-STANDARDS.md   (How should I code?)
-2. DEVELOPMENT.md      (What's the workflow?)
-3. DOCUMENTATION.md    (What's the architecture?)
-4. Relevant guides     (Component-specific)
-```
-
-### For Troubleshooting
-
-```
-1. QUICK-REFERENCE.md  (Common issues)
-2. Specific guide      (Component-related)
-3. ../../utils/scripts/bot/check-health.sh (System diagnostic)
-4. Logs                (What happened?)
-```
-
-## 🔄 Documentation Updates
-
-### When to Update
-
-- ✅ New features added
-- ✅ Architecture changes
-- ✅ Bug fixes (if significant)
-- ✅ API changes
-- ✅ Configuration updates
-
-### How to Update
-
-1. Edit relevant guide(s)
-2. Update INDEX.md if structure changed
-3. Update STATUS.md for feature changes
-4. Add to QUICK-REFERENCE.md if common task
-
-## 🗺️ Navigation Tips
-
-### Find by Component
-
-- **MediaProjection** → SCREENSHOT-GUIDE.md
-- **Vision API** → VISION-API.md
-- **AutoLogger** → LOGGING-GUIDE.md
-- **FloatingLogWindow** → UI-GUIDE.md
-- **Accessibility Service** → ACCESSIBILITY-GUIDE.md
-- **Use Cases** → DOCUMENTATION.md
-- **Scripts** → [utils/scripts/bot/](../../utils/scripts/bot/)
-
-### Find by Error
-
-Search in relevant guide:
-- Screenshot errors → SCREENSHOT-GUIDE.md
-- Detection errors → VISION-API.md
-- Permission errors → ANDROID-PERMISSIONS-EXPLAINED.md
-- Click errors → ACCESSIBILITY-GUIDE.md
-
-### Find by Task
-
-Use "I want to..." section above or QUICK-REFERENCE.md
-
-## 📞 Quick Links
-
-### Most Used
-
-- [Quick Reference](QUICK-REFERENCE.md) - Common commands
-- [Status](STATUS.md) - What's working
-- [Scripts](../../utils/scripts/bot/) - Bot shell scripts
-- [Templates](../app/src/main/assets/templates/ddt/login/README.md) - Template guide
-
-### External Resources
-
-- [Android MediaProjection](https://developer.android.com/reference/android/media/projection/MediaProjection)
-- [Accessibility Service](https://developer.android.com/guide/topics/ui/accessibility/service)
-- [OpenCV Template Matching](https://docs.opencv.org/4.x/d4/dc6/tutorial_py_template_matching.html)
-- [FastAPI Documentation](https://fastapi.tiangolo.com/)
+**Última atualização:** 2026-06-20
 
 ---
 
-**Navigate with confidence! All docs are up-to-date as of v3.** 📚✨
+## Início rápido
 
-Need help? Start with [QUICK-REFERENCE.md](QUICK-REFERENCE.md) or [STATUS.md](STATUS.md)
+| Ficheiro | O que é | Tempo |
+|----------|---------|-------|
+| [guia-setup-inicial.md](guia-setup-inicial.md) | Instalar e arrancar o projeto | 5 min |
+| [ref-comandos-rapidos.md](ref-comandos-rapidos.md) | Comandos e fluxos do dia a dia | 3 min |
+| [ref-status-projeto.md](ref-status-projeto.md) | Estado actual (pode estar desactualizado) | 2 min |
+
+---
+
+## Execução de tasks e Core
+
+| Ficheiro | O que é |
+|----------|---------|
+| [guia-execucao-task-core.md](guia-execucao-task-core.md) | **Ciclo completo L1–L5** — claim-next, pré-voo, manifest, status |
+| [guia-orquestrador-task-core.md](guia-orquestrador-task-core.md) | Orquestrador × Core — plano `flow_step` / `flow_step_image` |
+| [ref-acoes-worker-manifest.md](ref-acoes-worker-manifest.md) | Acções `CLICK`, `WAIT_APPEAR`, `IF_VISIBLE` no manifest |
+| [guia-sync-manifests-s3.md](guia-sync-manifests-s3.md) | Sincronizar flows e PNG via S3 antes do claim |
+| [guia-login-servidor-mitm.md](guia-login-servidor-mitm.md) | Login A11y + servidor variável (mitm rewrite S10/S12…) |
+| [runbook-mitm-emulador.md](runbook-mitm-emulador.md) | Cert system + mitm no Mac (copiar/colar) |
+
+---
+
+## Captura, Vision e UI
+
+| Ficheiro | O que é |
+|----------|---------|
+| [guia-captura-screenshot.md](guia-captura-screenshot.md) | MediaProjection — captura de ecrã |
+| [guia-vision-api-templates.md](guia-vision-api-templates.md) | Template matching (`/lens`, `/match`, OCR) |
+| [guia-cliques-acessibilidade.md](guia-cliques-acessibilidade.md) | Cliques via Accessibility Service |
+| [guia-interface-flutuante.md](guia-interface-flutuante.md) | Janela flutuante e efeitos visuais |
+| [guia-sistema-logs.md](guia-sistema-logs.md) | Logs unificados e depuração |
+| [guia-permissoes-android.md](guia-permissoes-android.md) | Permissões do manifest |
+
+---
+
+## Arquitetura
+
+| Ficheiro | O que é |
+|----------|---------|
+| [arq-visao-geral-bot.md](arq-visao-geral-bot.md) | **Visão macro** — camadas, BotFactory, integrações |
+| [arq-fluxo-camadas-e-diagramas.md](arq-fluxo-camadas-e-diagramas.md) | Fluxo MVVM e responsabilidades |
+| [arq-diagrama-sequencia-botfactory.md](arq-diagrama-sequencia-botfactory.md) | Diagramas Mermaid (grafo + sequência) |
+| [arq-analise-detalhada.md](arq-analise-detalhada.md) | Análise arquitectural aprofundada |
+| [arq-arvore-classes-acoplamento.md](arq-arvore-classes-acoplamento.md) | Árvore de classes e acoplamento |
+| [arq-refatoracao-clean-architecture.md](arq-refatoracao-clean-architecture.md) | Plano de refactor clean architecture |
+| [arq-documentacao-legacy-mvvm.md](arq-documentacao-legacy-mvvm.md) | Doc histórica MVVM (fase inicial) |
+
+---
+
+## Core API (contratos e dados)
+
+| Ficheiro | O que é |
+|----------|---------|
+| [core-estrategia-requests-api.md](core-estrategia-requests-api.md) | Estratégia de requests ao Core |
+| [core-revisao-modelo-dados.md](core-revisao-modelo-dados.md) | Revisão crítica do modelo |
+| [core-mapeamento-dto-entity.md](core-mapeamento-dto-entity.md) | Mapeamento DTO ↔ entidades |
+
+---
+
+## Desenvolvimento
+
+| Ficheiro | O que é |
+|----------|---------|
+| [dev-workflow-build-testes.md](dev-workflow-build-testes.md) | Build, deploy, testes |
+| [dev-padroes-codigo.md](dev-padroes-codigo.md) | Convenções de código |
+| [ref-config-application-properties.md](ref-config-application-properties.md) | `application.properties` e perfis |
+| [dev-notas-backup-v4.md](dev-notas-backup-v4.md) | Notas de backup v4 (legado) |
+
+---
+
+## Testes
+
+| Ficheiro | O que é |
+|----------|---------|
+| [testes-resumo.md](testes-resumo.md) | Resumo dos testes |
+| [testes-relatorio-cobertura.md](testes-relatorio-cobertura.md) | Relatório de cobertura |
+
+---
+
+## Por objectivo
+
+**Quero executar tasks do Core**
+1. [guia-execucao-task-core.md](guia-execucao-task-core.md)
+2. [guia-login-servidor-mitm.md](guia-login-servidor-mitm.md)
+3. Core: [TASK-WORKER-CLAIM.md](../core/TASK-WORKER-CLAIM.md)
+
+**Quero perceber a arquitectura**
+1. [arq-visao-geral-bot.md](arq-visao-geral-bot.md)
+2. [guia-execucao-task-core.md](guia-execucao-task-core.md)
+3. [arq-diagrama-sequencia-botfactory.md](arq-diagrama-sequencia-botfactory.md)
+
+**Quero configurar o ambiente**
+1. [guia-setup-inicial.md](guia-setup-inicial.md)
+2. [ref-config-application-properties.md](ref-config-application-properties.md)
+3. [ref-comandos-rapidos.md](ref-comandos-rapidos.md)
+
+**Quero depurar Vision / screenshot**
+1. [guia-vision-api-templates.md](guia-vision-api-templates.md)
+2. [guia-captura-screenshot.md](guia-captura-screenshot.md)
+3. [guia-sistema-logs.md](guia-sistema-logs.md)
+
+---
+
+## Arquivo histórico
+
+Documentos antigos em [`archive/`](archive/README.md) — fixes pontuais, POCs e refactorings já aplicados.
+
+---
+
+## Mapa de nomes antigos → novos
+
+| Nome antigo | Nome novo |
+|-------------|-----------|
+| `SETUP.md` | `guia-setup-inicial.md` |
+| `TASK-EXECUTION-GUIDE.md` | `guia-execucao-task-core.md` |
+| `ARCHITECTURE.md` | `arq-visao-geral-bot.md` |
+| `VISION-API.md` | `guia-vision-api-templates.md` |
+| `FLOW-SYNC-S3.md` | `guia-sync-manifests-s3.md` |
+| `QUICK-REFERENCE.md` | `ref-comandos-rapidos.md` |
+| `APPLICATION-CONFIG.md` | `ref-config-application-properties.md` |
+| … | Ver prefixos acima |
+
+Scripts: [utils/scripts/bot/](../../utils/scripts/bot/)

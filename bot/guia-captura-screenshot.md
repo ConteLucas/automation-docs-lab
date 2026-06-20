@@ -219,9 +219,9 @@ adb shell "dumpsys activity services | grep MediaProjection"
 
 ## 📚 Related Documentation
 
-- [ACCESSIBILITY-GUIDE.md](ACCESSIBILITY-GUIDE.md) - Click system
-- [VISION-API.md](VISION-API.md) - Image analysis
-- [ANDROID-PERMISSIONS-EXPLAINED.md](ANDROID-PERMISSIONS-EXPLAINED.md) - Permission details
+- [guia-cliques-acessibilidade.md](guia-cliques-acessibilidade.md) - Click system
+- [guia-vision-api-templates.md](guia-vision-api-templates.md) - Image analysis
+- [guia-permissoes-android.md](guia-permissoes-android.md) - Permission details
 
 ## 🎓 Key Learnings
 

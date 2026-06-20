@@ -12,7 +12,25 @@ Relacionado: [env-images-s3.md](../../automation-infra-lab/docs/env-images-s3.md
 2. O bypass actual (`cachedPlanVersionsByFlowId`) evita reenviar steps **se** a versão no device coincide com a do Core — mas no cache miss ainda há fetch pesado.
 3. Uma alteração numa **única imagem** de um **único flow** não deve forçar re-download da collection inteira.
 
-**Objectivo:** `claim-next` permanece **leve** (task + metadados + versões). Manifest, steps e PNGs sincronizam via **S3**, em unidades **por flow**.
+**Objectivo:** `claim-next` permanece **leve** (task + metadados + versões). Manifest, steps e PNGs sincronizam via **S3 privado**, com o **Core como gatekeeper** (URLs assinadas após validar device), em unidades **por flow**.
+
+---
+
+## Core gatekeeper + S3 privado (prod)
+
+Em produção o bucket **não** expõe `json/bot/*` nem PNGs por GET anónimo. O bot autentica-se com **device API key**; o Core lê o S3 com IAM e devolve URLs assinadas (TTL ~15 min).
+
+| Etapa | Quem | Endpoint / acção |
+|-------|------|-------------------|
+| Índice collection | Bot → Core | `GET /api/tasks/worker/flow-sync/collections/{key}/latest` |
+| Flow latest + bundle | Bot → Core | `GET /api/tasks/worker/flow-sync/flows/{flowKey}/latest` |
+| PNGs em batch | Bot → Core | `POST /api/tasks/worker/flow-sync/presign` `{ "keys": ["img/flows/…"] }` |
+| Download blobs | Bot → S3 | GET nas URLs presignadas |
+| Tarefa | Bot → Core | `POST claim-next` (leve) |
+
+Build prod: `WORKER_FLOW_SYNC_VIA_CORE=true`, `FLOW_SYNC_COLLECTION_KEY=LOCAL` — **sem** `FLOW_SYNC_MANIFEST_BASE_URL` público.
+
+Legado lab (bucket público): `WORKER_FLOW_SYNC_VIA_CORE=false` + URLs S3 no `BuildConfig`.
 
 ---
 

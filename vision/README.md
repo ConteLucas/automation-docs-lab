@@ -54,7 +54,7 @@ automation-vision-ocr/
 
 ## Documentação
 
-- Endpoints e exemplos: [bot/VISION-API.md](../bot/VISION-API.md)
+- Endpoints e exemplos: [bot/guia-vision-api-templates.md](../bot/guia-vision-api-templates.md)
 - Scripts auxiliares: [scripts/README.md](scripts/README.md)
 
 ## Nome do repositório

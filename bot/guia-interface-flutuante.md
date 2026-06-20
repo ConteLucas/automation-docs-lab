@@ -427,9 +427,9 @@ fun addLog(message: String) {
 
 ## 📚 Related Documentation
 
-- [LOGGING-GUIDE.md](LOGGING-GUIDE.md) - Logging system
-- [ACCESSIBILITY-GUIDE.md](ACCESSIBILITY-GUIDE.md) - Click system
-- [ANDROID-PERMISSIONS-EXPLAINED.md](ANDROID-PERMISSIONS-EXPLAINED.md) - Permissions
+- [guia-sistema-logs.md](guia-sistema-logs.md) - Logging system
+- [guia-cliques-acessibilidade.md](guia-cliques-acessibilidade.md) - Click system
+- [guia-permissoes-android.md](guia-permissoes-android.md) - Permissions
 
 ## 🎓 Key Learnings
 
