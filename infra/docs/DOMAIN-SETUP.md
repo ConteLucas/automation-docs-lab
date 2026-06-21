@@ -53,15 +53,26 @@ O script:
 
 Abra: `http://lab.seudominio.com/login`
 
-## HTTPS (opcional, grátis)
+## HTTPS (grátis — Let's Encrypt)
 
-Com DNS em **DNS only** (nuvem cinza):
+Com DNS em **DNS only** (nuvem cinza), na pasta `automation-configs-lab/infra-lab/scripts`:
+
+```bash
+# 1. Deploy infra + web (compose com porta 443)
+./deploy-service.sh infra 54.225.198.82 ~/.ssh/automation-learn-lab.pem
+./deploy-service.sh web 54.225.198.82 ~/.ssh/automation-learn-lab.pem
+
+# 2. Emitir certificado e ativar HTTPS
+./setup-https.sh automation-device-lab.com 54.225.198.82 ~/.ssh/automation-learn-lab.pem
+```
+
+Abra: `https://automation-device-lab.com/login` (HTTP redireciona para HTTPS).
+
+Legado (só CORS, sem TLS no nginx):
 
 ```bash
 ./setup-domain.sh lab.seudominio.com 54.225.198.82 ~/.ssh/automation-learn-lab.pem --https
 ```
-
-Usa Let’s Encrypt (Certbot) na EC2. Porta 443 já está aberta no security group.
 
 ## O que informar ao time / ao agente
 
