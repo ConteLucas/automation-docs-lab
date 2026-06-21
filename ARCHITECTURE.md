@@ -1,7 +1,8 @@
 # Plataforma DDT — Arquitetura do Ecossistema
 
-Visão arquitetural completa do monorepo **automation-learn**: uma plataforma de automação de game bots que orquestra pedidos de clientes, delega tarefas a dispositivos Android, executa automação de UI com visão computacional e oferece um painel web de administração.
+Visão arquitetural completa do monorepo **automation-learn**: uma plataforma de automação de game bots que orquestra pedidos de clientes, delega tarefas a dispositivos Android, executa automação de UI com visão computacional e oferece um painel web de administração e marketplace público (MarketLAB).
 
+> **Evolução por release:** [releases/INDEX.md](releases/INDEX.md) · **Visão de produto:** [product/VISION.md](product/VISION.md)  
 > **Flows e S3:** BD como fonte da verdade, espelho S3 por ambiente — ver [FLOW-SYNC-E-S3.md](FLOW-SYNC-E-S3.md).
 
 ---

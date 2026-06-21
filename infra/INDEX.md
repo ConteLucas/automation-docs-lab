@@ -2,7 +2,16 @@
 
 Terraform, EC2, Docker Compose prod, S3, deploy.
 
-**Última atualização:** 2026-06-20
+**Última atualização:** 2026-06-21
+
+---
+
+## Releases e produto
+
+| Documento | Conteúdo |
+|-----------|----------|
+| [../releases/INDEX.md](../releases/INDEX.md) | Histórico R00–R04 |
+| [../releases/r04-producao-identidade/README.md](../releases/r04-producao-identidade/README.md) | Domínio, HTTPS, OAuth (última release) |
 
 ---
 

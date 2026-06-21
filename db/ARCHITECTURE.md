@@ -2,6 +2,8 @@
 
 Visão completa do modelo relacional PostgreSQL da plataforma DDT. O schema é **gerado e gerenciado pelo Core** (JPA/Hibernate `ddl-auto`). Este repositório serve como referência de planejamento, DDL de estudo e seeds.
 
+**Histórico por release:** [releases/INDEX.md](../releases/INDEX.md) — deltas em `r03-marketlab/DATABASE.md` e `r04-producao-identidade/DATABASE.md`.
+
 ---
 
 ## Diagrama ER — Visão Macro
@@ -55,6 +57,7 @@ erDiagram
         bigint id PK
         varchar login UK
         varchar password "AES-256-GCM em prod (v1: prefix)"
+        boolean marketplace_featured "destaque catálogo R03"
         timestamp created_at
         timestamp updated_at
     }
@@ -150,10 +153,12 @@ erDiagram
     user_admin {
         bigint id PK
         varchar login UK
-        varchar password_hash "BCrypt ($2a$)"
+        varchar password_hash "BCrypt ($2a$); opcional se OAuth"
         varchar name
         varchar email
         boolean active
+        varchar oauth_provider "google R04"
+        varchar oauth_provider_id "ID no provedor R04"
         bigint permission_id FK
         timestamp deleted_at "soft delete"
         timestamp created_at
@@ -162,9 +167,36 @@ erDiagram
 
     permission {
         bigint id PK
-        varchar name UK "ADM, DEV, MANAGER, SELLER"
+        varchar name UK "ADM, DEV, MANAGER, SELLER, CUSTOMER, SERVICE_PROVIDER"
         timestamp created_at
         timestamp updated_at
+    }
+
+    ads_service_provider {
+        bigint id PK
+        bigint user_id FK "user_admin"
+        varchar game_slug
+        varchar display_name
+        varchar whatsapp
+        text bio
+        text services_json
+        int price_from_cents
+        double rating
+        int review_count
+        boolean featured
+        boolean active
+        boolean banned
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    ads_service_provider_review {
+        bigint id PK
+        bigint ads_service_provider_id FK
+        bigint reviewer_user_id FK
+        int rating
+        text comment
+        timestamp created_at
     }
 
     permission_function {
@@ -221,7 +253,11 @@ erDiagram
     permission ||--o{ user_permission : "permission_id"
     permission_function ||--o{ permission_function_grant : "permission_function_id"
     user_admin ||--o{ user_permission : "user_id"
+    user_admin ||--o| ads_service_provider : "user_id"
+    ads_service_provider ||--o{ ads_service_provider_review : "ads_service_provider_id"
 ```
+
+> **Releases:** CUSTOMER/SERVICE_PROVIDER e marketplace em [releases/r03-marketlab/DATABASE.md](../releases/r03-marketlab/DATABASE.md); OAuth em [releases/r04-producao-identidade/DATABASE.md](../releases/r04-producao-identidade/DATABASE.md).
 
 ---
 
@@ -271,8 +307,8 @@ graph TB
 
     subgraph auth["Auth & RBAC"]
         style auth fill:#fce7f3,stroke:#db2777
-        UA["user_admin\nBCrypt password\nrole principal"]
-        PERM["permission\nADM, DEV, MANAGER, SELLER"]
+        UA["user_admin\nBCrypt ou OAuth\nrole principal"]
+        PERM["permission\nADM, DEV, MANAGER, SELLER\nCUSTOMER, SERVICE_PROVIDER"]
         PF["permission_function\nVIEW_ORDERS, CREATE_ORDERS..."]
         PFG["permission_function_grant\nmatriz role × função"]
         UP["user_permission\nN:N user ↔ role"]
@@ -280,6 +316,15 @@ graph TB
         UP -->|N:N| UA
         UP -->|N:N| PERM
         PFG -->|N:N| PERM & PF
+    end
+
+    subgraph marketlab["MarketLAB (R03+)"]
+        style marketlab fill:#fef3c7,stroke:#d97706
+        ASP["ads_service_provider\nprestador de serviços"]
+        ASR["ads_service_provider_review\navaliações"]
+        UA -->|1:0..1| ASP
+        ASP -->|1:N| ASR
+        GA -->|marketplace_featured| MKT_CAT["catálogo público"]
     end
 
     SO --> RS

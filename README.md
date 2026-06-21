@@ -2,7 +2,7 @@
 
 Documentação centralizada por serviço em **`automation-docs-lab`**. Não commitar `docs/` nos repos de aplicação (`automation-core-lab`, `automation-bot-lab`, etc.).
 
-**Última atualização:** 2026-06-20
+**Última atualização:** 2026-06-21
 
 ---
 
@@ -10,9 +10,13 @@ Documentação centralizada por serviço em **`automation-docs-lab`**. Não comm
 
 | Documento | Conteúdo |
 |-----------|----------|
+| [releases/INDEX.md](releases/INDEX.md) | **Histórico por release** (R00–R04) — evolução do sistema |
+| [product/VISION.md](product/VISION.md) | Visão do produto (MacroLAB + MarketLAB) |
+| [product/PROPOSAL.md](product/PROPOSAL.md) | Proposta e escopo por módulo |
 | [ARCHITECTURE.md](ARCHITECTURE.md) | Visão macro do ecossistema (diagramas, repos, segurança) |
-| [FLOW-SYNC-E-S3.md](FLOW-SYNC-E-S3.md) | **Fluxo novo:** BD → Core → S3 → Bot (layouts, envs LOCAL/HMG/PROD) |
-| [TECH-STORIES.md](TECH-STORIES.md) | Histórias técnicas e stack |
+| [db/ARCHITECTURE.md](db/ARCHITECTURE.md) | Modelo relacional e diagramas ER (atualizado por release) |
+| [FLOW-SYNC-E-S3.md](FLOW-SYNC-E-S3.md) | BD → Core → S3 → Bot (layouts, envs LOCAL/HMG/PROD) |
+| [TECH-STORIES.md](TECH-STORIES.md) | Histórias técnicas e stack (legado detalhado) |
 | [REPOSITORIES-OVERVIEW.md](REPOSITORIES-OVERVIEW.md) | Visão multi-repo |
 
 ---
