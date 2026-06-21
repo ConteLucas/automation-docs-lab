@@ -4,55 +4,15 @@ Inventário de diretórios, arquivos e padrões que foram substituídos, descont
 
 ---
 
-## 1. automation-device-lab — Diretório `release/deprecado/`
+## 1. automation-device-lab — Diretório `release/deprecado/` ✅ removido (2026-06-21)
 
-**Caminho:** `automation-device-lab/release/deprecado/`
-
-Scripts de build e assets de AVD que foram movidos para `automation-device-lab/config/` (versão atual).
-
-| Arquivo / Dir | Motivo do legado |
-|---------------|-----------------|
-| `release/deprecado/build-mac.sh` | Substituído por `config/build-mac.sh` |
-| `release/deprecado/build-win.bat` | Substituído por `config/build-win.bat` |
-| `release/deprecado/build-win.ps1` | Substituído por `config/build-win.ps1` |
-| `release/deprecado/build-windows.ps1` | Duplicata do build-win.ps1 |
-| `release/deprecado/device-lab.sh` | Substituído por `config/device-lab.sh` |
-| `release/deprecado/device-lab.bat` | Substituído por `config/device-lab.bat` |
-| `release/deprecado/abrir-device-lab.bat` | Atalho antigo, descontinuado |
-| `release/deprecado/instalar-device-lab.bat` | Instalador antigo |
-| `release/deprecado/package-dmg.sh` | Substituído por `config/build-mac.sh` |
-| `release/deprecado/package-exe.ps1` | Substituído por `config/build-win.ps1` |
-| `release/deprecado/assets/device-lab.avd/` | Snapshot de AVD commitado (dados de emulador, ~MB) |
-| `release/deprecado/assets/device-lab.ini` | Config antiga do AVD |
-
-**Ação sugerida:** deletar `release/deprecado/` inteiro. Verificar se `release/README.md` referencia algo.
+Scripts de build e assets de AVD que foram movidos para `automation-device-lab/config/`. Pasta apagada; usar apenas `config/`.
 
 ---
 
-## 2. automation-configs-lab — Docs de Arquivo `docs/bot/archive/`
+## 2. Documentação de arquivo do bot ✅ removida (2026-06-21)
 
-**Caminho:** `automation-configs-lab/docs/bot/archive/`
-
-31 arquivos `.md` de documentações superadas durante a evolução do bot (soluções alternativas descartadas, POCs, fixes pontuais, análises de bugs resolvidos).
-
-| Arquivo representativo | Contexto |
-|------------------------|---------|
-| `FLOATING-WINDOW.md`, `FLOATING-WINDOW-IMPROVEMENTS.md`, `FLOAT-ENHANCEMENTS.md` | Evolução da janela flutuante — versões antigas |
-| `MEDIAPROJECTION-IMPLEMENTATION.md`, `HOW-TO-TEST-MEDIAPROJECTION.md` | Integração MediaProjection (já implementada) |
-| `SCREENSHOT-ACCESSIBILITY.md`, `SHELL-SCREENCAP-SOLUTION.md`, `SCREENSHOT-TIMEOUT-ANALYSIS.md` | Soluções alternativas de screenshot descartadas |
-| `VISION-INTEGRATION.md`, `VISION-INTEGRATION-COMPLETE.md`, `VISION-MOCK.md`, `VISION-MOCK-SCREENSHOT.md`, `VISION-TEST.md`, `VISION-MOCK-SCREENSHOT.md` | Etapas da integração Vision já finalizadas |
-| `ORCHESTRATOR-CLEAN.md` | Refactor do orquestrador (feito) |
-| `LOG-STANDARDIZATION.md`, `UNIFIED-LOGGING.md`, `UNIFIED-LOGS-BOT-GAME.md` | Padronização de logs (feita) |
-| `ACCESSIBILITY-RESTORE.md` | Fix de acessibilidade aplicado |
-| `DEVICE-SELECTION.md`, `DEVICE-NAME-IMPLEMENTATION.md`, `FIX-DEVICE-NOT-SHOWING.md` | Problemas de seleção de device (resolvidos) |
-| `SCREEN-CLICKER-FIX.md`, `SCREEN-VALIDATION.md` | Fixes pontuais (resolvidos) |
-| `IMPLEMENTATION-SUMMARY.md`, `ALTERNATIVE-SOLUTION.md`, `CRITICAL-FIXES-NO-MOCK.md` | Notas de implementação obsoletas |
-| `MONITORING.md`, `UI-IMPROVEMENTS.md` | Melhorias de UI (aplicadas ou descartadas) |
-| `PROFESSIONAL-ANDROIDMANIFEST.md` | Ajuste do manifest (feito) |
-| `FLUXO-LOGIN.md` | Fluxo de login antigo (substituído por ORCHESTRATOR-TASK-CORE-FLOW.md) |
-| `README.md` | Índice do archive |
-
-**Ação sugerida:** Este diretório é `archive/` por design. Pode ser deletado na íntegra sem impacto no código. Avaliar se algum doc tem contexto histórico relevante antes de limpar.
+`automation-docs-lab/bot/archive/` (31 ficheiros `.md` históricos) e entradas git obsoletas em `configs/utils/docs/bot-ddt/docs/archive/` foram apagadas. Guias actuais em `automation-docs-lab/bot/`.
 
 ---
 
@@ -174,11 +134,11 @@ Contém pulls temporários de outros repos e dados de sessão local.
 
 ## 10. .DS_Store Files
 
-19 arquivos `.DS_Store` (macOS Finder metadata) commitados ao longo do monorepo.
+19 arquivos `.DS_Store` (macOS Finder metadata) commitados nos repositórios.
 
 **Ação sugerida:**
 ```bash
-# Na raiz do monorepo
+# Em cada repo (ou na pasta local automation-learn/)
 find . -name ".DS_Store" | xargs git rm --cached 2>/dev/null
 echo ".DS_Store" >> .gitignore
 ```
@@ -194,8 +154,6 @@ echo ".DS_Store" >> .gitignore
 | 🟠 MÉDIA | `app/build/` no bot-lab — build artifacts no git | Repositório inflado |
 | 🟠 MÉDIA | `target/` no core-lab — JAR compilado no git | Repositório inflado |
 | 🟠 MÉDIA | `dist/` e `node_modules/` no web-lab — se rastreados | Repositório inflado |
-| 🟡 BAIXA | `release/deprecado/` no device-lab — scripts substituídos | Confusão de manutenção |
-| 🟡 BAIXA | `docs/bot/archive/` nos configs — docs obsoletos | Ruído de documentação |
 | 🟡 BAIXA | `.local/` (capturas MITM, tmp pulls) | Dados temporários no git |
 | 🟢 INFO | `.DS_Store` (19 arquivos) | Metadados macOS |
 | 🟢 INFO | `alter-*.sql` / `migration-*.sql` avulsos | Histórico já aplicado |

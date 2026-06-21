@@ -35,4 +35,4 @@ Scripts operacionais (compose, deploy, sync S3): **`automation-configs-lab`** �
 
 ## Legado
 
-Documentos históricos ou substituídos: [LEGACY.md](LEGACY.md) · [bot/archive/](bot/archive/README.md).
+Documentos históricos ou substituídos: [LEGACY.md](LEGACY.md).

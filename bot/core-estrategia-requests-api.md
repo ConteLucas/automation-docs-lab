@@ -194,7 +194,7 @@ Resumo dos pontos a fechar antes/durante implementação:
 
 ### Fase 0 – Modelagem do banco de dados (primeiro)
 
-**Definição das tabelas (somente schema):** **[CORE-DATABASE-TABLES.md](CORE-DATABASE-TABLES.md)**. A partir delas seguimos para regras, API e batch.
+**Definição das tabelas (somente schema):** **[CORE-DATABASE-TABLES.md](../../automation-db-lab/docs/CORE-DATABASE-TABLES.md)**. A partir delas seguimos para regras, API e batch.
 
 1. **Definir e criar tabelas**
    - CONFIG (key, value) — ex.: SERVER_ALL.

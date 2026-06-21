@@ -45,7 +45,7 @@ Contrato BD ↔ JSON: [../automation-db-lab/docs/FLOW-CONTRACT.md](../automation
 | Documento | Conteúdo |
 |-----------|----------|
 | [SECURITY-PRODUCTION.md](SECURITY-PRODUCTION.md) | JWT, device key, AES contas |
-| [CORE-DATABASE-TABLES.md](CORE-DATABASE-TABLES.md) | Modelo relacional (cópia de referência) |
+| [CORE-DATABASE-TABLES.md](../../automation-db-lab/docs/CORE-DATABASE-TABLES.md) | Modelo relacional (canónico) |
 
 ---
 

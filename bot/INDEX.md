@@ -66,7 +66,6 @@ Navegação dos guias do worker (`automation-bot-lab`). Os nomes dos ficheiros s
 | [arq-analise-detalhada.md](arq-analise-detalhada.md) | Análise arquitectural aprofundada |
 | [arq-arvore-classes-acoplamento.md](arq-arvore-classes-acoplamento.md) | Árvore de classes e acoplamento |
 | [arq-refatoracao-clean-architecture.md](arq-refatoracao-clean-architecture.md) | Plano de refactor clean architecture |
-| [arq-documentacao-legacy-mvvm.md](arq-documentacao-legacy-mvvm.md) | Doc histórica MVVM (fase inicial) |
 
 ---
 
@@ -87,7 +86,6 @@ Navegação dos guias do worker (`automation-bot-lab`). Os nomes dos ficheiros s
 | [dev-workflow-build-testes.md](dev-workflow-build-testes.md) | Build, deploy, testes |
 | [dev-padroes-codigo.md](dev-padroes-codigo.md) | Convenções de código |
 | [ref-config-application-properties.md](ref-config-application-properties.md) | `application.properties` e perfis |
-| [dev-notas-backup-v4.md](dev-notas-backup-v4.md) | Notas de backup v4 (legado) |
 
 ---
 
@@ -124,12 +122,6 @@ Navegação dos guias do worker (`automation-bot-lab`). Os nomes dos ficheiros s
 
 ---
 
-## Arquivo histórico
-
-Documentos antigos em [`archive/`](archive/README.md) — fixes pontuais, POCs e refactorings já aplicados.
-
----
-
 ## Mapa de nomes antigos → novos
 
 | Nome antigo | Nome novo |
@@ -143,4 +135,4 @@ Documentos antigos em [`archive/`](archive/README.md) — fixes pontuais, POCs e
 | `APPLICATION-CONFIG.md` | `ref-config-application-properties.md` |
 | … | Ver prefixos acima |
 
-Scripts: [utils/scripts/bot/](../../utils/scripts/bot/)
+Scripts: [automation-configs-lab/bot-lab/scripts/bot/](../../automation-configs-lab/bot-lab/scripts/bot/)

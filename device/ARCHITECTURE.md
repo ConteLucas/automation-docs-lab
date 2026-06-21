@@ -177,8 +177,7 @@ automation-device-lab/
 │   └── icons/            # ícones do app desktop
 └── release/
     ├── Device-Lab-Setup.exe  # instalador Windows atual
-    ├── README.md
-    └── deprecado/            # scripts e builds antigos (ver LEGACY.md)
+    └── README.md
 ```
 
 ---
