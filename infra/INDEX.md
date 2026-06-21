@@ -32,6 +32,7 @@ Terraform, EC2, Docker Compose prod, S3, deploy.
 | Documento | Conteúdo |
 |-----------|----------|
 | [docs/env-images-s3.md](docs/env-images-s3.md) | S3 macros + json/bot |
+| [../CHAT-S3.md](../CHAT-S3.md) | Chat unificado (transcripts .txt no S3) |
 | [docs/DATABASE-REVIEW.md](docs/DATABASE-REVIEW.md) | Postgres EC2, DBeaver |
 | [docs/apk-bot-s3.md](docs/apk-bot-s3.md) | APK no bucket |
 
