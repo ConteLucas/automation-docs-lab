@@ -1,50 +1,8 @@
-# [ERROR] COMPILATION ERROR : 
-
-[INFO] -------------------------------------------------------------
-
-[ERROR] /Users/experiment/Developer/git/automation-learn/automation-core-lab/src/main/java/com/automation/core/application/service/[WorkerFlowSyncService.java](http://WorkerFlowSyncService.java):[128,32] normalizeKey(java.lang.String) is not public in [com.automation.core.adapter.out.storage](http://com.automation.core.adapter.out.storage).S3PresignService; cannot be accessed from outside package
-
-[INFO] 1 error
-
-[INFO] -------------------------------------------------------------
-
-[INFO] ------------------------------------------------------------------------
-
-[INFO] BUILD FAILURE
-
-[INFO] ------------------------------------------------------------------------
-
-[INFO] Total time:  3.167 s
-
-[INFO] Finished at: 2026-06-20T19:07:55-03:00
-
-[INFO] ------------------------------------------------------------------------
-
-[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.11.0:compile (default-compile) on project automation-core-ddt: Compilation failure
-
-[ERROR] /Users/experiment/Developer/git/automation-learn/automation-core-lab/src/main/java/com/automation/core/application/service/[WorkerFlowSyncService.java](http://WorkerFlowSyncService.java):[128,32] normalizeKey(java.lang.String) is not public in [com.automation.core.adapter.out.storage](http://com.automation.core.adapter.out.storage).S3PresignService; cannot be accessed from outside package
-
-[ERROR] 
-
-[ERROR] -> [Help 1]
-
-[ERROR] 
-
-[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
-
-[ERROR] Re-run Maven using the -X switch to enable full debug logging.
-
-[ERROR] 
-
-[ERROR] For more information about the errors and possible solutions, please read the following articles:
-
-[ERROR] [Help 1] [http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException](http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException)
-
-[deploy] mvn package falhou.
-
-[deploy] Use JDK 17 ou 21 — nao JDK 25: export JAVA_HOME=$(/usr/libexec/java_home -v 21)Plataforma DDT — Arquitetura do Ecossistema
+# Plataforma DDT — Arquitetura do Ecossistema
 
 Visão arquitetural completa do monorepo **automation-learn**: uma plataforma de automação de game bots que orquestra pedidos de clientes, delega tarefas a dispositivos Android, executa automação de UI com visão computacional e oferece um painel web de administração.
+
+> **Flows e S3:** BD como fonte da verdade, espelho S3 por ambiente — ver [FLOW-SYNC-E-S3.md](FLOW-SYNC-E-S3.md).
 
 ---
 
@@ -70,7 +28,7 @@ graph TB
 
     subgraph infra_aws["AWS"]
         EC2["EC2 t4g.micro"]
-        S3["S3 (templates PNG)"]
+        S3["S3 (macros + json/bot\npor deploy env)"]
         PG_DB[("PostgreSQL 15")]
     end
 
@@ -130,7 +88,11 @@ sequenceDiagram
     loop Cada task (240 iterações)
         BOT->>CORE: POST /api/tasks/claim-next {deviceId, apiKey}
         CORE->>PG: UPDATE task SET status=PROCESSING
-        CORE-->>BOT: TaskWorkerPlanResponse\n(flow_steps + images Base64)
+        CORE-->>BOT: TaskWorkerPlanResponse\n(leve — steps via sync local)
+
+        Note over BOT,CORE: Sync flows (pre-claim)
+        BOT->>CORE: GET flow-sync/collections/{key}/latest
+        BOT->>CORE: presign PNGs + bundle flow.json
 
         loop Cada step do flow
             loop Cada imagem do step
@@ -429,17 +391,23 @@ graph LR
 
 ## Documentação por Repositório
 
+Índices linkados por sistema — ponto de entrada recomendado:
 
-| Repo                           | Documento                                                                                                                                         |
-| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `automation-core-lab/docs/`    | [ARCHITECTURE.md](automation-core-lab/docs/ARCHITECTURE.md)                                                                                       |
-| `automation-bot-lab/docs/`     | [ARCHITECTURE.md](automation-bot-lab/docs/ARCHITECTURE.md)                                                                                        |
-| `automation-vision-lab/docs/`  | [ARCHITECTURE.md](automation-vision-lab/docs/ARCHITECTURE.md)                                                                                     |
-| `automation-web-lab/docs/`     | [ARCHITECTURE.md](automation-web-lab/docs/ARCHITECTURE.md)                                                                                        |
-| `automation-infra-lab/docs/`   | [ARCHITECTURE.md](automation-infra-lab/docs/ARCHITECTURE.md)                                                                                      |
-| `automation-db-lab/docs/`      | [ARCHITECTURE.md](automation-db-lab/docs/ARCHITECTURE.md)                                                                                         |
-| `automation-device-lab/docs/`  | [ARCHITECTURE.md](automation-device-lab/docs/ARCHITECTURE.md)                                                                                     |
-| `automation-configs-lab/docs/` | [REPOSITORIES-OVERVIEW.md](automation-configs-lab/docs/REPOSITORIES-OVERVIEW.md) · [TECH-STORIES.md](automation-configs-lab/docs/TECH-STORIES.md) |
-| **Legados**                    | [LEGACY.md](LEGACY.md)                                                                                                                            |
+| Sistema | Índice | Repo de código |
+|---------|--------|----------------|
+| **Transversal** | [FLOW-SYNC-E-S3.md](FLOW-SYNC-E-S3.md) | — |
+| Core API | [core/INDEX.md](core/INDEX.md) | `automation-core-lab` |
+| Bot Android | [bot/INDEX.md](bot/INDEX.md) | `automation-bot-lab` |
+| Vision OCR | [vision/INDEX.md](vision/INDEX.md) | `automation-vision-lab` |
+| Web CRM | [web/INDEX.md](web/INDEX.md) | `automation-web-lab` |
+| Infra AWS | [infra/INDEX.md](infra/INDEX.md) | `automation-infra-lab` |
+| Device Lab | [device/INDEX.md](device/INDEX.md) | `automation-device-lab` |
+| Banco / flows | [../automation-db-lab/docs/INDEX.md](../automation-db-lab/docs/INDEX.md) | `automation-db-lab` |
+
+| Transversal | Documento |
+|-------------|-----------|
+| Stack / histórias | [TECH-STORIES.md](TECH-STORIES.md) |
+| Multi-repo | [REPOSITORIES-OVERVIEW.md](REPOSITORIES-OVERVIEW.md) |
+| Legados | [LEGACY.md](LEGACY.md) |
 
 

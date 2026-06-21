@@ -31,7 +31,7 @@ graph TB
             IAM_ROLE["IAM Role\nEC2 → S3 (sem access key)"]
         end
 
-        S3["S3 Bucket\nimg/flows/* (PNGs de template)\n5 GB free tier"]
+        S3["S3 Bucket\nautomation-device-lab/{ENV}/\nmacros + json/bot\n5 GB free tier"]
         EBS["EBS 30 GB gp3\n(dados Postgres + código)"]
     end
 
@@ -65,7 +65,7 @@ graph LR
         end
 
         subgraph storage["Storage"]
-            S3_RES["aws_s3_bucket\nautomation-learn-{suffix}\nimg/flows/*"]
+            S3_RES["aws_s3_bucket\nautomation-learn-{suffix}\nautomation-device-lab/PROD/*"]
             S3_POL["aws_s3_bucket_policy\nprivate + IAM role only"]
             EBS_RES["aws_ebs_volume\n30 GB gp3 (via root block)"]
         end

@@ -122,7 +122,7 @@ aws iam get-role --role-name automation-learn-lab-ec2
 Na EC2, teste se a role acessa o S3 (via SSM — ver seção 6):
 
 ```bash
-aws s3 ls "s3://<bucket>/img/flows/" --region us-east-1
+aws s3 ls "s3://<bucket>/automation-device-lab/PROD/macros/" --region us-east-1
 ```
 
 ---

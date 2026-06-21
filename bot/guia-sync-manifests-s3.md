@@ -2,7 +2,7 @@
 
 Documento de desenho: sincronizar **flows** e **imagens** via S3 **fora** do `claim-next`, com update **granular por flow** e verificação **antes de cada tarefa**.
 
-Relacionado: [env-images-s3.md](../../automation-infra-lab/docs/env-images-s3.md) (PNG no bucket), [apk-bot-s3.md](../../automation-infra-lab/docs/apk-bot-s3.md) (APK do bot).
+Relacionado: [env-images-s3.md](../infra/docs/env-images-s3.md) (PNG no bucket), [FLOW-SYNC-E-S3.md](../FLOW-SYNC-E-S3.md) (visão transversal), [apk-bot-s3.md](../infra/docs/apk-bot-s3.md) (APK).
 
 ---
 
@@ -24,7 +24,7 @@ Em produção o bucket **não** expõe `json/bot/*` nem PNGs por GET anónimo. O
 |-------|------|-------------------|
 | Índice collection | Bot → Core | `GET /api/tasks/worker/flow-sync/collections/{key}/latest` |
 | Flow latest + bundle | Bot → Core | `GET /api/tasks/worker/flow-sync/flows/{flowKey}/latest` |
-| PNGs em batch | Bot → Core | `POST /api/tasks/worker/flow-sync/presign` `{ "keys": ["img/flows/…"] }` |
+| PNGs em batch | Bot → Core | `POST /api/tasks/worker/flow-sync/presign` `{ "keys": ["automation-device-lab/PROD/macros/…"] }` |
 | Download blobs | Bot → S3 | GET nas URLs presignadas |
 | Tarefa | Bot → Core | `POST claim-next` (leve) |
 
@@ -151,7 +151,7 @@ sequenceDiagram
     Bot->>Local: Gravar flows/LVL_10/flow.json
 
     loop PNGs do LVL_10
-        Bot->>S3: GET img/flows/.../01.png
+        Bot->>S3: GET presigned PNG (macros/…)
         S3-->>Bot: bytes
         Bot->>Local: Cache images/456.png
     end
@@ -225,33 +225,21 @@ Se o operador **não** alterou templates entre tentativas: passo 4 devolve `coll
 
 ---
 
-## Layout S3
+## Layout S3 (atual)
 
-Prefixo sugerido: `json/bot/` (bucket partilhado com imagens `img/flows/`).
+Raiz por **app** + **deploy env** (`LOCAL` | `HMG` | `PROD`). Collection key (ex. `LOCAL`) é **catálogo no BD**, não confundir com deploy env.
 
 ```text
-s3://BUCKET/json/bot/
-  collections/
-    FLOW30/
-      latest.json              ← índice da collection (leve, ~KB)
-  flows/
-    LOGIN/
-      latest.json              ← planVersion + url do bundle actual
-      releases/
-        12/
-          flow.json            ← steps + refs imagem (sem Base64)
-          images.manifest.json ← lista s3Key + sha256 (opcional)
-    LVL_10/
-      latest.json
-      releases/
-        9/
-          flow.json
-          ...
-    RM_POP_UP/
-      ...
+s3://BUCKET/automation-device-lab/PROD/
+  macros/collections/LOCAL/flows/LOGIN/steps/0/img/0.0.1_xx.png
+  json/bot/collections/LOCAL/latest.json
+  json/bot/collections/LOCAL/flows/LOGIN/latest.json
+  json/bot/collections/LOCAL/flows/LOGIN/releases/{planVersion}/flow.json
 ```
 
-Imagens PNG continuam em `img/flows/...` (já existente). O `flow.json` só referencia.
+Variáveis Core: `APP_STORAGE_S3_APP_ROOT`, `APP_STORAGE_S3_DEPLOY_ENV`, `APP_STORAGE_S3_PREFIX=macros`.
+
+Paths legados `img/flows/` e `json/bot/` na raiz do bucket — **não usar**.
 
 ---
 
@@ -310,7 +298,7 @@ Split L3/L4 (alinhado a `assets/worker-flows/steps/{KEY}/step.json`):
         {
           "stepImgNumber": 1,
           "coreImageId": 456,
-          "s3Key": "img/flows/prod/lvl_10/01.png",
+          "s3Key": "automation-device-lab/PROD/macros/collections/LOCAL/flows/LVL_10/steps/3/img/0.0.1_03.png",
           "sha256": "…",
           "workerAction": "CLICK"
         }
@@ -439,21 +427,18 @@ json/bot/collections/…       → manifest flows
 
 ## Publish (Core → S3)
 
-Pipeline quando editor altera conteúdo:
+**Automático** após bump de versão no BD (`FlowVersioningService` → `FlowMacroS3MirrorService`):
 
 ```
-1. Admin grava flow LVL_10 (1 imagem nova)
-2. Core actualiza DB + bump updatedAt do flow / imagem
-3. Export job:
-   - Calcula planVersion do flow (hash ou timestamp canónico)
-   - Gera flow.json + lista de s3Keys
-   - Upload flows/LVL_10/releases/{v}/flow.json
-   - Actualiza flows/LVL_10/latest.json
-   - Bump collectionLatest em collections/FLOW30/latest.json
-4. Bots detectam na próxima consulta pre-claim
+1. Admin/Web grava flow (BD)
+2. Bump semver (collection / flow / step / image)
+3. Após commit TX: Core publica json/bot em automation-device-lab/{ENV}/
+4. Bots detectam na próxima syncBeforeClaim (Core lê BD, não S3 como fonte)
 ```
 
-**Regra:** o `planVersion` exportado tem de ser o mesmo que o Core expõe em `cachedPlanVersions` / collection response.
+**Manual** (lab / cutover): `automation-configs-lab/infra-lab/scripts/export-flow-manifest-s3.sh`
+
+**Regra:** `planVersion` no espelho S3 = valor exposto pelo Core em flow-sync / claim bypass.
 
 ---
 

@@ -2,6 +2,8 @@
 
 Serviço **OCR e visão** (template matching, lens) para o bot Android e ferramentas de debug. FastAPI + OpenCV + Tesseract.
 
+**Índice completo:** [INDEX.md](INDEX.md)
+
 ## Como iniciar
 
 ### Stack completa (recomendado)

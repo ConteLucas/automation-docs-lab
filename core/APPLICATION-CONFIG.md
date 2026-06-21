@@ -15,6 +15,20 @@ Override: `SPRING_PROFILES_ACTIVE`, `SPRING_JPA_HIBERNATE_DDL_AUTO`, `DB_*`, `AP
 
 EC2 lab: compose prod default `SPRING_JPA_HIBERNATE_DDL_AUTO=update`.
 
+## Storage S3 (flows / PNGs)
+
+Ver [FLOW-SYNC-E-S3.md](../FLOW-SYNC-E-S3.md) e [env-images-s3.md](../infra/docs/env-images-s3.md).
+
+| Variável | Default local | Prod |
+|----------|---------------|------|
+| `APP_STORAGE_MODE` | `local` | `s3` |
+| `APP_STORAGE_S3_APP_ROOT` | `automation-device-lab` | idem |
+| `APP_STORAGE_S3_DEPLOY_ENV` | `LOCAL` | `PROD` |
+| `APP_STORAGE_S3_PREFIX` | `macros` | `macros` |
+| `APP_STORAGE_S3_MANIFEST_PREFIX` | `json/bot` | `json/bot` |
+
+`image_path` no BD é relativo; chave S3 = `{appRoot}/{deployEnv}/{prefix}/` + path.
+
 Opcional: `application.yml` na **raiz do repo** sobrescreve o do JAR ao rodar `mvn spring-boot:run` local.
 
 ## Massa e seeds

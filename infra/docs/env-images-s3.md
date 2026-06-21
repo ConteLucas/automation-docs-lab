@@ -1,51 +1,74 @@
-# Imagens de flow: storage local vs S3
+# Imagens de flow e layout S3
 
-Como o Core guarda e serve templates (`flow_step_image`) no **local** e na **AWS lab**.
+Como o Core guarda PNGs, espelha manifests worker e particiona o bucket por **app** e **deploy env**.
+
+> Visão transversal: [FLOW-SYNC-E-S3.md](../../FLOW-SYNC-E-S3.md)
+
+**Última atualização:** 2026-06-20
+
+---
 
 ## Resumo
 
-| Ambiente | `APP_STORAGE_MODE` | Onde ficam os PNGs |
-|----------|-------------------|-------------------|
-| Dev (Docker Mac) | `local` | `automation-configs-lab/utils/data/ddt-templates/` → volume `/data/uploads` |
-| AWS lab (EC2) | `s3` | Bucket S3 `automation-learn-lab-images-396913713116` |
+| Ambiente | `APP_STORAGE_MODE` | `APP_STORAGE_S3_DEPLOY_ENV` | Onde ficam os PNGs |
+|----------|-------------------|----------------------------|-------------------|
+| Dev (Docker Mac) | `local` | `LOCAL` (se S3) | Volume `/data/uploads` ou S3 `…/LOCAL/macros/…` |
+| AWS lab (EC2) | `s3` | `PROD` | `automation-device-lab/PROD/macros/…` |
+| Homologação | `s3` | `HMG` | `automation-device-lab/HMG/macros/…` |
 
-O **mesmo código** do Core funciona nos dois modos. O Postgres sempre guarda `image_path` relativo (ex.: `flows/prod/login/login_01/01.png`).
+O **Postgres** guarda `flow_step_image.image_path` **relativo** (sem prefixo de app/env):
+
+```text
+collections/LOCAL/flows/LOGIN/steps/0/img/0.0.1_xx.png
+```
+
+Chave S3 completa (Core compõe na hora do upload/presign):
+
+```text
+automation-device-lab/PROD/macros/collections/LOCAL/flows/LOGIN/steps/0/img/0.0.1_xx.png
+```
+
+---
 
 ## Variáveis de ambiente
 
-Definidas no Core (`application.yml` → env `APP_STORAGE_*`):
+| Variável | Descrição | Local (compose) | Prod (`.env.prod` EC2) |
+|----------|-----------|-----------------|------------------------|
+| `APP_STORAGE_MODE` | `local` ou `s3` | `local` | `s3` |
+| `APP_STORAGE_S3_BUCKET` | Bucket | — | `automation-learn-lab-images-…` |
+| `APP_STORAGE_S3_REGION` | Região | — | `us-east-1` |
+| `APP_STORAGE_S3_APP_ROOT` | Raiz da app no bucket | `automation-device-lab` | `automation-device-lab` |
+| `APP_STORAGE_S3_DEPLOY_ENV` | Ambiente de deploy | `LOCAL` | `PROD` |
+| `APP_STORAGE_S3_PREFIX` | Segmento macros | `macros` | `macros` |
+| `APP_STORAGE_S3_MANIFEST_PREFIX` | Segmento JSON bot | `json/bot` | `json/bot` |
+| `APP_STORAGE_PUBLIC_BASE_URL` | Redirect opcional GET /file | vazio | vazio* |
 
-| Variável | Local | Prod (`.env.prod` na EC2) |
-|----------|-------|---------------------------|
-| `APP_STORAGE_MODE` | `local` | `s3` |
-| `APP_STORAGE_UPLOAD_DIR` | `/data/uploads` | `/data/uploads` (fallback, pouco usado em S3) |
-| `APP_STORAGE_S3_BUCKET` | — | `automation-learn-lab-images-396913713116` |
-| `APP_STORAGE_S3_REGION` | — | `us-east-1` |
-| `APP_STORAGE_S3_PREFIX` | `img/flows` | `img/flows` |
-| `APP_STORAGE_PUBLIC_BASE_URL` | vazio | vazio* |
-
-\* Opcional. Se `s3_public_read_images = true` no Terraform, o Core pode redirecionar `GET /file` para URL pública S3 (menos tráfego na EC2). **Padrão do lab: bucket privado** — leitura via IAM da instância.
+\* Bucket **privado** por padrão — leitura via IAM (EC2) ou presign (bot).
 
 ### Onde cada env é definida
 
 ```text
 Local:   automation-configs-lab/docker-compose.yml
 Prod:    Terraform user-data → /opt/automation-learn/.env.prod
-         automation-infra-lab/compose/docker-compose.prod.yml (repassa ao container core)
+         automation-infra-lab/compose/docker-compose.prod.yml
 ```
 
-## Chave no S3
+Perfis Spring (`application.yml`): `local`→LOCAL, `dev`→HMG, `prod`→PROD.
 
-`image_path` no banco + prefixo:
+---
+
+## Árvore S3
 
 ```text
-image_path:  flows/prod/login/login_01/01.png
-S3 key:      img/flows/flows/prod/login/login_01/01.png
+s3://{BUCKET}/automation-device-lab/{LOCAL|HMG|PROD}/
+  macros/collections/{collectionKey}/flows/{flowKey}/steps/{n}/img/{file}.png
+  json/bot/collections/{collectionKey}/latest.json
+  json/bot/collections/{collectionKey}/flows/{flowKey}/releases/{planVersion}/flow.json
 ```
 
-Se `image_path` já começa com `img/flows/`, o prefixo **não** é duplicado.
+Implementação: `S3StorageLayout`, `FlowImagePathUtil`, `ImageStorageKeyUtil` no Core.
 
-Implementação: `ImageStorageKeyUtil` no `automation-core-lab`.
+---
 
 ## Fluxos que usam storage
 
@@ -53,124 +76,136 @@ Implementação: `ImageStorageKeyUtil` no `automation-core-lab`.
 
 ```text
 POST /api/flow-step-images/upload  (multipart)
-  → Core grava no storage (disco ou S3)
-  → retorna { "imagePath": "flows/..." }
-  → Web salva imagePath no registro flow_step_image
+  → Core grava S3: {appRoot}/{deployEnv}/macros/…
+  → retorna { "imagePath": "collections/LOCAL/flows/…" }
+  → Web persiste imagePath em flow_step_image
 ```
 
-### 2. Web — preview da imagem
+### 2. Web — preview
 
 ```text
 GET /api/flow-step-images/{id}/file
-  → Core lê do storage e devolve bytes
-  → (opcional) redirect 302 se APP_STORAGE_PUBLIC_BASE_URL configurado
+  → Core lê storage (local ou S3)
 ```
 
-### 3. Bot — plano da task
+### 3. Bot — sync + execução
 
-| Query | Comportamento |
-|-------|---------------|
-| `?templates=manifest` (padrão) | JSON com `id` da imagem; bot baixa `GET /flow-step-images/{id}/file` |
-| `?templates=base64` | Core lê do storage e embute `templateImage` em Base64 |
+Com `WORKER_FLOW_SYNC_VIA_CORE=true`:
 
-Em prod (S3), ambos leem do bucket via SDK (credenciais IAM da EC2).
-
-## Local — setup de templates
-
-```bash
-# Copia PNGs do bot → pasta montada no Core
-cd automation-configs-lab
-./utils/scripts/sync-ddt-templates-to-storage.sh
+```text
+GET  /api/tasks/worker/flow-sync/collections/{key}/latest   ← Core lê BD
+POST /api/tasks/worker/flow-sync/presign { keys: […] }        ← URLs assinadas
+POST claim-next (leve)
 ```
 
-Fonte: `automation-bot-lab/app/src/main/assets/worker-flows/flows/`  
-Destino: `automation-configs-lab/utils/data/ddt-templates/flows/`
+PNG nunca vai em Base64 no claim em prod.
 
-## Prod — setup inicial de templates
+### 4. Espelho automático (Core)
 
-### 1. Deploy do Core com código S3
+Após bump de versão (`FlowVersioningService` → `FlowMacroS3MirrorService`):
+
+```text
+PUT automation-device-lab/{ENV}/json/bot/collections/{key}/latest.json
+PUT …/flows/{flowKey}/releases/{planVersion}/flow.json
+```
+
+---
+
+## Scripts
+
+### Sync PNGs (metadata → S3)
 
 ```bash
-cd automation-configs-lab
+cd automation-configs-lab/vision-lab/scripts
+S3_DEPLOY_ENV=PROD ./sync-metadata-images-to-s3.sh
+# bucket e região opcionais; defaults no script
+```
+
+Variáveis: `S3_APP_ROOT`, `S3_DEPLOY_ENV`, `S3_ROOT_PREFIX` (default `{APP_ROOT}/{ENV}/macros`).
+
+### Export manual manifest (Core → S3)
+
+```bash
+cd automation-configs-lab/infra-lab/scripts
+COLLECTION_ID=… S3_DEPLOY_ENV=PROD ./export-flow-manifest-s3.sh
+```
+
+Credenciais worker: `bot-lab/credentials/worker-credentials.env`.
+
+### Reconcile manifests (BD → S3)
+
+```bash
+# Via API Core (requer JWT admin)
+COLLECTION_ID=3 JWT=eyJ... ./infra-lab/scripts/republish-worker-mirror.sh
+# ou POST /api/collections/{id}/republish-worker-mirror
+```
+
+### Migração paths legados
+
+```bash
+DRY_RUN=1 ./infra-lab/scripts/migrate-s3-legacy-prefix.sh
+S3_DEPLOY_ENV=PROD ./infra-lab/scripts/migrate-s3-legacy-prefix.sh
+```
+
+### Promote catálogo local → PROD
+
+```bash
+COLLECTION_ID=3 JWT=... ./infra-lab/scripts/promote-catalog-to-prod.sh
+```
+
+### Deploy Core após mudança Java
+
+```bash
 ./infra-lab/scripts/deploy-service.sh core 54.225.198.82 ~/.ssh/automation-learn-lab.pem
 ```
 
-O script compila o JAR **no Mac** (`mvn package`) e na EC2 só empacota a imagem JRE (~30 s).
+---
 
-### 2. Sincronizar PNGs para o bucket (uma vez ou quando atualizar catálogo)
+## IAM (EC2)
 
-```bash
-./vision-lab/scripts/sync-ddt-templates-to-s3.sh
-# ou com bucket/região explícitos:
-./vision-lab/scripts/sync-ddt-templates-to-s3.sh automation-learn-lab-images-396913713116 us-east-1 img/flows
+Policy permite `s3:*Object` em:
+
+```text
+automation-device-lab/PROD/*
 ```
 
-Requer `aws` CLI autenticado (perfil local com permissão no bucket, ou rodar na EC2).
+(macros + json/bot no mesmo prefixo de ambiente).
 
-### 3. Banco
-
-Os registros `flow_step_image.image_path` devem bater com o caminho relativo (ex.: `flows/prod/login/01.png`), igual ao local. Scripts de seed (`seed-ddt-login-flow.sh`, etc.) já geram esses paths.
-
-## Custo (free tier)
-
-Configuração pensada para **uso baixo, sem custo relevante**:
-
-| Recurso | Free tier (12 meses) | Uso típico do lab |
-|---------|----------------------|-------------------|
-| S3 storage | 5 GB | Centenas de PNGs pequenos (<< 1 GB) |
-| S3 GET | 20.000/mês | Bot cacheia localmente após 1º download |
-| S3 PUT | 2.000/mês | Uploads ocasionais pelo web |
-| EC2 → S3 (mesma região) | Sem cobrança de transferência | Core e bucket em `us-east-1` |
-
-Boas práticas já aplicadas:
-
-- Bucket **privado** (sem CloudFront obrigatório)
-- Sem multipart para arquivos pequenos
-- Bot usa modo `manifest` (não manda Base64 gigante em todo claim)
-- Lifecycle no Terraform pode expirar versões antigas (se versioning ativo)
-
-## IAM
-
-A EC2 usa instance profile com policy `s3:PutObject`, `GetObject`, `DeleteObject` no prefixo `img/flows/*`. O Core usa `DefaultCredentialsProvider` (sem chave no `.env`).
+---
 
 ## Troubleshooting
 
 | Problema | Causa provável | Solução |
 |----------|----------------|---------|
-| Upload web 500 em prod | Core antigo ou bucket/region vazios | Redeploy `core`; conferir `.env.prod` |
-| `GET /file` 404 | PNG não está no S3 | Rodar `sync-ddt-templates-to-s3.sh` |
-| Bot sem template | `image_path` no banco ≠ objeto no S3 | Alinhar path do seed com sync |
-| `app.storage.s3.bucket é obrigatório` | `APP_STORAGE_MODE=s3` sem bucket | Corrigir `.env.prod` / Terraform |
-| Local OK, prod falha | Modo errado | `APP_STORAGE_MODE=s3` na EC2, `local` no Mac |
+| Upload 500 em prod | Env S3 incompleta | Conferir `.env.prod`: `APP_ROOT`, `DEPLOY_ENV`, `PREFIX=macros` |
+| Bot sem PNG | Objeto no path legado `img/flows/` | Re-sync com `S3_DEPLOY_ENV=PROD` |
+| Manifest 404 | JSON no env errado | Core e scripts com mesmo `DEPLOY_ENV` |
+| Confusão LOCAL | Collection key vs deploy env | Ver [FLOW-SYNC-E-S3.md](../../FLOW-SYNC-E-S3.md) |
+
+---
+
+## Paths legados (migrar)
+
+| Antigo | Atual |
+|--------|-------|
+| `img/flows/…` | `automation-device-lab/{ENV}/macros/collections/…` |
+| `macros/collections/…` (sem env) | `automation-device-lab/{ENV}/macros/collections/…` |
+| `json/bot/…` (raiz bucket) | `automation-device-lab/{ENV}/json/bot/…` |
+
+---
 
 ## Arquivos relevantes
 
 ```text
 automation-core-lab/
-  src/main/java/.../adapter/out/storage/
-    LocalImageStorageAdapter.java
-    S3ImageStorageAdapter.java
-    ImageStorageKeyUtil.java
-  src/main/java/.../application/config/
-    StorageProperties.java
-    ImageStorageConfiguration.java
-
+  adapter/out/storage/  S3StorageLayout, FlowImagePathUtil, FlowMacroS3MirrorService
+  application/service/  WorkerFlowSyncService, FlowVersioningService
 automation-infra-lab/
+  terraform/locals.tf   s3_app_root, s3_deploy_env
   compose/docker-compose.prod.yml
-  terraform/ (bucket, IAM, .env.prod)
-  docs/env-images-s3.md          ← este arquivo
-
 automation-configs-lab/
-  docker-compose.yml             (mode=local)
-  vision-lab/scripts/sync-ddt-templates-to-s3.sh
-  vision-lab/scripts/sync-ddt-templates-to-storage.sh
-```
-
-## Deploy após mudança no storage
-
-```bash
-# Só o Core precisa rebuild quando alterar código Java de storage
-../automation-configs-lab/infra-lab/scripts/deploy-service.sh core 54.225.198.82 ~/.ssh/automation-learn-lab.pem
+  vision-lab/scripts/sync-metadata-images-to-s3.sh
+  infra-lab/scripts/export-flow-manifest-s3.sh
 ```
 
 Ver também: [DEPLOY-DEV.md](./DEPLOY-DEV.md), [GITHUB-DEPLOY.md](./GITHUB-DEPLOY.md).

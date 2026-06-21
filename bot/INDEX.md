@@ -16,6 +16,8 @@ Navegação dos guias do worker (`automation-bot-lab`). Os nomes dos ficheiros s
 
 **Última atualização:** 2026-06-20
 
+> **Fluxo BD + S3 (atual):** [FLOW-SYNC-E-S3.md](../FLOW-SYNC-E-S3.md) · Storage: [env-images-s3.md](../infra/docs/env-images-s3.md)
+
 ---
 
 ## Início rápido
@@ -35,7 +37,7 @@ Navegação dos guias do worker (`automation-bot-lab`). Os nomes dos ficheiros s
 | [guia-execucao-task-core.md](guia-execucao-task-core.md) | **Ciclo completo L1–L5** — claim-next, pré-voo, manifest, status |
 | [guia-orquestrador-task-core.md](guia-orquestrador-task-core.md) | Orquestrador × Core — plano `flow_step` / `flow_step_image` |
 | [ref-acoes-worker-manifest.md](ref-acoes-worker-manifest.md) | Acções `CLICK`, `WAIT_APPEAR`, `IF_VISIBLE` no manifest |
-| [guia-sync-manifests-s3.md](guia-sync-manifests-s3.md) | Sincronizar flows e PNG via S3 antes do claim |
+| [guia-sync-manifests-s3.md](guia-sync-manifests-s3.md) | Sync flows/PNG — Core gatekeeper + layout S3 por env |
 | [guia-login-servidor-mitm.md](guia-login-servidor-mitm.md) | Login A11y + servidor variável (mitm rewrite S10/S12…) |
 | [runbook-mitm-emulador.md](runbook-mitm-emulador.md) | Cert system + mitm no Mac (copiar/colar) |
 

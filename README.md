@@ -1,38 +1,38 @@
 # Documentação — automation-learn
 
-Documentação centralizada por serviço. **Não** commitar `docs/` nos repos de aplicação (`automation-core-lab`, `automation-bot-lab`, etc.).
+Documentação centralizada por serviço em **`automation-docs-lab`**. Não commitar `docs/` nos repos de aplicação (`automation-core-lab`, `automation-bot-lab`, etc.).
 
-## Estrutura
+**Última atualização:** 2026-06-20
 
-| Pasta | Serviço | Repo de código |
-|-------|---------|----------------|
-| [core/](core/) | Core API (Spring) | `automation-core-lab` |
-| [vision/](vision/) | Vision / OCR | `automation-vision-lab` |
-| [bot/](bot/) | Bot worker (Android) | `automation-bot-lab` |
-| [device/](device/) | Device Lab desktop | `automation-device-lab` |
-| [web/](web/) | Web UI (React) | `automation-web-lab` |
+---
 
-## Transversal
-
-- [TECH-STORIES.md](TECH-STORIES.md) — histórias técnicas e stack
-- [REPOSITORIES-OVERVIEW.md](REPOSITORIES-OVERVIEW.md) — visão multi-repo
-
-## Infra / deploy
-
-Deploy AWS, Terraform e compose de produção ficam em `automation-infra-lab/docs/`.
-
-## SQL, seeds e modelo de dados
-
-Centralizado em **`automation-db-lab`** — [README](../automation-db-lab/README.md).
-
-## Documentação de domínio (API, segurança): [docs/core/](docs/core/) neste repo.
-
-## Device Lab (docs no configs-lab)
+## Comece aqui
 
 | Documento | Conteúdo |
 |-----------|----------|
-| [docs/device/SETUP-MULTIPLATAFORMA.md](docs/device/SETUP-MULTIPLATAFORMA.md) | Setup Device Lab |
-| [docs/device/BUILD-WINDOWS-EXE.md](docs/device/BUILD-WINDOWS-EXE.md) | Instalador Windows |
-| [docs/device/BUILD-WINDOWS-VM.md](docs/device/BUILD-WINDOWS-VM.md) | Build na VM |
+| [ARCHITECTURE.md](ARCHITECTURE.md) | Visão macro do ecossistema (diagramas, repos, segurança) |
+| [FLOW-SYNC-E-S3.md](FLOW-SYNC-E-S3.md) | **Fluxo novo:** BD → Core → S3 → Bot (layouts, envs LOCAL/HMG/PROD) |
+| [TECH-STORIES.md](TECH-STORIES.md) | Histórias técnicas e stack |
+| [REPOSITORIES-OVERVIEW.md](REPOSITORIES-OVERVIEW.md) | Visão multi-repo |
 
-Código: [automation-device-lab](../automation-device-lab/README.md)
+---
+
+## Índices por sistema
+
+| Sistema | Índice | Repo de código |
+|---------|--------|----------------|
+| Core API (Spring) | [core/INDEX.md](core/INDEX.md) | `automation-core-lab` |
+| Bot worker (Android) | [bot/INDEX.md](bot/INDEX.md) | `automation-bot-lab` |
+| Vision / OCR | [vision/INDEX.md](vision/INDEX.md) | `automation-vision-lab` |
+| Web UI (React) | [web/INDEX.md](web/INDEX.md) | `automation-web-lab` |
+| Infra / deploy AWS | [infra/INDEX.md](infra/INDEX.md) | `automation-infra-lab` |
+| Device Lab desktop | [device/INDEX.md](device/INDEX.md) | `automation-device-lab` |
+| Banco / flows / seeds | [../automation-db-lab/docs/INDEX.md](../automation-db-lab/docs/INDEX.md) | `automation-db-lab` |
+
+Scripts operacionais (compose, deploy, sync S3): **`automation-configs-lab`** — ver [infra/docs/DEPLOY-DEV.md](infra/docs/DEPLOY-DEV.md).
+
+---
+
+## Legado
+
+Documentos históricos ou substituídos: [LEGACY.md](LEGACY.md) · [bot/archive/](bot/archive/README.md).
