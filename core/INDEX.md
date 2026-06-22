@@ -12,6 +12,7 @@ Backend Spring Boot — tasks, flows, storage, worker sync.
 |-----------|----------|
 | [ARCHITECTURE.md](ARCHITECTURE.md) | Hexagonal, camadas, integrações |
 | [APPLICATION-CONFIG.md](APPLICATION-CONFIG.md) | Perfis Spring, env vars, massa SQL |
+| [OAUTH-SETUP.md](OAUTH-SETUP.md) | Google, Discord, Facebook — portais e env vars |
 | [FLUXO-TASK-HEXAGONAL.md](FLUXO-TASK-HEXAGONAL.md) | Fluxo task end-to-end |
 
 ---

@@ -38,6 +38,17 @@ Opcional: `application.yml` na **raiz do repo** sobrescreve o do JAR ao rodar `m
 - `sql/core/massa.sql`
 - `seeds/permission-seed.json`
 
+## OAuth (Google, Discord, Facebook)
+
+Login social: web redireciona ao provedor; core troca `code` em `POST /api/auth/oauth`.
+
+| Camada | Variáveis |
+|--------|-----------|
+| Core | `APP_OAUTH_GOOGLE_*`, `APP_OAUTH_DISCORD_*`, `APP_OAUTH_FACEBOOK_*` |
+| Web (build-time) | `VITE_OAUTH_GOOGLE_CLIENT_ID`, `VITE_OAUTH_DISCORD_CLIENT_ID`, `VITE_OAUTH_FACEBOOK_APP_ID`, `VITE_OAUTH_REDIRECT_URI` |
+
+Guia completo (portais dos provedores, EC2, troubleshooting): **[OAUTH-SETUP.md](OAUTH-SETUP.md)**.
+
 ## Swagger
 
 Docker `:8082` → http://localhost:8082/swagger-ui/index.html · perfil `prod`: desligado.

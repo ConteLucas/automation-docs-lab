@@ -35,6 +35,6 @@ Ver [ARCHITECTURE.md](ARCHITECTURE.md).
 
 ## Pendências conhecidas (pós-R04)
 
-- OAuth Discord e Facebook
+- OAuth Discord e Facebook — código pronto; falta registrar apps e env vars (ver [core/OAUTH-SETUP.md](../../core/OAUTH-SETUP.md))
 - Rotação do client secret Google se exposto em canal inseguro
 - Monitoramento formal de uptime na instância micro
