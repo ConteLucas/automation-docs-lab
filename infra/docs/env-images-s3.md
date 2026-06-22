@@ -4,7 +4,40 @@ Como o Core guarda PNGs, espelha manifests worker e particiona o bucket por **ap
 
 > Visão transversal: [FLOW-SYNC-E-S3.md](../../FLOW-SYNC-E-S3.md)
 
-**Última atualização:** 2026-06-20
+**Última atualização:** 2026-06-22
+
+---
+
+## Raiz do bucket (tier)
+
+O bucket é particionado por **tier** na raiz:
+
+```text
+s3://{BUCKET}/
+  LOCAL/     ← dev local (Docker / mvn)
+  STAGE/     ← homologação (alias HMG nos perfis Spring)
+  PROD/      ← produção EC2
+    assets/                    UI estática (logos, 404, ícones)
+    apk/                       bot Android + Device Lab
+    data/              macros, galeria, chat, flows
+      macros/
+```
+
+Constantes centralizadas:
+
+| Camada | Ficheiro |
+|--------|----------|
+| Bash (scripts) | `automation-configs-lab/infra-lab/scripts/lib/s3-layout.sh` |
+| TypeScript (web) | `automation-web-lab/src/config/s3Layout.ts` |
+| Java (Core) | `S3BucketTier`, `S3StorageLayout` |
+
+Migração do layout legado (raiz sem tier):
+
+```bash
+cd automation-configs-lab/infra-lab/scripts
+DRY_RUN=1 ./migrate-s3-to-bucket-tier.sh   # preview
+./migrate-s3-to-bucket-tier.sh             # copia apk/, assets/, automation-device-lab/ → PROD/
+```
 
 ---
 
@@ -13,8 +46,8 @@ Como o Core guarda PNGs, espelha manifests worker e particiona o bucket por **ap
 | Ambiente | `APP_STORAGE_MODE` | `APP_STORAGE_S3_DEPLOY_ENV` | Onde ficam os PNGs |
 |----------|-------------------|----------------------------|-------------------|
 | Dev (Docker Mac) | `local` | `LOCAL` (se S3) | Volume `/data/uploads` ou S3 `…/LOCAL/macros/…` |
-| AWS lab (EC2) | `s3` | `PROD` | `automation-device-lab/PROD/macros/…` |
-| Homologação | `s3` | `HMG` | `automation-device-lab/HMG/macros/…` |
+| AWS lab (EC2) | `s3` | `PROD` | `PROD/data/{marketplace-lab\|macro-lab\|provider-lab}/…` |
+| Homologação | `s3` | `HMG` | `STAGE/data/{marketplace-lab\|macro-lab\|provider-lab}/…` |
 
 O **Postgres** guarda `flow_step_image.image_path` **relativo** (sem prefixo de app/env):
 
@@ -25,7 +58,8 @@ collections/LOCAL/flows/LOGIN/steps/0/img/0.0.1_xx.png
 Chave S3 completa (Core compõe na hora do upload/presign):
 
 ```text
-automation-device-lab/PROD/macros/collections/LOCAL/flows/LOGIN/steps/0/img/0.0.1_xx.png
+PROD/data/macro-lab/collections/LOCAL/flows/LOGIN/steps/0/img/0.0.1_xx.png
+PROD/data/marketplace-lab/imgs/ads/8/release_0.0.1/01.png
 ```
 
 ---
@@ -37,7 +71,8 @@ automation-device-lab/PROD/macros/collections/LOCAL/flows/LOGIN/steps/0/img/0.0.
 | `APP_STORAGE_MODE` | `local` ou `s3` | `local` | `s3` |
 | `APP_STORAGE_S3_BUCKET` | Bucket | — | `automation-learn-lab-images-…` |
 | `APP_STORAGE_S3_REGION` | Região | — | `us-east-1` |
-| `APP_STORAGE_S3_APP_ROOT` | Raiz da app no bucket | `automation-device-lab` | `automation-device-lab` |
+| `APP_STORAGE_S3_APP_ROOT` | Segmento de dados | `data` | `data` |
+| `APP_STORAGE_S3_BUCKET_TIER` | Tier na raiz do bucket | `LOCAL` | `PROD` |
 | `APP_STORAGE_S3_DEPLOY_ENV` | Ambiente de deploy | `LOCAL` | `PROD` |
 | `APP_STORAGE_S3_PREFIX` | Segmento macros | `macros` | `macros` |
 | `APP_STORAGE_S3_MANIFEST_PREFIX` | Segmento JSON bot | `json/bot` | `json/bot` |
@@ -58,6 +93,68 @@ Perfis Spring (`application.yml`): `local`→LOCAL, `dev`→HMG, `prod`→PROD.
 ---
 
 ## Árvore S3
+
+### Assets estáticos (UI — ícones, logos, mídia)
+
+```text
+s3://{BUCKET}/{TIER}/assets/
+  README.md
+  macro-lab/
+    icons/        SVG ou PNG
+    images/       PNG e JPEG estáticos
+    videos/       background / efeitos
+    animations/   GIF ou Lottie
+  marketplace-lab/
+    icons/
+    images/
+    videos/
+    animations/
+  provider-lab/
+    icons/
+    images/
+    videos/
+    animations/
+  shared/             ← comum a todos os labs (mesma árvore)
+    icons/
+    images/
+      404/            mascote página 404 (mascote-cientista.jpg)
+    videos/
+    animations/
+```
+
+Criar ou recriar pastas:
+
+```bash
+cd automation-configs-lab/infra-lab/scripts
+./setup-assets-s3.sh
+```
+
+No web, **todas** as URLs vêm do S3 (`VITE_ASSETS_PUBLIC_BASE_URL`). A pasta `automation-web-lab/public/lab-media/` é só espelho para upload via script — não é servida pelo app.
+
+```bash
+# .env.development / .env.production
+VITE_ASSETS_PUBLIC_BASE_URL=https://automation-learn-lab-images-396913713116.s3.us-east-1.amazonaws.com/assets
+```
+
+Leitura pública no bucket (obrigatório para o browser):
+
+```bash
+cd automation-configs-lab/infra-lab/scripts
+./setup-assets-s3-public-read.sh
+./sync-lab-media-s3.sh
+```
+
+Helpers: `labAssetUrl('macro-lab', 'icons', '…')` em `automation-web-lab/src/config/suiteAssets.ts`.
+
+### Upload de novos assets (sem commitar no git)
+
+1. Copiar arquivos em `automation-web-lab/public/lab-media/` (ver `public/lab-media/README.md`)
+2. `cd automation-configs-lab/infra-lab/scripts && ./sync-lab-media-s3.sh`
+3. O web já aponta ao S3; rebuild/deploy só se mudou código (paths), não o binário
+
+Binários em `public/lab-media/` estão no `.gitignore` do web-lab.
+
+### Flows, macros e manifests (runtime)
 
 ```text
 s3://{BUCKET}/automation-device-lab/{LOCAL|HMG|PROD}/
@@ -209,6 +306,9 @@ automation-infra-lab/
 automation-configs-lab/
   vision-lab/scripts/sync-metadata-images-to-s3.sh
   infra-lab/scripts/export-flow-manifest-s3.sh
+  infra-lab/scripts/setup-assets-s3.sh
+  infra-lab/scripts/setup-assets-s3-public-read.sh
+  infra-lab/scripts/sync-brand-assets-s3.sh
 ```
 
 Ver também: [DEPLOY-DEV.md](./DEPLOY-DEV.md), [GITHUB-DEPLOY.md](./GITHUB-DEPLOY.md).
