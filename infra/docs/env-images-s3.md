@@ -62,6 +62,8 @@ Perfis Spring (`application.yml`): `local`→LOCAL, `dev`→HMG, `prod`→PROD.
 ```text
 s3://{BUCKET}/automation-device-lab/{LOCAL|HMG|PROD}/
   macros/collections/{collectionKey}/flows/{flowKey}/steps/{n}/img/{file}.png
+  macros/marketlab/galeria/anuncio/{accountId}/img/{file}.jpg
+  macros/marketlab/chat/…
   json/bot/collections/{collectionKey}/latest.json
   json/bot/collections/{collectionKey}/flows/{flowKey}/releases/{planVersion}/flow.json
 ```
@@ -178,6 +180,7 @@ automation-device-lab/PROD/*
 | Problema | Causa provável | Solução |
 |----------|----------------|---------|
 | Upload 500 em prod | Env S3 incompleta | Conferir `.env.prod`: `APP_ROOT`, `DEPLOY_ENV`, `PREFIX=macros` |
+| Upload 500 galeria MarketLAB | IAM EC2 só permite `{appRoot}/{ENV}/macros/*` | Galeria em `macros/marketlab/galeria/…`; ver logs `s3:PutObject` 403 |
 | Bot sem PNG | Objeto no path legado `img/flows/` | Re-sync com `S3_DEPLOY_ENV=PROD` |
 | Manifest 404 | JSON no env errado | Core e scripts com mesmo `DEPLOY_ENV` |
 | Confusão LOCAL | Collection key vs deploy env | Ver [FLOW-SYNC-E-S3.md](../../FLOW-SYNC-E-S3.md) |
