@@ -133,7 +133,7 @@ No web, **todas** as URLs vêm do S3 (`VITE_ASSETS_PUBLIC_BASE_URL`). A pasta `a
 
 ```bash
 # .env.development / .env.production
-VITE_ASSETS_PUBLIC_BASE_URL=https://automation-learn-lab-images-396913713116.s3.us-east-1.amazonaws.com/assets
+VITE_ASSETS_PUBLIC_BASE_URL=https://automation-learn-lab-images-396913713116.s3.us-east-1.amazonaws.com/PROD/assets
 ```
 
 Leitura pública no bucket (obrigatório para o browser):
