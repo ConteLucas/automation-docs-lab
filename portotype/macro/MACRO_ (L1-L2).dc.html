@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;family=Sora:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  body{ font-family:'Space Grotesk',sans-serif; -webkit-font-smoothing:antialiased; }
+  @keyframes dash{ to{ background-position:-16px 0; } }
+</style>
+</helmet>
+
+<div style="min-height:100vh; box-sizing:border-box; padding:40px; background:#e7e5df; display:flex; justify-content:center;">
+  <div style="width:1480px;">
+    <div style="font-family:'Chakra Petch',sans-serif; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:#6b6a64; margin-bottom:12px; display:flex; gap:10px; align-items:center;">
+      MacroLAB · Flow <span style="padding:2px 8px; border-radius:4px; background:#d8d6cf; color:#8a887f; font-size:9px;">Diagrama de fluxo · redesign</span>
+    </div>
+
+    <div data-screen-label="Flow Diagrama" style="border-radius:14px; overflow:hidden; box-shadow:0 30px 70px -30px rgba(0,0,0,.45); background:#070809; color:#e7e9ee;">
+
+      <!-- APP HEADER -->
+      <div style="height:64px; display:flex; align-items:center; gap:18px; padding:0 26px; border-bottom:1px solid #14161c; background:rgba(8,9,11,.85);">
+        <div style="font-family:'Chakra Petch',sans-serif; font-size:21px; font-weight:500; line-height:1; white-space:nowrap;">
+          <span style="color:#cdd2dc;">Macro</span><span style="color:#b79cff;">[</span><span style="color:#b79cff; font-weight:700;">LAB</span><span style="color:#b79cff;">]</span>
+        </div>
+        <div style="flex:1;"></div>
+        <div style="height:38px; padding:0 16px; border-radius:9px; background:#0c0e13; border:1px solid #1c2028; display:flex; align-items:center; gap:8px; font-family:'Chakra Petch',sans-serif; font-size:12.5px; color:#cdd2dc;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9aa0ad" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg>Módulos</div>
+        <div style="width:38px; height:38px; border-radius:9px; background:#0c0e13; border:1px solid #1c2028; display:flex; align-items:center; justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9aa0ad" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8M5 10v10h14V10"></path></svg></div>
+        <div style="display:flex; align-items:center; gap:10px; padding-left:14px; border-left:1px solid #1c2028;">
+          <div style="text-align:right; line-height:1.15;"><div style="font-size:12.5px; font-weight:600; color:#e7e9ee;">Desenvolvedor</div><div style="font-family:'Chakra Petch',sans-serif; font-size:9px; letter-spacing:.1em; color:#7b8194;">ADMIN MACRO</div></div>
+          <div style="width:34px; height:34px; border-radius:50%; background:linear-gradient(135deg,#b79cff,#7c6cf6); color:#1b1140; display:flex; align-items:center; justify-content:center; font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:13px;">D</div>
+        </div>
+      </div>
+
+      <!-- SUB TOOLBAR -->
+      <div style="height:52px; display:flex; align-items:center; gap:12px; padding:0 22px; border-bottom:1px solid #14161c; background:#080a0c;">
+        <div style="display:flex; align-items:center; gap:8px; height:32px; padding:0 12px; border-radius:8px; background:#0c0e13; border:1px solid #1c2028;"><span style="padding:1px 6px; border-radius:4px; background:#15181f; font-family:'Chakra Petch',sans-serif; font-size:8.5px; letter-spacing:.08em; color:#7b8194;">L1</span><span style="font-family:'Chakra Petch',sans-serif; font-size:12px; color:#cdd2dc;">{collection}</span><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#5b6170" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"></path></svg></div><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7b8194" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg><div style="display:flex; align-items:center; gap:8px; height:32px; padding:0 12px; border-radius:8px; background:#0c0e13; border:1px solid #1c2028;"><span style="padding:1px 6px; border-radius:4px; background:#15181f; font-family:'Chakra Petch',sans-serif; font-size:8.5px; letter-spacing:.08em; color:#7b8194;">L2</span><span style="font-family:'Chakra Petch',sans-serif; font-size:12px; color:#cdd2dc;">{flow}</span><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#5b6170" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"></path></svg></div>
+        <div style="flex:1;"></div>
+        <div style="display:flex; padding:3px; border-radius:10px; background:#0c0e13; border:1px solid #1c2028;">
+          <div style="height:30px; padding:0 14px; border-radius:7px; background:transparent; display:flex; align-items:center; gap:7px; font-family:'Chakra Petch',sans-serif; font-size:12px; color:#9aa0ad;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#9aa0ad" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg>Cards</div>
+          <div style="height:30px; padding:0 14px; border-radius:7px; background:rgba(183,156,255,.12); border:1px solid rgba(183,156,255,.3); display:flex; align-items:center; gap:7px; font-family:'Chakra Petch',sans-serif; font-weight:600; font-size:12px; color:#b79cff;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#b79cff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"></circle><circle cx="18" cy="18" r="3"></circle><path d="M9 6h7a2 2 0 012 2v7"></path></svg>Diagrama do fluxo</div>
+        </div>
+      </div>
+
+      <!-- BODY: canvas + inspector -->
+      <div style="display:flex; height:720px;">
+
+        <!-- CANVAS -->
+        <div style="position:relative; flex:1; overflow:hidden; background:radial-gradient(900px 500px at 30% 0%, rgba(183,156,255,.05), transparent 60%), #070809;">
+          <div style="position:absolute; inset:0; background-image:radial-gradient(rgba(255,255,255,.05) 1px, transparent 1px); background-size:26px 26px;"></div>
+
+          <!-- collection chip -->
+          <div style="position:absolute; top:20px; left:22px; z-index:3; border-radius:13px; background:rgba(12,14,19,.9); -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); border:1px solid #1c2028; padding:14px 18px; max-width:330px;">
+            <div style="display:flex; align-items:center; gap:8px;"><span style="width:8px; height:8px; border-radius:50%; background:#b79cff; box-shadow:0 0 8px #b79cff;"></span><span style="font-family:'Sora',sans-serif; font-weight:700; font-size:14px;">Collection L1 · FLOW15</span></div>
+            <div style="font-size:12px; color:#7b8194; margin-top:6px; line-height:1.5;">Sequência de 4 flows · arraste para reposicionar. Clique num flow para abrir os steps ao lado.</div>
+          </div>
+
+          <!-- canvas actions -->
+          <div style="position:absolute; top:20px; right:22px; z-index:3; display:flex; gap:9px;">
+            <div style="height:38px; padding:0 16px; border-radius:10px; background:linear-gradient(105deg,#b79cff,#7c6cf6); color:#1b1140; font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:12.5px; letter-spacing:.03em; display:flex; align-items:center; gap:8px; box-shadow:0 10px 24px -12px rgba(124,108,246,.6);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1b1140" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>Add Flow</div>
+            <div style="height:38px; padding:0 15px; border-radius:10px; background:#0c0e13; border:1px solid #232a36; color:#cdd2dc; font-family:'Chakra Petch',sans-serif; font-weight:600; font-size:12.5px; display:flex; align-items:center; gap:8px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#cdd2dc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v6h6M21 21v-6h-6"></path><path d="M21 8a9 9 0 00-15-3L3 9M3 16a9 9 0 0015 3l3-4"></path></svg>Reorganizar</div>
+          </div>
+
+          <!-- PIPELINE -->
+          <div style="position:absolute; top:50%; left:0; right:0; transform:translateY(-50%); padding:0 40px; display:flex; align-items:stretch; justify-content:center;">
+
+            <!-- NODE 1 -->
+            <div onClick="{{ sel1 }}" style="cursor:pointer; width:232px; border-radius:15px; background:#0e1118; border:1px solid {{ b1 }}; box-shadow:{{ sh1 }}; overflow:hidden; transition:.16s;">
+              <div style="height:5px; background:linear-gradient(90deg,#b79cff,#7c6cf6);"></div>
+              <div style="padding:15px 16px 16px;">
+                <div style="display:flex; align-items:center; justify-content:space-between;">
+                  <div style="display:flex; align-items:center; gap:8px;"><div style="width:22px; height:22px; border-radius:7px; background:rgba(183,156,255,.14); border:1px solid rgba(183,156,255,.35); display:flex; align-items:center; justify-content:center; font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:11px; color:#b79cff;">1</div><span style="font-family:'Chakra Petch',sans-serif; font-size:9.5px; letter-spacing:.1em; text-transform:uppercase; color:#7b8194;">Flow · L2</span></div>
+                  <span style="display:flex; align-items:center; gap:5px; font-family:'Chakra Petch',sans-serif; font-size:9px; letter-spacing:.06em; color:#7ee0a8;"><span style="width:6px; height:6px; border-radius:50%; background:#39c46f;"></span>OK</span>
+                </div>
+                <div style="font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:18px; letter-spacing:.01em; margin-top:13px; color:#eef1f5;">FLOW15</div>
+                <div style="font-size:12.5px; color:#9aa0ad; margin-top:4px; line-height:1.4;">FLOW15 (catálogo local)</div>
+                <div style="display:flex; align-items:center; justify-content:space-between; margin-top:14px; padding-top:12px; border-top:1px solid #181b22;">
+                  <span style="font-family:'Chakra Petch',sans-serif; font-size:10.5px; letter-spacing:.04em; color:#7b8194;">1 step · início</span>
+                  <span style="display:flex; align-items:center; gap:4px; font-family:'Chakra Petch',sans-serif; font-size:10px; letter-spacing:.05em; color:#b79cff;">steps<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#b79cff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"></path></svg></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- CONNECTOR 1→2 -->
+            <div style="width:96px; display:flex; flex-direction:column; align-items:center; justify-content:center; position:relative;">
+              <div style="position:absolute; top:50%; left:0; right:0; height:2px; transform:translateY(-50%); background-image:linear-gradient(90deg,#2a3a44 0 8px, transparent 8px 16px); background-size:16px 2px; animation:dash 0.6s linear infinite;"></div>
+              <div style="position:relative; z-index:2; padding:4px 9px; border-radius:7px; background:#0c1418; border:1px solid rgba(183,156,255,.4); font-family:'Chakra Petch',sans-serif; font-size:9px; letter-spacing:.08em; color:#b79cff;">GOTO_URL</div>
+            </div>
+
+            <!-- NODE 2 (selected default) -->
+            <div onClick="{{ sel2 }}" style="cursor:pointer; width:232px; border-radius:15px; background:#0e1118; border:1px solid {{ b2 }}; box-shadow:{{ sh2 }}; overflow:hidden; transition:.16s;">
+              <div style="height:5px; background:linear-gradient(90deg,#b79cff,#7c6cf6);"></div>
+              <div style="padding:15px 16px 16px;">
+                <div style="display:flex; align-items:center; justify-content:space-between;">
+                  <div style="display:flex; align-items:center; gap:8px;"><div style="width:22px; height:22px; border-radius:7px; background:rgba(183,156,255,.14); border:1px solid rgba(183,156,255,.35); display:flex; align-items:center; justify-content:center; font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:11px; color:#b79cff;">2</div><span style="font-family:'Chakra Petch',sans-serif; font-size:9.5px; letter-spacing:.1em; text-transform:uppercase; color:#7b8194;">Flow · L2</span></div>
+                  <span style="display:flex; align-items:center; gap:5px; font-family:'Chakra Petch',sans-serif; font-size:9px; letter-spacing:.06em; color:#7ee0a8;"><span style="width:6px; height:6px; border-radius:50%; background:#39c46f;"></span>OK</span>
+                </div>
+                <div style="font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:18px; letter-spacing:.01em; margin-top:13px; color:#eef1f5;">LOGIN</div>
+                <div style="font-size:12.5px; color:#9aa0ad; margin-top:4px; line-height:1.4;">Login + entrar no jogo</div>
+                <div style="display:flex; align-items:center; justify-content:space-between; margin-top:14px; padding-top:12px; border-top:1px solid #181b22;">
+                  <span style="font-family:'Chakra Petch',sans-serif; font-size:10.5px; letter-spacing:.04em; color:#7b8194;">3 steps</span>
+                  <span style="display:flex; align-items:center; gap:4px; font-family:'Chakra Petch',sans-serif; font-size:10px; letter-spacing:.05em; color:#b79cff;">steps<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#b79cff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"></path></svg></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- CONNECTOR 2→3 -->
+            <div style="width:96px; display:flex; flex-direction:column; align-items:center; justify-content:center; position:relative;">
+              <div style="position:absolute; top:50%; left:0; right:0; height:2px; transform:translateY(-50%); background-image:linear-gradient(90deg,#2a3a44 0 8px, transparent 8px 16px); background-size:16px 2px; animation:dash 0.6s linear infinite;"></div>
+              <div style="position:relative; z-index:2; padding:4px 9px; border-radius:7px; background:#1a1206; border:1px solid rgba(255,178,77,.4); font-family:'Chakra Petch',sans-serif; font-size:9px; letter-spacing:.08em; color:#ffb24d;">OP_UI</div>
+            </div>
+
+            <!-- NODE 3 -->
+            <div onClick="{{ sel3 }}" style="cursor:pointer; width:232px; border-radius:15px; background:#0e1118; border:1px solid {{ b3 }}; box-shadow:{{ sh3 }}; overflow:hidden; transition:.16s;">
+              <div style="height:5px; background:linear-gradient(90deg,#b79cff,#7c6cf6);"></div>
+              <div style="padding:15px 16px 16px;">
+                <div style="display:flex; align-items:center; justify-content:space-between;">
+                  <div style="display:flex; align-items:center; gap:8px;"><div style="width:22px; height:22px; border-radius:7px; background:rgba(183,156,255,.14); border:1px solid rgba(183,156,255,.35); display:flex; align-items:center; justify-content:center; font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:11px; color:#b79cff;">3</div><span style="font-family:'Chakra Petch',sans-serif; font-size:9.5px; letter-spacing:.1em; text-transform:uppercase; color:#7b8194;">Flow · L2</span></div>
+                  <span style="display:flex; align-items:center; gap:5px; font-family:'Chakra Petch',sans-serif; font-size:9px; letter-spacing:.06em; color:#7ee0a8;"><span style="width:6px; height:6px; border-radius:50%; background:#39c46f;"></span>OK</span>
+                </div>
+                <div style="font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:18px; letter-spacing:.01em; margin-top:13px; color:#eef1f5;">LVL_0</div>
+                <div style="font-size:12.5px; color:#9aa0ad; margin-top:4px; line-height:1.4;">Tutorial nova conta lvl 0</div>
+                <div style="display:flex; align-items:center; justify-content:space-between; margin-top:14px; padding-top:12px; border-top:1px solid #181b22;">
+                  <span style="font-family:'Chakra Petch',sans-serif; font-size:10.5px; letter-spacing:.04em; color:#7b8194;">2 steps</span>
+                  <span style="display:flex; align-items:center; gap:4px; font-family:'Chakra Petch',sans-serif; font-size:10px; letter-spacing:.05em; color:#b79cff;">steps<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#b79cff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"></path></svg></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- CONNECTOR 3→4 -->
+            <div style="width:96px; display:flex; flex-direction:column; align-items:center; justify-content:center; position:relative;">
+              <div style="position:absolute; top:50%; left:0; right:0; height:2px; transform:translateY(-50%); background-image:linear-gradient(90deg,#2a3a44 0 8px, transparent 8px 16px); background-size:16px 2px; animation:dash 0.6s linear infinite;"></div>
+              <div style="position:relative; z-index:2; padding:4px 9px; border-radius:7px; background:#1a1206; border:1px solid rgba(255,178,77,.4); font-family:'Chakra Petch',sans-serif; font-size:9px; letter-spacing:.08em; color:#ffb24d;">OP_UI</div>
+            </div>
+
+            <!-- NODE 4 -->
+            <div onClick="{{ sel4 }}" style="cursor:pointer; width:232px; border-radius:15px; background:#0e1118; border:1px solid {{ b4 }}; box-shadow:{{ sh4 }}; overflow:hidden; transition:.16s;">
+              <div style="height:5px; background:linear-gradient(90deg,#3a3f4c,#2a2f3c);"></div>
+              <div style="padding:15px 16px 16px;">
+                <div style="display:flex; align-items:center; justify-content:space-between;">
+                  <div style="display:flex; align-items:center; gap:8px;"><div style="width:22px; height:22px; border-radius:7px; background:rgba(183,156,255,.14); border:1px solid rgba(183,156,255,.35); display:flex; align-items:center; justify-content:center; font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:11px; color:#b79cff;">4</div><span style="font-family:'Chakra Petch',sans-serif; font-size:9.5px; letter-spacing:.1em; text-transform:uppercase; color:#7b8194;">Flow · L2</span></div>
+                  <span style="display:flex; align-items:center; gap:5px; font-family:'Chakra Petch',sans-serif; font-size:9px; letter-spacing:.06em; color:#9aa0ad;"><span style="width:6px; height:6px; border-radius:50%; background:#7b8194;"></span>IDLE</span>
+                </div>
+                <div style="font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:18px; letter-spacing:.01em; margin-top:13px; color:#eef1f5;">RM_POPUP</div>
+                <div style="font-size:12.5px; color:#9aa0ad; margin-top:4px; line-height:1.4;">Configurar / fechar popups</div>
+                <div style="display:flex; align-items:center; justify-content:space-between; margin-top:14px; padding-top:12px; border-top:1px solid #181b22;">
+                  <span style="font-family:'Chakra Petch',sans-serif; font-size:10.5px; letter-spacing:.04em; color:#7b8194;">2 steps</span>
+                  <span style="display:flex; align-items:center; gap:4px; font-family:'Chakra Petch',sans-serif; font-size:10px; letter-spacing:.05em; color:#b79cff;">steps<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#b79cff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"></path></svg></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- CONNECTOR 4→add -->
+            <div style="width:96px; display:flex; align-items:center; justify-content:center; position:relative;">
+              <div style="position:absolute; top:50%; left:0; right:0; height:2px; transform:translateY(-50%); background-image:linear-gradient(90deg,#1c2530 0 8px, transparent 8px 16px); background-size:16px 2px;"></div>
+            </div>
+
+            <!-- ADD NODE -->
+            <div style="cursor:pointer; width:150px; border-radius:15px; background:transparent; border:1.5px dashed #2a3340; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px;">
+              <div style="width:42px; height:42px; border-radius:12px; background:rgba(183,156,255,.1); border:1px solid rgba(183,156,255,.3); display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#b79cff" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></div>
+              <span style="font-family:'Chakra Petch',sans-serif; font-size:11px; letter-spacing:.05em; text-transform:uppercase; color:#b79cff;">Novo flow</span>
+            </div>
+
+          </div>
+
+          <!-- zoom -->
+          <div style="position:absolute; bottom:20px; left:22px; z-index:3; display:flex; flex-direction:column; border-radius:10px; overflow:hidden; border:1px solid #1c2028; background:#0c0e13;">
+            <div style="width:34px; height:34px; display:flex; align-items:center; justify-content:center; border-bottom:1px solid #181b22;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#9aa0ad" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></div>
+            <div style="width:34px; height:34px; display:flex; align-items:center; justify-content:center; font-family:'Chakra Petch',sans-serif; font-size:10px; color:#7b8194; border-bottom:1px solid #181b22;">100%</div>
+            <div style="width:34px; height:34px; display:flex; align-items:center; justify-content:center;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#9aa0ad" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14"></path></svg></div>
+          </div>
+
+          <!-- legend -->
+          <div style="position:absolute; bottom:20px; right:22px; z-index:3; display:flex; gap:14px; padding:9px 14px; border-radius:10px; background:rgba(12,14,19,.9); -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); border:1px solid #1c2028;">
+            <div style="display:flex; align-items:center; gap:6px; font-family:'Chakra Petch',sans-serif; font-size:10px; letter-spacing:.04em; color:#9aa0ad;"><span style="width:18px; height:2px; background:#b79cff;"></span>GOTO_URL</div>
+            <div style="display:flex; align-items:center; gap:6px; font-family:'Chakra Petch',sans-serif; font-size:10px; letter-spacing:.04em; color:#9aa0ad;"><span style="width:18px; height:2px; background:#ffb24d;"></span>OP_UI</div>
+          </div>
+        </div>
+
+        <!-- INSPECTOR -->
+        <div style="width:360px; flex:none; border-left:1px solid #14161c; background:#0a0c10; display:flex; flex-direction:column;">
+          <div style="padding:20px 22px 18px; border-bottom:1px solid #14161c;">
+            <div style="display:flex; align-items:center; justify-content:space-between;">
+              <span style="font-family:'Chakra Petch',sans-serif; font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:#b79cff;">Flow {{ selOrder }} de 4</span>
+              <span style="display:flex; align-items:center; gap:5px; font-family:'Chakra Petch',sans-serif; font-size:9.5px; letter-spacing:.06em; color:{{ statusColor }};"><span style="width:6px; height:6px; border-radius:50%; background:{{ statusColor }};"></span>{{ statusLabel }}</span>
+            </div>
+            <div style="font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:24px; letter-spacing:.01em; margin-top:12px; color:#eef1f5;">{{ selName }}</div>
+            <div style="font-size:13px; color:#9aa0ad; margin-top:4px;">{{ selDesc }}</div>
+            <div style="display:flex; gap:8px; margin-top:14px;">
+              <div style="height:36px; flex:1; border-radius:9px; background:linear-gradient(105deg,#b79cff,#7c6cf6); color:#1b1140; font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:11.5px; letter-spacing:.03em; display:flex; align-items:center; justify-content:center; gap:7px;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#1b1140" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l14 9-14 9z"></path></svg>Rodar flow</div>
+              <div style="width:36px; height:36px; border-radius:9px; background:#15181f; border:1px solid #2a2f3c; display:flex; align-items:center; justify-content:center;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#cdd2dc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"></path><path d="M18.5 2.5a2.1 2.1 0 013 3L12 15l-4 1 1-4z"></path></svg></div>
+            </div>
+          </div>
+
+          <div style="flex:1; overflow:hidden; padding:18px 22px;">
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:14px;">
+              <span style="font-family:'Sora',sans-serif; font-weight:700; font-size:15px;">Steps</span>
+              <span style="font-family:'Chakra Petch',sans-serif; font-size:11px; color:#7b8194;">{{ stepCount }} no total</span>
+            </div>
+
+            <sc-for list="{{ steps }}" as="s" hint-placeholder-count="3">
+              <div style="display:flex; gap:12px; margin-bottom:10px;">
+                <div style="display:flex; flex-direction:column; align-items:center;">
+                  <div style="width:26px; height:26px; border-radius:8px; background:#12161d; border:1px solid #232a36; display:flex; align-items:center; justify-content:center; font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:11px; color:#cdd2dc;">{{ s.idx }}</div>
+                </div>
+                <div style="flex:1; border-radius:11px; background:#0e1118; border:1px solid #1c2028; padding:11px 13px;">
+                  <div style="display:flex; align-items:center; justify-content:space-between; gap:8px;">
+                    <span style="font-size:13px; font-weight:600; color:#e7e9ee;">{{ s.name }}</span>
+                    <span style="flex:none; padding:2px 7px; border-radius:5px; background:{{ s.tagBg }}; font-family:'Chakra Petch',sans-serif; font-size:8.5px; letter-spacing:.06em; color:{{ s.tagColor }};">{{ s.t }}</span>
+                  </div>
+                  <div style="font-size:11.5px; color:#7b8194; margin-top:4px;">{{ s.hint }}</div>
+                </div>
+              </div>
+            </sc-for>
+
+            <div style="height:40px; border-radius:10px; border:1px dashed #2a3340; color:#9aa0ad; font-family:'Chakra Petch',sans-serif; font-weight:600; font-size:11.5px; letter-spacing:.04em; display:flex; align-items:center; justify-content:center; gap:7px; margin-top:4px;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#9aa0ad" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>Adicionar step</div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <p style="font-size:13px; line-height:1.6; color:#6b6a64; max-width:900px; margin-top:18px;">O que mudou: o trilho agora é explícito com <b style="color:#3a3a35;">chips de transição</b> (GOTO_URL / OP_UI) sobre a linha animada — sem sobrepor as bolinhas. Cada flow ganhou <b style="color:#3a3a35;">número de ordem, status e barra de cor</b>. O 2º clique deixou de abrir um modal: clicar num flow abre o <b style="color:#3a3a35;">inspetor lateral</b> com os steps, mantendo o diagrama visível. Clique nos cards para trocar a seleção.</p>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { sel: 2 };
+  flows() {
+    const T = {
+      GOTO_URL: { tagBg: 'rgba(183,156,255,.12)', tagColor: '#b79cff' },
+      OP_UI: { tagBg: 'rgba(255,178,77,.12)', tagColor: '#ffb24d' },
+      DATA: { tagBg: 'rgba(183,156,255,.12)', tagColor: '#b79cff' },
+    };
+    const mk = (arr) => arr.map((s, i) => ({ idx: i + 1, name: s[0], t: s[1], hint: s[2], ...T[s[1]] }));
+    return {
+      1: { order: 1, name: 'FLOW15', desc: 'FLOW15 (catálogo local)', status: 'ok',
+           steps: mk([['Carregar catálogo local', 'DATA', 'Lê o catálogo salvo no navegador']]) },
+      2: { order: 2, name: 'LOGIN', desc: 'Login + entrar no jogo', status: 'ok',
+           steps: mk([['Abrir URL do jogo', 'GOTO_URL', 'Navega até a página de login'], ['Preencher credenciais', 'OP_UI', 'Usuário e senha do perfil'], ['Confirmar entrada', 'OP_UI', 'Clica em entrar e aguarda load']]) },
+      3: { order: 3, name: 'LVL_0', desc: 'Tutorial nova conta lvl 0', status: 'ok',
+           steps: mk([['Pular cutscene', 'OP_UI', 'Fecha a introdução inicial'], ['Aceitar tutorial', 'OP_UI', 'Segue o passo a passo do jogo']]) },
+      4: { order: 4, name: 'RM_POPUP', desc: 'Configurar / fechar popups', status: 'idle',
+           steps: mk([['Fechar diário', 'OP_UI', 'Dispensa o popup de recompensa'], ['Recusar oferta', 'OP_UI', 'Fecha a oferta da loja']]) },
+    };
+  }
+  renderVals() {
+    const sel = this.state.sel;
+    const f = this.flows()[sel];
+    const ring = (i) => ({
+      b: sel === i ? '#b79cff' : '#1c2530',
+      sh: sel === i ? '0 0 0 1px #b79cff, 0 18px 40px -20px rgba(183,156,255,.5)' : '0 10px 26px -18px rgba(0,0,0,.7)',
+    });
+    const r = [1, 2, 3, 4].map(ring);
+    const statusMap = { ok: { c: '#7ee0a8', l: 'OK' }, idle: { c: '#9aa0ad', l: 'IDLE' }, running: { c: '#b79cff', l: 'RODANDO' } };
+    const st = statusMap[f.status];
+    return {
+      sel1: () => this.setState({ sel: 1 }), sel2: () => this.setState({ sel: 2 }),
+      sel3: () => this.setState({ sel: 3 }), sel4: () => this.setState({ sel: 4 }),
+      b1: r[0].b, sh1: r[0].sh, b2: r[1].b, sh2: r[1].sh,
+      b3: r[2].b, sh3: r[2].sh, b4: r[3].b, sh4: r[3].sh,
+      selName: f.name, selDesc: f.desc, selOrder: f.order,
+      steps: f.steps, stepCount: f.steps.length,
+      statusColor: st.c, statusLabel: st.l,
+    };
+  }
+}
+</script>
+</body>
+</html>

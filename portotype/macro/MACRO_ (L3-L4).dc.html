@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;family=Sora:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  body{ font-family:'Space Grotesk',sans-serif; -webkit-font-smoothing:antialiased; }
+  @keyframes dash{ to{ background-position:-16px 0; } }
+  @keyframes tapring{ 0%{ transform:scale(.7); opacity:.9 } 70%{ transform:scale(1.5); opacity:0 } 100%{ opacity:0 } }
+</style>
+</helmet>
+
+<div style="min-height:100vh; box-sizing:border-box; padding:40px; background:#e7e5df; display:flex; justify-content:center;">
+  <div style="width:1480px;">
+    <div style="font-family:'Chakra Petch',sans-serif; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:#6b6a64; margin-bottom:12px; display:flex; gap:10px; align-items:center;">
+      MacroLAB · Steps <span style="padding:2px 8px; border-radius:4px; background:#d8d6cf; color:#8a887f; font-size:9px;">L3 Steps + L4 Step Image</span>
+    </div>
+
+    <div data-screen-label="Flow Steps" style="border-radius:14px; overflow:hidden; box-shadow:0 30px 70px -30px rgba(0,0,0,.45); background:#070809; color:#e7e9ee;">
+
+      <!-- APP HEADER -->
+      <div style="height:64px; display:flex; align-items:center; gap:18px; padding:0 26px; border-bottom:1px solid #14161c; background:rgba(8,9,11,.85);">
+        <div style="font-family:'Chakra Petch',sans-serif; font-size:21px; font-weight:500; line-height:1; white-space:nowrap;">
+          <span style="color:#cdd2dc;">Macro</span><span style="color:#b79cff;">[</span><span style="color:#b79cff; font-weight:700;">LAB</span><span style="color:#b79cff;">]</span>
+        </div>
+        <div style="flex:1;"></div>
+        <div style="height:38px; padding:0 16px; border-radius:9px; background:#0c0e13; border:1px solid #1c2028; display:flex; align-items:center; gap:8px; font-family:'Chakra Petch',sans-serif; font-size:12.5px; color:#cdd2dc;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9aa0ad" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg>Módulos</div>
+        <div style="display:flex; align-items:center; gap:10px; padding-left:14px; border-left:1px solid #1c2028;">
+          <div style="text-align:right; line-height:1.15;"><div style="font-size:12.5px; font-weight:600; color:#e7e9ee;">Desenvolvedor</div><div style="font-family:'Chakra Petch',sans-serif; font-size:9px; letter-spacing:.1em; color:#7b8194;">ADMIN MACRO</div></div>
+          <div style="width:34px; height:34px; border-radius:50%; background:linear-gradient(135deg,#b79cff,#7c6cf6); color:#1b1140; display:flex; align-items:center; justify-content:center; font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:13px;">D</div>
+        </div>
+      </div>
+
+      <!-- BREADCRUMB TOOLBAR (L1 → L2 → L3) -->
+      <div style="height:54px; display:flex; align-items:center; gap:10px; padding:0 22px; border-bottom:1px solid #14161c; background:#080a0c;">
+        <div style="width:30px; height:30px; border-radius:8px; background:#0c0e13; border:1px solid #232a36; display:flex; align-items:center; justify-content:center; flex:none;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9aa0ad" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg></div>
+        <!-- L1 -->
+        <div style="display:flex; align-items:center; gap:8px; height:32px; padding:0 12px; border-radius:8px; background:#0c0e13; border:1px solid #1c2028;"><span style="padding:1px 6px; border-radius:4px; background:#15181f; font-family:'Chakra Petch',sans-serif; font-size:8.5px; letter-spacing:.08em; color:#7b8194;">L1</span><span style="font-family:'Chakra Petch',sans-serif; font-size:12px; color:#cdd2dc;">{collection_name}</span><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#5b6170" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"></path></svg></div>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3a3f4c" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"></path></svg>
+        <!-- L2 -->
+        <div style="display:flex; align-items:center; gap:8px; height:32px; padding:0 12px; border-radius:8px; background:#0c0e13; border:1px solid #1c2028;"><span style="padding: 1px 6px; border-radius: 4px; background: rgba(183, 156, 255, 0.14); font-family: &quot;Chakra Petch&quot;, sans-serif; font-size: 8.5px; letter-spacing: 0.08em; color: rgb(183, 156, 255);">L2</span><span style="font-family: &quot;Chakra Petch&quot;, sans-serif; font-size: 12px; color: rgb(205, 210, 220);">{flow_name}</span></div>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3a3f4c" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"></path></svg>
+        <!-- L3 active -->
+        <div style="display:flex; align-items:center; gap:8px; height:32px; padding:0 12px; border-radius:8px; background:rgba(183,156,255,.1); border:1px solid rgba(183,156,255,.3);"><span style="padding:1px 6px; border-radius:4px; background:rgba(183,156,255,.2); font-family:'Chakra Petch',sans-serif; font-size:8.5px; letter-spacing:.08em; color:#d3c2ff;">L3</span><span style="font-family:'Chakra Petch',sans-serif; font-weight:600; font-size:12px; color:#d3c2ff;">Steps</span></div>
+        <div style="flex:1;"></div>
+        <div style="height:34px; padding:0 16px; border-radius:9px; background:linear-gradient(105deg,#b79cff,#7c6cf6); color:#1b1140; font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:12.5px; letter-spacing:.03em; display:flex; align-items:center; gap:8px; box-shadow:0 10px 24px -12px rgba(124,108,246,.6);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1b1140" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>Add step</div>
+      </div>
+
+      <!-- BODY: steps canvas + L4 inspector -->
+      <div style="display:flex; height:710px;">
+
+        <!-- CANVAS L3 -->
+        <div style="position:relative; flex:1; overflow:hidden; background:radial-gradient(900px 500px at 30% 0%, rgba(124,108,246,.05), transparent 60%), #070809;">
+          <div style="position:absolute; inset:0; background-image:radial-gradient(rgba(255,255,255,.05) 1px, transparent 1px); background-size:26px 26px;"></div>
+
+          <!-- flow header chip -->
+          <div style="position:absolute; top:20px; left:22px; z-index:3; border-radius:13px; background:rgba(12,14,19,.9); -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); border:1px solid #1c2028; padding:14px 18px; max-width:360px;">
+            <div style="display:flex; align-items:center; gap:8px;"><span style="width:8px; height:8px; border-radius:50%; background:#b79cff; box-shadow:0 0 8px #b79cff;"></span><span style="font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:15px; letter-spacing:.01em;">LVL_0</span><span style="font-family:'Chakra Petch',sans-serif; font-size:10px; letter-spacing:.06em; color:#7b8194;">· 5 steps</span></div>
+            <div style="font-size:12px; color:#7b8194; margin-top:6px; line-height:1.5;">Storyboard de execução. Cada step tem um template (L4) que o bot procura na tela e a ação que ele faz ao encontrar.</div>
+          </div>
+
+          <!-- run bar -->
+          <div style="position:absolute; top:20px; right:22px; z-index:3; display:flex; gap:9px;">
+            <div style="height:38px; padding:0 16px; border-radius:10px; background:#0c0e13; border:1px solid #232a36; color:#cdd2dc; font-family:'Chakra Petch',sans-serif; font-weight:600; font-size:12.5px; display:flex; align-items:center; gap:8px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#cdd2dc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v6h6M21 21v-6h-6"></path><path d="M21 8a9 9 0 00-15-3L3 9M3 16a9 9 0 0015 3l3-4"></path></svg>Testar flow</div>
+          </div>
+
+          <!-- STORYBOARD -->
+          <div style="position:absolute; top:50%; left:0; right:0; transform:translateY(-50%); padding:0 36px; display:flex; align-items:center; justify-content:center;">
+
+            <!-- STEP 1 -->
+            <div onClick="{{ sel1 }}" style="cursor:pointer; width:196px; border-radius:14px; background:#0e1118; border:1px solid {{ b1 }}; box-shadow:{{ sh1 }}; overflow:hidden; transition:.16s;">
+              <div style="display:flex; align-items:center; justify-content:space-between; padding:11px 13px 9px;">
+                <div style="display:flex; align-items:center; gap:7px;"><div style="width:20px; height:20px; border-radius:6px; background:#15181f; border:1px solid #2a2f3c; display:flex; align-items:center; justify-content:center; font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:10px; color:#cdd2dc;">1</div><span style="padding:2px 7px; border-radius:5px; background:rgba(255,178,77,.12); font-family:'Chakra Petch',sans-serif; font-size:8.5px; letter-spacing:.06em; color:#ffb24d;">WAIT_APPEAR</span></div>
+              </div>
+              <div style="margin:0 11px; border-radius:9px; overflow:hidden; border:1px solid #1c2028; position:relative; aspect-ratio:16/10; background:linear-gradient(150deg,#19223a,#0c1018);">
+                <div style="position:absolute; top:7px; left:7px; right:7px; height:8px; border-radius:3px; background:rgba(255,255,255,.07);"></div>
+                <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center;"><div style="width:42px; height:42px; border-radius:50%; border:2px solid rgba(255,178,77,.5); border-top-color:#ffb24d;"></div></div>
+              </div>
+              <div style="padding:11px 13px 13px;"><div style="font-size:13px; font-weight:600; color:#e7e9ee;">Abrir jogo</div><div style="display:flex; align-items:center; gap:7px; margin-top:6px;"><span style="font-family:'Chakra Petch',sans-serif; font-size:9.5px; letter-spacing:.04em; color:#7b8194;">⏱ 1.2s espera</span></div></div>
+            </div>
+
+            <!-- connector -->
+            <div style="width:62px; position:relative; display:flex; align-items:center; justify-content:center;"><div style="position:absolute; top:50%; left:0; right:0; height:2px; transform:translateY(-50%); background-image:linear-gradient(90deg,#2a2540 0 8px, transparent 8px 16px); background-size:16px 2px; animation:dash .6s linear infinite;"></div><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#5b5470" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" style="position:relative; z-index:2; background:#070809;"><path d="M9 18l6-6-6-6"></path></svg></div>
+
+            <!-- STEP 2 (selected) -->
+            <div onClick="{{ sel2 }}" style="cursor:pointer; width:196px; border-radius:14px; background:#0e1118; border:1px solid {{ b2 }}; box-shadow:{{ sh2 }}; overflow:hidden; transition:.16s;">
+              <div style="display:flex; align-items:center; justify-content:space-between; padding:11px 13px 9px;">
+                <div style="display:flex; align-items:center; gap:7px;"><div style="width:20px; height:20px; border-radius:6px; background:#15181f; border:1px solid #2a2f3c; display:flex; align-items:center; justify-content:center; font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:10px; color:#cdd2dc;">2</div><span style="padding:2px 7px; border-radius:5px; background:rgba(183,156,255,.14); font-family:'Chakra Petch',sans-serif; font-size:8.5px; letter-spacing:.06em; color:#b79cff;">CLICK</span></div>
+              </div>
+              <div style="margin:0 11px; border-radius:9px; overflow:hidden; border:1px solid #1c2028; position:relative; aspect-ratio:16/10; background:linear-gradient(150deg,#1a2236,#0c1016);">
+                <div style="position:absolute; top:7px; left:7px; right:7px; height:8px; border-radius:3px; background:rgba(255,255,255,.07);"></div>
+                <div style="position:absolute; right:14px; bottom:12px; width:46px; height:16px; border-radius:5px; background:rgba(183,156,255,.25); border:1px solid #b79cff;"></div>
+                <div style="position:absolute; right:30px; bottom:11px; width:14px; height:14px; border-radius:50%; border:2px solid #b79cff;"></div>
+                <div style="position:absolute; right:30px; bottom:11px; width:14px; height:14px; border-radius:50%; border:2px solid #b79cff; animation:tapring 1.6s ease-out infinite;"></div>
+              </div>
+              <div style="padding:11px 13px 13px;"><div style="font-size:13px; font-weight:600; color:#e7e9ee;">Pular cutscene</div><div style="display:flex; align-items:center; gap:7px; margin-top:6px;"><span style="font-family:'Chakra Petch',sans-serif; font-size:9.5px; letter-spacing:.04em; color:#7b8194;">⏱ 0.3s</span></div></div>
+            </div>
+
+            <!-- connector -->
+            <div style="width:62px; position:relative; display:flex; align-items:center; justify-content:center;"><div style="position:absolute; top:50%; left:0; right:0; height:2px; transform:translateY(-50%); background-image:linear-gradient(90deg,#2a2540 0 8px, transparent 8px 16px); background-size:16px 2px; animation:dash .6s linear infinite;"></div><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#5b5470" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" style="position:relative; z-index:2; background:#070809;"><path d="M9 18l6-6-6-6"></path></svg></div>
+
+            <!-- STEP 3 -->
+            <div onClick="{{ sel3 }}" style="cursor:pointer; width:196px; border-radius:14px; background:#0e1118; border:1px solid {{ b3 }}; box-shadow:{{ sh3 }}; overflow:hidden; transition:.16s;">
+              <div style="display:flex; align-items:center; justify-content:space-between; padding:11px 13px 9px;">
+                <div style="display:flex; align-items:center; gap:7px;"><div style="width:20px; height:20px; border-radius:6px; background:#15181f; border:1px solid #2a2f3c; display:flex; align-items:center; justify-content:center; font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:10px; color:#cdd2dc;">3</div><span style="padding:2px 7px; border-radius:5px; background:rgba(183,156,255,.14); font-family:'Chakra Petch',sans-serif; font-size:8.5px; letter-spacing:.06em; color:#b79cff;">CLICK</span></div>
+              </div>
+              <div style="margin:0 11px; border-radius:9px; overflow:hidden; border:1px solid #1c2028; position:relative; aspect-ratio:16/10; background:linear-gradient(150deg,#1a2236,#0c1016);">
+                <div style="position:absolute; top:7px; left:7px; right:7px; height:8px; border-radius:3px; background:rgba(255,255,255,.07);"></div>
+                <div style="position:absolute; left:50%; top:54%; transform:translate(-50%,-50%); width:54px; height:18px; border-radius:5px; background:rgba(183,156,255,.25); border:1px solid #b79cff;"></div>
+              </div>
+              <div style="padding:11px 13px 13px;"><div style="font-size:13px; font-weight:600; color:#e7e9ee;">Aceitar tutorial</div><div style="display:flex; align-items:center; gap:7px; margin-top:6px;"><span style="font-family:'Chakra Petch',sans-serif; font-size:9.5px; letter-spacing:.04em; color:#7b8194;">⏱ 0.3s</span></div></div>
+            </div>
+
+            <!-- connector -->
+            <div style="width:62px; position:relative; display:flex; align-items:center; justify-content:center;"><div style="position:absolute; top:50%; left:0; right:0; height:2px; transform:translateY(-50%); background-image:linear-gradient(90deg,#2a2540 0 8px, transparent 8px 16px); background-size:16px 2px; animation:dash .6s linear infinite;"></div><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#5b5470" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" style="position:relative; z-index:2; background:#070809;"><path d="M9 18l6-6-6-6"></path></svg></div>
+
+            <!-- STEP 4 -->
+            <div onClick="{{ sel4 }}" style="cursor:pointer; width:196px; border-radius:14px; background:#0e1118; border:1px solid {{ b4 }}; box-shadow:{{ sh4 }}; overflow:hidden; transition:.16s;">
+              <div style="display:flex; align-items:center; justify-content:space-between; padding:11px 13px 9px;">
+                <div style="display:flex; align-items:center; gap:7px;"><div style="width:20px; height:20px; border-radius:6px; background:#15181f; border:1px solid #2a2f3c; display:flex; align-items:center; justify-content:center; font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:10px; color:#cdd2dc;">4</div><span style="padding:2px 7px; border-radius:5px; background:rgba(183,156,255,.14); font-family:'Chakra Petch',sans-serif; font-size:8.5px; letter-spacing:.06em; color:#b79cff;">CLICK</span></div>
+                <span style="padding:2px 6px; border-radius:5px; background:rgba(57,196,111,.12); font-family:'Chakra Petch',sans-serif; font-size:8px; letter-spacing:.05em; color:#7ee0a8;">FILL_NAME</span>
+              </div>
+              <div style="margin:0 11px; border-radius:9px; overflow:hidden; border:1px solid #1c2028; position:relative; aspect-ratio:16/10; background:linear-gradient(150deg,#1a2236,#0c1016);">
+                <div style="position:absolute; top:7px; left:7px; right:7px; height:8px; border-radius:3px; background:rgba(255,255,255,.07);"></div>
+                <div style="position:absolute; left:50%; top:46%; transform:translate(-50%,-50%); width:70px; height:14px; border-radius:4px; background:rgba(57,196,111,.18); border:1px solid #39c46f;"></div>
+                <div style="position:absolute; left:50%; top:68%; transform:translate(-50%,-50%); width:40px; height:14px; border-radius:5px; background:rgba(183,156,255,.25); border:1px solid #b79cff;"></div>
+              </div>
+              <div style="padding:11px 13px 13px;"><div style="font-size:13px; font-weight:600; color:#e7e9ee;">Definir nome</div><div style="display:flex; align-items:center; gap:7px; margin-top:6px;"><span style="font-family:'Chakra Petch',sans-serif; font-size:9.5px; letter-spacing:.04em; color:#7b8194;">⏱ 0.5s</span></div></div>
+            </div>
+
+            <!-- connector with GOTO -->
+            <div style="width:62px; position:relative; display:flex; align-items:center; justify-content:center;"><div style="position:absolute; top:50%; left:0; right:0; height:2px; transform:translateY(-50%); background-image:linear-gradient(90deg,#2a2540 0 8px, transparent 8px 16px); background-size:16px 2px; animation:dash .6s linear infinite;"></div><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#5b5470" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" style="position:relative; z-index:2; background:#070809;"><path d="M9 18l6-6-6-6"></path></svg></div>
+
+            <!-- STEP 5 (transition / GOTO) -->
+            <div onClick="{{ sel5 }}" style="cursor:pointer; width:196px; border-radius:14px; background:#0e1118; border:1px solid {{ b5 }}; box-shadow:{{ sh5 }}; overflow:hidden; transition:.16s;">
+              <div style="display:flex; align-items:center; justify-content:space-between; padding:11px 13px 9px;">
+                <div style="display:flex; align-items:center; gap:7px;"><div style="width:20px; height:20px; border-radius:6px; background:#15181f; border:1px solid #2a2f3c; display:flex; align-items:center; justify-content:center; font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:10px; color:#cdd2dc;">5</div><span style="padding:2px 7px; border-radius:5px; background:rgba(24,182,246,.14); font-family:'Chakra Petch',sans-serif; font-size:8.5px; letter-spacing:.06em; color:#5bc5fb;">IF_VISIBLE</span></div>
+              </div>
+              <div style="margin:0 11px; border-radius:9px; overflow:hidden; border:1px solid #1c2028; position:relative; aspect-ratio:16/10; background:linear-gradient(150deg,#16203a,#0c1016);">
+                <div style="position:absolute; inset:8px; border-radius:6px; border:1.5px dashed rgba(91,197,251,.5);"></div>
+                <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5bc5fb" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"></path><circle cx="12" cy="12" r="2.5"></circle></svg></div>
+              </div>
+              <div style="padding:11px 13px 13px;"><div style="font-size:13px; font-weight:600; color:#e7e9ee;">Checar popup</div><div style="display:flex; align-items:center; gap:6px; margin-top:7px;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#b79cff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg><span style="font-family:'Chakra Petch',sans-serif; font-size:9px; letter-spacing:.05em; color:#b79cff;">GOTO RM_POP_UP</span></div></div>
+            </div>
+
+          </div>
+
+          <!-- zoom -->
+          <div style="position:absolute; bottom:20px; left:22px; z-index:3; display:flex; border-radius:10px; overflow:hidden; border:1px solid #1c2028; background:#0c0e13;">
+            <div style="width:34px; height:34px; display:flex; align-items:center; justify-content:center; border-right:1px solid #181b22;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#9aa0ad" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14"></path></svg></div>
+            <div style="height:34px; padding:0 12px; display:flex; align-items:center; justify-content:center; font-family:'Chakra Petch',sans-serif; font-size:10px; color:#7b8194; border-right:1px solid #181b22;">100%</div>
+            <div style="width:34px; height:34px; display:flex; align-items:center; justify-content:center;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#9aa0ad" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></div>
+          </div>
+        </div>
+
+        <!-- L4 INSPECTOR -->
+        <div style="width:382px; flex:none; border-left:1px solid #14161c; background:#0a0c10; display:flex; flex-direction:column;">
+          <div style="padding:18px 22px; border-bottom:1px solid #14161c;">
+            <div style="display:flex; align-items:center; justify-content:space-between;">
+              <span style="font-family:'Chakra Petch',sans-serif; font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:#b79cff;">Step {{ selNum }} de 5 · L4</span>
+              <span style="font-family:'Chakra Petch',sans-serif; font-size:10px; letter-spacing:.06em; color:#7b8194;">{{ imgPath }}</span>
+            </div>
+            <div style="font-family:'Sora',sans-serif; font-weight:800; font-size:20px; letter-spacing:-.01em; margin-top:8px;">{{ selName }}</div>
+          </div>
+
+          <div style="flex:1; overflow:hidden; padding:18px 22px;">
+            <!-- template preview -->
+            <div style="font-family:'Chakra Petch',sans-serif; font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:#7b8194; margin-bottom:10px;">Template · imagem que o bot procura</div>
+            <div style="position:relative; border-radius:12px; overflow:hidden; border:1px solid #232a36; aspect-ratio:16/10; background:linear-gradient(150deg,#1a2236,#0c1016);">
+              <div style="position:absolute; top:10px; left:10px; right:10px; height:14px; border-radius:4px; background:rgba(255,255,255,.07);"></div>
+              <div style="position:absolute; top:10px; left:10px; display:flex; gap:5px; align-items:center; padding:0 8px; height:14px;"><span style="font-family:'Chakra Petch',sans-serif; font-size:8px; color:#9aa0ad;">HUD · moedas · nível</span></div>
+              <!-- target highlight -->
+              <div style="position:absolute; {{ targetPos }} width:96px; height:30px; border-radius:7px; background:{{ targetBg }}; border:1.5px solid {{ targetBorder }}; display:flex; align-items:center; justify-content:center; font-family:'Chakra Petch',sans-serif; font-size:9px; letter-spacing:.04em; color:{{ targetText }};">{{ targetLabel }}</div>
+              <div style="position:absolute; bottom:8px; right:10px; font-family:'Chakra Petch',sans-serif; font-size:8px; letter-spacing:.06em; color:#5b6170;">match ≥ 92%</div>
+            </div>
+            <div style="display:flex; gap:8px; margin-top:10px;">
+              <div style="flex:1; height:34px; border-radius:9px; background:#15181f; border:1px solid #2a2f3c; color:#cdd2dc; font-family:'Chakra Petch',sans-serif; font-weight:600; font-size:11px; display:flex; align-items:center; justify-content:center; gap:7px;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#cdd2dc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg>Trocar PNG</div>
+              <div style="width:34px; height:34px; border-radius:9px; background:#15181f; border:1px solid #2a2f3c; display:flex; align-items:center; justify-content:center;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#cdd2dc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 012-2h2M17 3h2a2 2 0 012 2v2M21 17v2a2 2 0 01-2 2h-2M7 21H5a2 2 0 01-2-2v-2"></path></svg></div>
+            </div>
+
+            <!-- worker action -->
+            <div style="font-family:'Chakra Petch',sans-serif; font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:#7b8194; margin:18px 0 10px;">Ação do bot</div>
+            <div style="display:flex; gap:7px;">
+              <div style="flex:1; height:38px; border-radius:9px; background:{{ aClickBg }}; border:1px solid {{ aClickBorder }}; color:{{ aClickText }}; font-family:'Chakra Petch',sans-serif; font-weight:600; font-size:11px; display:flex; align-items:center; justify-content:center; gap:6px;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="{{ aClickText }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"></path><path d="M5 5l7 7"></path></svg>CLICK</div>
+              <div style="flex:1; height:38px; border-radius:9px; background:{{ aWaitBg }}; border:1px solid {{ aWaitBorder }}; color:{{ aWaitText }}; font-family:'Chakra Petch',sans-serif; font-weight:600; font-size:10px; display:flex; align-items:center; justify-content:center;">WAIT_APPEAR</div>
+              <div style="flex:1; height:38px; border-radius:9px; background:{{ aIfBg }}; border:1px solid {{ aIfBorder }}; color:{{ aIfText }}; font-family:'Chakra Petch',sans-serif; font-weight:600; font-size:10px; display:flex; align-items:center; justify-content:center;">IF_VISIBLE</div>
+            </div>
+
+            <!-- effect + transition + timeskip -->
+            <div style="display:flex; flex-direction:column; gap:10px; margin-top:16px;">
+              <div style="display:flex; align-items:center; justify-content:space-between; height:42px; padding:0 14px; border-radius:10px; background:#0e1118; border:1px solid #1c2028;"><span style="font-size:12.5px; color:#9aa0ad;">Efeito</span><span style="font-family:'Chakra Petch',sans-serif; font-size:11.5px; font-weight:600; color:{{ effectColor }};">{{ effectLabel }}</span></div>
+              <div style="display:flex; align-items:center; justify-content:space-between; height:42px; padding:0 14px; border-radius:10px; background:#0e1118; border:1px solid #1c2028;"><span style="font-size:12.5px; color:#9aa0ad;">Transição (GOTO)</span><span style="font-family:'Chakra Petch',sans-serif; font-size:11.5px; font-weight:600; color:{{ gotoColor }};">{{ gotoLabel }}</span></div>
+              <div style="display:flex; align-items:center; justify-content:space-between; height:42px; padding:0 14px; border-radius:10px; background:#0e1118; border:1px solid #1c2028;"><span style="font-size:12.5px; color:#9aa0ad;">Timeskip antes</span><span style="font-family:'Chakra Petch',sans-serif; font-size:11.5px; font-weight:600; color:#e7e9ee;">{{ timeskipLabel }}</span></div>
+            </div>
+          </div>
+
+          <div style="padding:16px 22px; border-top:1px solid #14161c;">
+            <div style="height:46px; border-radius:11px; background:linear-gradient(105deg,#b79cff,#7c6cf6); color:#1b1140; font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:13px; letter-spacing:.04em; text-transform:uppercase; display:flex; align-items:center; justify-content:center; gap:8px; box-shadow:0 12px 28px -12px rgba(124,108,246,.6);">Salvar step</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { sel: 2 };
+  data() {
+    return {
+      1: { name: 'Abrir jogo', num: 1, img: 'game_open_01.png', action: 'WAIT_APPEAR', effect: null, goto: null, timeskip: '1200 ms',
+           target: { pos: 'left:50%; top:54%; transform:translate(-50%,-50%);', label: 'aguardando', kind: 'wait' } },
+      2: { name: 'Pular cutscene', num: 2, img: 'skip_intro_02.png', action: 'CLICK', effect: null, goto: null, timeskip: '300 ms',
+           target: { pos: 'right:14px; bottom:18px;', label: 'PULAR', kind: 'click' } },
+      3: { name: 'Aceitar tutorial', num: 3, img: 'tutorial_ok_03.png', action: 'CLICK', effect: null, goto: null, timeskip: '300 ms',
+           target: { pos: 'left:50%; top:54%; transform:translate(-50%,-50%);', label: 'OK', kind: 'click' } },
+      4: { name: 'Definir nome', num: 4, img: 'name_input_04.png', action: 'CLICK', effect: 'FILL_NAME', goto: null, timeskip: '500 ms',
+           target: { pos: 'left:50%; top:66%; transform:translate(-50%,-50%);', label: 'CONFIRMAR', kind: 'click' } },
+      5: { name: 'Checar popup', num: 5, img: 'popup_check_05.png', action: 'IF_VISIBLE', effect: null, goto: 'RM_POP_UP', timeskip: '0 ms',
+           target: { pos: 'left:50%; top:50%; transform:translate(-50%,-50%);', label: 'visível?', kind: 'if' } },
+    };
+  }
+  renderVals() {
+    const sel = this.state.sel;
+    const d = this.data()[sel];
+    const ring = (i) => ({
+      b: sel === i ? '#b79cff' : '#1c2530',
+      sh: sel === i ? '0 0 0 1px #b79cff, 0 18px 40px -20px rgba(124,108,246,.5)' : '0 10px 26px -18px rgba(0,0,0,.7)',
+    });
+    const r = [1, 2, 3, 4, 5].map(ring);
+    const seg = (on, color, rgba) => ({
+      bg: on ? rgba : '#0e1118', border: on ? color : '#2a2f3c', text: on ? color : '#7b8194',
+    });
+    const aClick = seg(d.action === 'CLICK', '#b79cff', 'rgba(183,156,255,.14)');
+    const aWait = seg(d.action === 'WAIT_APPEAR', '#ffb24d', 'rgba(255,178,77,.14)');
+    const aIf = seg(d.action === 'IF_VISIBLE', '#5bc5fb', 'rgba(24,182,246,.14)');
+    const tk = { click: { bg: 'rgba(183,156,255,.22)', border: '#b79cff', text: '#d3c2ff' },
+                 wait: { bg: 'rgba(255,178,77,.18)', border: '#ffb24d', text: '#ffd09a' },
+                 if: { bg: 'rgba(24,182,246,.16)', border: '#5bc5fb', text: '#b6e6fe' } }[d.target.kind];
+    return {
+      sel1: () => this.setState({ sel: 1 }), sel2: () => this.setState({ sel: 2 }),
+      sel3: () => this.setState({ sel: 3 }), sel4: () => this.setState({ sel: 4 }),
+      sel5: () => this.setState({ sel: 5 }),
+      b1: r[0].b, sh1: r[0].sh, b2: r[1].b, sh2: r[1].sh, b3: r[2].b, sh3: r[2].sh,
+      b4: r[3].b, sh4: r[3].sh, b5: r[4].b, sh5: r[4].sh,
+      selName: d.name, selNum: d.num, imgPath: d.img,
+      targetPos: d.target.pos, targetLabel: d.target.label,
+      targetBg: tk.bg, targetBorder: tk.border, targetText: tk.text,
+      aClickBg: aClick.bg, aClickBorder: aClick.border, aClickText: aClick.text,
+      aWaitBg: aWait.bg, aWaitBorder: aWait.border, aWaitText: aWait.text,
+      aIfBg: aIf.bg, aIfBorder: aIf.border, aIfText: aIf.text,
+      effectLabel: d.effect || 'Nenhum', effectColor: d.effect ? '#7ee0a8' : '#5b6170',
+      gotoLabel: d.goto || '—', gotoColor: d.goto ? '#b79cff' : '#5b6170',
+      timeskipLabel: d.timeskip,
+    };
+  }
+}
+</script>
+</body>
+</html>

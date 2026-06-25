@@ -9,6 +9,12 @@ Visão do frontend (`automation-web-lab`) por módulo: o que cada LAB **é**, o 
 | **MarketLAB** | `/marketplace` | [markt/README.md](./markt/README.md) |
 | **ProviderLAB** | `/providers` | [provider/README.md](./provider/README.md) |
 
+## Layout e posicionamento (compartilhado)
+
+| Documento | Conteúdo |
+|-----------|----------|
+| [aqui.md](./aqui.md) | Grid único de hero/landings — padding, colunas, max-width (Menu, Macro, Market, Provider) |
+
 ## Convenções usadas nesta pasta
 
 - **Página A** — experiência logada (painel / app).
