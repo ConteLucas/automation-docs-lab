@@ -4,20 +4,13 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="ov-note" value="automation_db (PostgreSQL) — Flyway sql/core V1–V30 + Hibernate
-Docs: FLOW-DB-DIAGRAM.md, CORE-DATABASE-TABLES.md, entidades JPA
-Atualizado: Jun 2026" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#fff2cc;strokeColor=#d6b656;align=left;spacingLeft=8;fontSize=11;" vertex="1" parent="1">
+        <mxCell id="ov-note" value="automation_db (PostgreSQL) — Flyway sql/core V1–V30 + Hibernate&lt;br&gt;Docs: FLOW-DB-DIAGRAM.md, CORE-DATABASE-TABLES.md, entidades JPA&lt;br&gt;Atualizado: Jun 2026" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#fff2cc;strokeColor=#d6b656;align=left;spacingLeft=8;fontSize=11;" vertex="1" parent="1">
           <mxGeometry x="40" y="20" width="400" height="75" as="geometry" />
         </mxCell>
-        <mxCell id="ov-pg" value="PostgreSQL
-automation_db" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=12;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=12;" vertex="1" parent="1">
+        <mxCell id="ov-pg" value="PostgreSQL&lt;br&gt;automation_db" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=12;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=12;" vertex="1" parent="1">
           <mxGeometry x="460" y="30" width="140" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="ov-s3" value="Amazon S3
-(flow PNGs,
-marketplace,
-avatars,
-chat .txt)" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+        <mxCell id="ov-s3" value="Amazon S3&lt;br&gt;(flow PNGs,&lt;br&gt;marketplace,&lt;br&gt;avatars,&lt;br&gt;chat .txt)" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=11;" vertex="1" parent="1">
           <mxGeometry x="640" y="20" width="180" height="100" as="geometry" />
         </mxCell>
         <mxCell id="ov-e1" value="paths / transcripts" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERmany;startArrow=ERone;fontSize=10;" edge="1" parent="1" source="ov-pg" target="ov-s3">
@@ -59,7 +52,7 @@ chat .txt)" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;fillColor=#e1d5e7;
         <mxCell id="sw-iam-l1" value="permission · permission_function · grants · user_permission" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="sw-iam">
           <mxGeometry x="12" y="68" width="356" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="sw-iam-l2" value="wallet_settings · wallet_account · wallet_transaction" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="sw-iam">
+        <mxCell id="sw-iam-l2" value="wallet_settings · wallet · wallet_transaction" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="sw-iam">
           <mxGeometry x="12" y="96" width="356" height="26" as="geometry" />
         </mxCell>
         <mxCell id="sw-mkt" value="MarketLAB" style="swimlane;horizontal=0;whiteSpace=wrap;html=1;startSize=32;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;fontSize=14;" vertex="1" parent="1">
@@ -100,23 +93,22 @@ chat .txt)" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;fillColor=#e1d5e7;
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="fl-note" value="Flow L1–L4 (V2 hierarquia + V10 versionamento)
-Binários no S3; BD guarda metadados + version/content_hash" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#fff2cc;strokeColor=#d6b656;align=left;spacingLeft=8;fontSize=11;" vertex="1" parent="1">
+        <mxCell id="fl-note" value="Flow L1–L4 (V2 hierarquia + V10 versionamento)&lt;br&gt;Binários no S3; BD guarda metadados + version/content_hash" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#fff2cc;strokeColor=#d6b656;align=left;spacingLeft=8;fontSize=11;" vertex="1" parent="1">
           <mxGeometry x="40" y="20" width="500" height="55" as="geometry" />
         </mxCell>
-        <mxCell id="t-collection" value="<b>collection (L1)</b><hr size="1">PK id<br>UQ collection_key<br>name_collection<br>default_flow_key<br>display_order<br>version, content_hash<br>is_original (legado)" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
+        <mxCell id="t-collection" value="&lt;b&gt;collection (L1)&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;PK id&lt;br&gt;UQ collection_key&lt;br&gt;name_collection&lt;br&gt;default_flow_key&lt;br&gt;display_order&lt;br&gt;version, content_hash&lt;br&gt;is_original (legado)" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
           <mxGeometry x="80" y="100" width="260" height="166" as="geometry" />
         </mxCell>
-        <mxCell id="t-flow" value="<b>flow (L2)</b><hr size="1">PK id<br>FK collection_id<br>UQ (collection_id, flow_key)<br>flow_key, name<br>display_order<br>version, content_hash" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
+        <mxCell id="t-flow" value="&lt;b&gt;flow (L2)&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;PK id&lt;br&gt;FK collection_id&lt;br&gt;UQ (collection_id, flow_key)&lt;br&gt;flow_key, name&lt;br&gt;display_order&lt;br&gt;version, content_hash" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
           <mxGeometry x="380" y="100" width="260" height="148" as="geometry" />
         </mxCell>
-        <mxCell id="t-step" value="<b>flow_step (L3)</b><hr size="1">PK id<br>FK flow_id<br>UQ (flow_id, step_number)<br>step_number, name, step_key<br>flow_key (legado)<br>version, content_hash" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
+        <mxCell id="t-step" value="&lt;b&gt;flow_step (L3)&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;PK id&lt;br&gt;FK flow_id&lt;br&gt;UQ (flow_id, step_number)&lt;br&gt;step_number, name, step_key&lt;br&gt;flow_key (legado)&lt;br&gt;version, content_hash" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
           <mxGeometry x="680" y="100" width="260" height="148" as="geometry" />
         </mxCell>
-        <mxCell id="t-img" value="<b>flow_step_image (L4)</b><hr size="1">PK id<br>FK flow_step_id<br>UQ (flow_step_id, step_img_number)<br>image_path → S3<br>worker_action, effect<br>transition_flow_key<br>transition_from_step_number<br>version, content_hash" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
+        <mxCell id="t-img" value="&lt;b&gt;flow_step_image (L4)&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;PK id&lt;br&gt;FK flow_step_id&lt;br&gt;UQ (flow_step_id, step_img_number)&lt;br&gt;image_path → S3&lt;br&gt;worker_action, effect&lt;br&gt;transition_flow_key&lt;br&gt;transition_from_step_number&lt;br&gt;version, content_hash" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
           <mxGeometry x="980" y="100" width="260" height="184" as="geometry" />
         </mxCell>
-        <mxCell id="t-task" value="<b>task</b><hr size="1">PK id<br>FK collection_id<br>FK sales_order_id<br>FK game_account_id<br>FK device_id<br>FK flow_step_id<br>status_task, server_value" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#d5e8d4;strokeColor=#82b366;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
+        <mxCell id="t-task" value="&lt;b&gt;task&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;PK id&lt;br&gt;FK collection_id&lt;br&gt;FK sales_order_id&lt;br&gt;FK game_account_id&lt;br&gt;FK device_id&lt;br&gt;FK flow_step_id&lt;br&gt;status_task, server_value" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#d5e8d4;strokeColor=#82b366;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
           <mxGeometry x="380" y="400" width="260" height="166" as="geometry" />
         </mxCell>
         <mxCell id="fl-e1" value="1:N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERmany;startArrow=ERone;fontSize=10;" edge="1" parent="1" source="t-collection" target="t-flow">
@@ -142,37 +134,37 @@ Binários no S3; BD guarda metadados + version/content_hash" style="shape=note;w
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="c-range" value="<b>range_server</b><hr size="1">PK id<br>UQ range_key<br>value, description" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
+        <mxCell id="c-range" value="&lt;b&gt;range_server&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;PK id&lt;br&gt;UQ range_key&lt;br&gt;value, description" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
           <mxGeometry x="40" y="80" width="240" height="94" as="geometry" />
         </mxCell>
-        <mxCell id="c-server" value="<b>server</b><hr size="1">PK id<br>FK range_server_id<br>UQ server_number<br>image_path, name" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
+        <mxCell id="c-server" value="&lt;b&gt;server&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;PK id&lt;br&gt;FK range_server_id&lt;br&gt;UQ server_number&lt;br&gt;image_path, name" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
           <mxGeometry x="40" y="260" width="240" height="112" as="geometry" />
         </mxCell>
-        <mxCell id="c-customer" value="<b>customer</b><hr size="1">PK id<br>FK created_by_user_id<br>profile, purchase counters<br>deleted_at (soft)" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
+        <mxCell id="c-customer" value="&lt;b&gt;customer&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;PK id&lt;br&gt;FK created_by_user_id&lt;br&gt;profile, purchase counters&lt;br&gt;deleted_at (soft)" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
           <mxGeometry x="320" y="80" width="240" height="112" as="geometry" />
         </mxCell>
-        <mxCell id="c-order" value="<b>sales_order</b><hr size="1">PK id<br>FK customer_id<br>FK range_server_id<br>FK user_admin_id<br>order_type ACC15/ACC30<br>tasks_total, tasks_completed, status_order" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
+        <mxCell id="c-order" value="&lt;b&gt;sales_order&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;PK id&lt;br&gt;FK customer_id&lt;br&gt;FK range_server_id&lt;br&gt;FK user_admin_id&lt;br&gt;order_type ACC15/ACC30&lt;br&gt;tasks_total, tasks_completed, status_order" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
           <mxGeometry x="320" y="280" width="240" height="148" as="geometry" />
         </mxCell>
-        <mxCell id="c-ga" value="<b>game_account</b><hr size="1">PK id<br>UQ login<br>password AES-GCM<br>FK created_by_user_id<br>marketplace flags" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
+        <mxCell id="c-ga" value="&lt;b&gt;game_account&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;PK id&lt;br&gt;UQ login&lt;br&gt;password AES-GCM&lt;br&gt;FK created_by_user_id&lt;br&gt;marketplace flags" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
           <mxGeometry x="600" y="80" width="240" height="130" as="geometry" />
         </mxCell>
-        <mxCell id="c-gda" value="<b>game_details_account</b><hr size="1">PK id<br>FK game_account_id<br>UQ (game_account_id, server)<br>nick, level, xp" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
+        <mxCell id="c-gda" value="&lt;b&gt;game_details_account&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;PK id&lt;br&gt;FK game_account_id&lt;br&gt;UQ (game_account_id, server)&lt;br&gt;nick, level, xp" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
           <mxGeometry x="600" y="280" width="240" height="112" as="geometry" />
         </mxCell>
-        <mxCell id="c-gai" value="<b>game_account_image</b><hr size="1">PK id<br>FK game_account_id<br>image_path, sort_order" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
+        <mxCell id="c-gai" value="&lt;b&gt;game_account_image&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;PK id&lt;br&gt;FK game_account_id&lt;br&gt;image_path, sort_order" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
           <mxGeometry x="880" y="80" width="240" height="94" as="geometry" />
         </mxCell>
-        <mxCell id="c-device" value="<b>device</b><hr size="1">PK id<br>UQ identifier<br>status, api_key_hash, alias" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
+        <mxCell id="c-device" value="&lt;b&gt;device&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;PK id&lt;br&gt;UQ identifier&lt;br&gt;status, api_key_hash, alias" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
           <mxGeometry x="880" y="280" width="240" height="94" as="geometry" />
         </mxCell>
-        <mxCell id="c-task" value="<b>task</b><hr size="1">PK id<br>FK sales_order_id<br>FK game_account_id<br>FK device_id<br>FK flow_step_id<br>FK collection_id<br>UQ (order, account, server_value)" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
+        <mxCell id="c-task" value="&lt;b&gt;task&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;PK id&lt;br&gt;FK sales_order_id&lt;br&gt;FK game_account_id&lt;br&gt;FK device_id&lt;br&gt;FK flow_step_id&lt;br&gt;FK collection_id&lt;br&gt;UQ (order, account, server_value)" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
           <mxGeometry x="600" y="480" width="240" height="166" as="geometry" />
         </mxCell>
-        <mxCell id="c-dbg" value="<b>debug_image</b><hr size="1">PK id<br>FK task_id<br>image_path, detection_context" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
+        <mxCell id="c-dbg" value="&lt;b&gt;debug_image&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;PK id&lt;br&gt;FK task_id&lt;br&gt;image_path, detection_context" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
           <mxGeometry x="880" y="480" width="240" height="94" as="geometry" />
         </mxCell>
-        <mxCell id="c-log" value="<b>order_task_log</b><hr size="1">PK id<br>FK task_id<br>log_level, message, log_file_path" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
+        <mxCell id="c-log" value="&lt;b&gt;order_task_log&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;PK id&lt;br&gt;FK task_id&lt;br&gt;log_level, message, log_file_path" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
           <mxGeometry x="880" y="620" width="240" height="94" as="geometry" />
         </mxCell>
         <mxCell id="c-e1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERmany;startArrow=ERone;fontSize=10;" edge="1" parent="1" source="c-range" target="c-server">
@@ -213,28 +205,28 @@ Binários no S3; BD guarda metadados + version/content_hash" style="shape=note;w
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="i-user" value="<b>user_admin</b><hr size="1">PK id<br>UQ login<br>password_hash BCrypt<br>FK permission_id<br>FK manager_user_id<br>FK created_by_user_id<br>avatar_path (V30)<br>email_verified (V23)" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
+        <mxCell id="i-user" value="&lt;b&gt;user_admin&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;PK id&lt;br&gt;UQ login&lt;br&gt;password_hash BCrypt&lt;br&gt;FK permission_id&lt;br&gt;FK manager_user_id&lt;br&gt;FK created_by_user_id&lt;br&gt;avatar_path (V30)&lt;br&gt;email_verified (V23)" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
           <mxGeometry x="80" y="100" width="260" height="184" as="geometry" />
         </mxCell>
-        <mxCell id="i-perm" value="<b>permission</b><hr size="1">PK id<br>UQ name" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
+        <mxCell id="i-perm" value="&lt;b&gt;permission&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;PK id&lt;br&gt;UQ name" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
           <mxGeometry x="420" y="100" width="260" height="76" as="geometry" />
         </mxCell>
-        <mxCell id="i-pf" value="<b>permission_function</b><hr size="1">PK id<br>UQ code" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
+        <mxCell id="i-pf" value="&lt;b&gt;permission_function&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;PK id&lt;br&gt;UQ code" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
           <mxGeometry x="420" y="260" width="260" height="76" as="geometry" />
         </mxCell>
-        <mxCell id="i-pfg" value="<b>permission_function_grant</b><hr size="1">FK permission_id<br>FK permission_function_id<br>UQ (permission_id, function_id)" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
+        <mxCell id="i-pfg" value="&lt;b&gt;permission_function_grant&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;FK permission_id&lt;br&gt;FK permission_function_id&lt;br&gt;UQ (permission_id, function_id)" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
           <mxGeometry x="720" y="180" width="260" height="94" as="geometry" />
         </mxCell>
-        <mxCell id="i-up" value="<b>user_permission</b><hr size="1">FK user_id<br>FK permission_id<br>UQ (user_id, permission_id)" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
+        <mxCell id="i-up" value="&lt;b&gt;user_permission&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;FK user_id&lt;br&gt;FK permission_id&lt;br&gt;UQ (user_id, permission_id)" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
           <mxGeometry x="720" y="360" width="260" height="94" as="geometry" />
         </mxCell>
-        <mxCell id="i-ws" value="<b>wallet_settings</b><hr size="1">PK id = 1 (singleton)<br>price_per_server_cents<br>pix_key, default_range_key" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#fff2cc;strokeColor=#d6b656;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
+        <mxCell id="i-ws" value="&lt;b&gt;wallet_settings&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;PK id = 1 (singleton)&lt;br&gt;price_per_server_cents&lt;br&gt;pix_key, default_range_key" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#fff2cc;strokeColor=#d6b656;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
           <mxGeometry x="80" y="420" width="260" height="94" as="geometry" />
         </mxCell>
-        <mxCell id="i-wa" value="<b>wallet_account</b><hr size="1">PK user_id → user_admin<br>balance_cents" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#fff2cc;strokeColor=#d6b656;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
-          <mxGeometry x="360" y="420" width="260" height="76" as="geometry" />
+        <mxCell id="i-wa" value="&lt;b&gt;wallet&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;PK id&lt;br&gt;UQ user_id → user_admin&lt;br&gt;balance_cents" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#fff2cc;strokeColor=#d6b656;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="360" y="420" width="260" height="94" as="geometry" />
         </mxCell>
-        <mxCell id="i-wt" value="<b>wallet_transaction</b><hr size="1">PK id<br>FK user_id<br>type, amount_cents<br>reference_type, reference_id" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#fff2cc;strokeColor=#d6b656;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
+        <mxCell id="i-wt" value="&lt;b&gt;wallet_transaction&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;PK id&lt;br&gt;FK wallet_id&lt;br&gt;type, amount_cents&lt;br&gt;reference_type, reference_id" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#fff2cc;strokeColor=#d6b656;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
           <mxGeometry x="640" y="420" width="260" height="112" as="geometry" />
         </mxCell>
         <mxCell id="i-e1" value="permission_id" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERmany;startArrow=ERone;fontSize=10;" edge="1" parent="1" source="i-user" target="i-perm">
@@ -266,35 +258,34 @@ Binários no S3; BD guarda metadados + version/content_hash" style="shape=note;w
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="m-list" value="<b>marketplace_listing</b><hr size="1">PK id<br>FK seller_user_id<br>game_slug<br>price, price_on_request<br>draft, featured, status" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#f8cecc;strokeColor=#b85450;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
+        <mxCell id="m-list" value="&lt;b&gt;marketplace_listing&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;PK id&lt;br&gt;FK seller_user_id&lt;br&gt;game_slug&lt;br&gt;price, price_on_request&lt;br&gt;draft, featured, status" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#f8cecc;strokeColor=#b85450;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
           <mxGeometry x="60" y="100" width="280" height="130" as="geometry" />
         </mxCell>
-        <mxCell id="m-img" value="<b>marketplace_listing_image</b><hr size="1">PK id<br>FK listing_id ON DELETE CASCADE<br>image_path → S3<br>sort_order" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#f8cecc;strokeColor=#b85450;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
+        <mxCell id="m-img" value="&lt;b&gt;marketplace_listing_image&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;PK id&lt;br&gt;FK listing_id ON DELETE CASCADE&lt;br&gt;image_path → S3&lt;br&gt;sort_order" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#f8cecc;strokeColor=#b85450;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
           <mxGeometry x="380" y="100" width="280" height="112" as="geometry" />
         </mxCell>
-        <mxCell id="m-prop" value="<b>marketplace_listing_proposal</b><hr size="1">PK id<br>FK listing_id<br>FK buyer_user_id<br>offered_price, message" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#f8cecc;strokeColor=#b85450;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
+        <mxCell id="m-prop" value="&lt;b&gt;marketplace_listing_proposal&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;PK id&lt;br&gt;FK listing_id&lt;br&gt;FK buyer_user_id&lt;br&gt;offered_price, message" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#f8cecc;strokeColor=#b85450;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
           <mxGeometry x="380" y="320" width="280" height="112" as="geometry" />
         </mxCell>
-        <mxCell id="m-rev" value="<b>marketplace_seller_review</b><hr size="1">PK id<br>FK seller_user_id<br>FK buyer_user_id<br>rating, comment" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#f8cecc;strokeColor=#b85450;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
+        <mxCell id="m-rev" value="&lt;b&gt;marketplace_seller_review&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;PK id&lt;br&gt;FK seller_user_id&lt;br&gt;FK buyer_user_id&lt;br&gt;rating, comment" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#f8cecc;strokeColor=#b85450;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
           <mxGeometry x="60" y="320" width="280" height="112" as="geometry" />
         </mxCell>
-        <mxCell id="m-user" value="<b>user_admin</b><hr size="1">vendedor / comprador / reviewer" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
+        <mxCell id="m-user" value="&lt;b&gt;user_admin&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;vendedor / comprador / reviewer" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
           <mxGeometry x="60" y="540" width="280" height="58" as="geometry" />
         </mxCell>
-        <mxCell id="p-ads" value="<b>ads_service_provider</b><hr size="1">PK id<br>FK user_id<br>game_slug<br>display_name, whatsapp<br>services_json, rating, featured" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#e1d5e7;strokeColor=#9673a6;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
+        <mxCell id="p-ads" value="&lt;b&gt;ads_service_provider&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;PK id&lt;br&gt;FK user_id&lt;br&gt;game_slug&lt;br&gt;display_name, whatsapp&lt;br&gt;services_json, rating, featured" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#e1d5e7;strokeColor=#9673a6;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
           <mxGeometry x="700" y="100" width="280" height="130" as="geometry" />
         </mxCell>
-        <mxCell id="p-rev" value="<b>ads_service_provider_review</b><hr size="1">PK id<br>FK provider_id<br>FK reviewer_user_id<br>rating, comment" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#e1d5e7;strokeColor=#9673a6;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
+        <mxCell id="p-rev" value="&lt;b&gt;ads_service_provider_review&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;PK id&lt;br&gt;FK provider_id&lt;br&gt;FK reviewer_user_id&lt;br&gt;rating, comment" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#e1d5e7;strokeColor=#9673a6;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
           <mxGeometry x="700" y="360" width="280" height="112" as="geometry" />
         </mxCell>
-        <mxCell id="a-chat" value="<b>chat_read_status</b><hr size="1">PK id<br>user_id, channel, context_id<br>peer_user_id, read_at" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#f5f5f5;strokeColor=#666666;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
+        <mxCell id="a-chat" value="&lt;b&gt;chat_read_status&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;PK id&lt;br&gt;user_id, channel, context_id&lt;br&gt;peer_user_id, read_at" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#f5f5f5;strokeColor=#666666;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
           <mxGeometry x="380" y="540" width="280" height="94" as="geometry" />
         </mxCell>
-        <mxCell id="a-notif" value="<b>user_notification</b><hr size="1">PK id<br>FK user_id<br>type, title, body, read_at" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#f5f5f5;strokeColor=#666666;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
+        <mxCell id="a-notif" value="&lt;b&gt;user_notification&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;PK id&lt;br&gt;FK user_id&lt;br&gt;type, title, body, read_at" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=6;spacingTop=4;fillColor=#f5f5f5;strokeColor=#666666;fontFamily=Menlo, Monaco, Courier New, monospace;fontSize=11;" vertex="1" parent="1">
           <mxGeometry x="700" y="540" width="280" height="94" as="geometry" />
         </mxCell>
-        <mxCell id="m-s3" value="S3: chat transcripts
-(.txt diários + inbox JSON)" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+        <mxCell id="m-s3" value="S3: chat transcripts&lt;br&gt;(.txt diários + inbox JSON)" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=11;" vertex="1" parent="1">
           <mxGeometry x="380" y="700" width="180" height="100" as="geometry" />
         </mxCell>
         <mxCell id="m-e1" value="1:N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERmany;startArrow=ERone;fontSize=10;" edge="1" parent="1" source="m-list" target="m-img">

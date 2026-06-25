@@ -6,256 +6,312 @@ Visão completa do modelo relacional PostgreSQL da plataforma DDT. O schema é *
 
 ---
 
-## Diagrama ER — Visão Macro
+## Diagrama ER — Visão Completa
 
 ```mermaid
 erDiagram
-    range_server {
-        bigint id PK
-        varchar range_key UK "ALL, range_1..range_6"
-        int value "qtd servidores do range"
-        varchar description "segmentos ex: 1-9"
-        timestamp created_at
-        timestamp updated_at
-    }
+  range_server {
+    bigint id PK
+    varchar range_key UK
+    int value
+    varchar description
+  }
+  server {
+    bigint id PK
+    varchar server_number UK
+    bigint range_server_id FK
+    varchar image_path
+    varchar name
+  }
+  collection {
+    bigint id PK
+    varchar collection_key UK
+    varchar name_collection
+    varchar default_flow_key
+    int display_order
+    varchar version
+    varchar content_hash
+    boolean is_original
+  }
+  flow {
+    bigint id PK
+    bigint collection_id FK
+    varchar flow_key
+    varchar name
+    int display_order
+    varchar version
+    varchar content_hash
+  }
+  flow_step {
+    bigint id PK
+    bigint flow_id FK
+    int step_number
+    varchar step_key
+    varchar flow_key
+    varchar version
+    varchar content_hash
+  }
+  flow_step_image {
+    bigint id PK
+    bigint flow_step_id FK
+    int step_img_number
+    varchar image_path
+    varchar worker_action
+    varchar effect
+    varchar transition_flow_key
+    int transition_from_step_number
+    varchar version
+    varchar content_hash
+  }
+  game_account {
+    bigint id PK
+    varchar login UK
+    varchar password
+    bigint customer_id FK
+    bigint sales_order_id FK
+    varchar account_status
+    varchar game
+    boolean draft
+    boolean marketplace_featured
+    decimal price
+    boolean price_on_request
+  }
+  game_details_account {
+    bigint id PK
+    bigint game_account_id FK
+    varchar nick
+    varchar server
+    int level
+    int xp
+  }
+  game_account_image {
+    bigint id PK
+    bigint game_account_id FK
+    varchar image_path
+    int sort_order
+  }
+  customer {
+    bigint id PK
+    varchar name
+    varchar profile
+    bigint created_by_user_id
+    timestamp deleted_at
+  }
+  sales_order {
+    bigint id PK
+    bigint customer_id FK
+    bigint user_admin_id FK
+    bigint range_server_id FK
+    varchar status_order
+    varchar order_type
+    int accounts_count
+    int tasks_total
+    int tasks_completed
+  }
+  task {
+    bigint id PK
+    bigint sales_order_id FK
+    bigint game_account_id FK
+    bigint collection_id FK
+    bigint device_id FK
+    varchar server_value
+    varchar status_task
+  }
+  device {
+    bigint id PK
+    varchar identifier UK
+    varchar status
+    varchar alias
+    bigint user_admin_id FK
+    timestamp deleted_at
+  }
+  debug_image {
+    bigint id PK
+    bigint task_id FK
+    varchar image_path
+    json detection_context
+  }
+  order_task_log {
+    bigint id PK
+    bigint task_id FK
+    varchar log_level
+    text message
+    varchar log_file_path
+  }
+  user_admin {
+    bigint id PK
+    varchar login UK
+    varchar password_hash
+    varchar email
+    boolean email_verified
+    bigint permission_id FK
+    varchar oauth_provider
+    varchar avatar_path
+    bigint manager_user_id
+    timestamp deleted_at
+  }
+  permission {
+    bigint id PK
+    varchar name UK
+  }
+  permission_function {
+    bigint id PK
+    varchar code UK
+    varchar description
+  }
+  permission_function_grant {
+    bigint permission_id FK
+    bigint permission_function_id FK
+  }
+  user_permission {
+    bigint user_id FK
+    bigint permission_id FK
+  }
+  ads_service_provider {
+    bigint id PK
+    bigint user_id FK
+    varchar game_slug
+    varchar display_name
+    text services_json
+    boolean active
+    boolean featured
+  }
+  ads_service_provider_review {
+    bigint id PK
+    bigint provider_id FK
+    bigint reviewer_user_id FK
+    int rating
+    text comment
+  }
+  marketplace_listing {
+    bigint id PK
+    bigint created_by_user_id FK
+    varchar game_slug
+    decimal price
+    boolean draft
+    boolean featured
+    varchar status
+  }
+  marketplace_listing_image {
+    bigint id PK
+    bigint listing_id FK
+    varchar image_path
+    int sort_order
+  }
+  marketplace_listing_proposal {
+    bigint id PK
+    bigint listing_id FK
+    bigint buyer_user_id FK
+    decimal offered_price
+  }
+  marketplace_seller_review {
+    bigint id PK
+    bigint seller_user_id FK
+    bigint reviewer_user_id FK
+    bigint listing_id
+    int rating
+    text comment
+  }
+  wallet_settings {
+    bigint id PK
+    int price_per_server_cents
+    varchar default_range_key
+  }
+  wallet {
+    bigint id PK
+    bigint user_id FK_UK
+    bigint balance_cents
+  }
+  wallet_transaction {
+    bigint id PK
+    bigint wallet_id FK
+    varchar type
+    bigint amount_cents
+    bigint balance_after_cents
+    varchar reference_type
+    bigint reference_id
+  }
+  user_notification {
+    bigint id PK
+    bigint user_id FK
+    varchar type
+    varchar title
+    text body
+    json payload
+    timestamp read_at
+  }
+  chat_read_status {
+    bigint id PK
+    bigint user_id FK
+    varchar channel
+    bigint context_id
+    bigint peer_user_id
+    timestamp read_at
+  }
+  email_confirmation_token {
+    bigint id PK
+    bigint user_id FK
+    varchar token UK
+    timestamp expires_at
+  }
+  password_reset_token {
+    bigint id PK
+    bigint user_id FK
+    varchar token UK
+    timestamp expires_at
+  }
+  site_config {
+    varchar config_key PK
+    text config_value
+  }
+  lab_access_request {
+    bigint id PK
+    varchar lab
+    varchar login
+    varchar status
+    bigint reviewed_by_user_id
+    bigint created_user_id
+  }
 
-    server {
-        bigint id PK
-        varchar server_number UK "1..65"
-        bigint range_server_id FK
-        varchar image_path "template OCR"
-        varchar name "s1..s65"
-        timestamp created_at
-        timestamp updated_at
-    }
-
-    flow_step {
-        bigint id PK
-        varchar flow_key "LOGIN, SELECT_SERVER..."
-        int step_number "ordem dentro do fluxo"
-        varchar name
-        timestamp created_at
-        timestamp updated_at
-    }
-
-    flow_step_image {
-        bigint id PK
-        bigint flow_step_id FK
-        varchar image_path "path no storage/S3"
-        blob image_data "opcional binário"
-        json coordinates "{x, y}"
-        int width
-        int height
-        int step_img_number "ordem dentro do step"
-        varchar worker_action "CLICK, WAIT_APPEAR, GOTO..."
-        json worker_action_config
-        timestamp created_at
-        timestamp updated_at
-    }
-
-    game_account {
-        bigint id PK
-        varchar login UK
-        varchar password "AES-256-GCM em prod (v1: prefix)"
-        boolean marketplace_featured "destaque catálogo R03"
-        timestamp created_at
-        timestamp updated_at
-    }
-
-    game_details_account {
-        bigint id PK
-        bigint game_account_id FK
-        varchar nick
-        varchar server "s1..s65"
-        int xp
-        int level
-        timestamp created_at
-        timestamp updated_at
-    }
-
-    customer {
-        bigint id PK
-        varchar name
-        varchar contact_number
-        varchar pix_key
-        varchar profile "REVENDEDOR, COMPRADOR"
-        int total_purchases
-        int closed_purchases
-        int open_purchases
-        int cancelled_purchases
-        text description
-        timestamp deleted_at "soft delete"
-        timestamp created_at
-        timestamp updated_at
-    }
-
-    sales_order {
-        bigint id PK
-        bigint customer_id FK
-        bigint range_server_id FK
-        bigint user_admin_id FK
-        varchar description
-        varchar status_order "PENDING, PROCESSING, FINISHED, ERROR"
-        varchar priority "CRITICAL, HIGH, NORMAL, LOW"
-        varchar order_type "ACC15, ACC30"
-        int accounts_count
-        int tasks_total
-        int tasks_completed
-        tinyint active_flag
-        varchar server_scope
-        timestamp created_at
-        timestamp updated_at
-    }
-
-    task {
-        bigint id PK
-        bigint sales_order_id FK
-        bigint game_account_id FK
-        bigint device_id FK
-        bigint flow_step_id FK
-        varchar server_value "s1..s65"
-        varchar status_task "PENDING, PROCESSING, FINISHED, ERROR"
-        timestamp created_at
-        timestamp updated_at
-    }
-
-    device {
-        bigint id PK
-        varchar identifier UK "Android ID"
-        varchar name
-        varchar api_key_hash "BCrypt"
-        varchar status "ATIVO, INATIVO, DEPRECADO"
-        timestamp deleted_at "soft delete"
-        timestamp created_at
-        timestamp updated_at
-    }
-
-    debug_image {
-        bigint id PK
-        bigint task_id FK
-        varchar image_path
-        json detection_context "{x, y, template, confidence}"
-        timestamp created_at
-        timestamp updated_at
-    }
-
-    order_task_log {
-        bigint id PK
-        bigint task_id FK
-        varchar log_level "CRITICAL"
-        text message "stack trace"
-        json last_click "{x, y}"
-        varchar log_file_path
-        timestamp created_at
-        timestamp updated_at
-    }
-
-    user_admin {
-        bigint id PK
-        varchar login UK
-        varchar password_hash "BCrypt ($2a$); opcional se OAuth"
-        varchar name
-        varchar email
-        boolean active
-        varchar oauth_provider "google R04"
-        varchar oauth_provider_id "ID no provedor R04"
-        bigint permission_id FK
-        timestamp deleted_at "soft delete"
-        timestamp created_at
-        timestamp updated_at
-    }
-
-    permission {
-        bigint id PK
-        varchar name UK "ADM, DEV, MANAGER, SELLER, CUSTOMER, SERVICE_PROVIDER"
-        timestamp created_at
-        timestamp updated_at
-    }
-
-    ads_service_provider {
-        bigint id PK
-        bigint user_id FK "user_admin"
-        varchar game_slug
-        varchar display_name
-        varchar whatsapp
-        text bio
-        text services_json
-        int price_from_cents
-        double rating
-        int review_count
-        boolean featured
-        boolean active
-        boolean banned
-        timestamp created_at
-        timestamp updated_at
-    }
-
-    ads_service_provider_review {
-        bigint id PK
-        bigint ads_service_provider_id FK
-        bigint reviewer_user_id FK
-        int rating
-        text comment
-        timestamp created_at
-    }
-
-    permission_function {
-        bigint id PK
-        varchar code UK "VIEW_ORDERS, CREATE_ORDERS..."
-        varchar description
-        timestamp created_at
-        timestamp updated_at
-    }
-
-    permission_function_grant {
-        bigint permission_id FK
-        bigint permission_function_id FK
-    }
-
-    user_permission {
-        bigint user_id FK
-        bigint permission_id FK
-    }
-
-    flow {
-        bigint id PK
-        varchar key UK "LOGIN, SELECT_SERVER..."
-        varchar name
-        bigint collection_id FK
-        timestamp created_at
-        timestamp updated_at
-    }
-
-    collection {
-        bigint id PK
-        varchar name
-        varchar description
-        timestamp created_at
-        timestamp updated_at
-    }
-
-    range_server ||--o{ server : "range_server_id"
-    range_server ||--o{ sales_order : "range_server_id"
-    flow_step ||--o{ flow_step_image : "flow_step_id"
-    flow_step ||--o{ task : "flow_step_id"
-    flow ||--o{ flow_step : "flow_id"
-    collection ||--o{ flow : "collection_id"
-    game_account ||--o{ game_details_account : "game_account_id"
-    game_account ||--o{ task : "game_account_id"
-    customer ||--o{ sales_order : "customer_id"
-    user_admin ||--o{ sales_order : "user_admin_id"
-    sales_order ||--o{ task : "sales_order_id"
-    device ||--o{ task : "device_id"
-    task ||--o{ debug_image : "task_id"
-    task ||--o{ order_task_log : "task_id"
-    permission ||--o{ user_admin : "permission_id"
-    permission ||--o{ permission_function_grant : "permission_id"
-    permission ||--o{ user_permission : "permission_id"
-    permission_function ||--o{ permission_function_grant : "permission_function_id"
-    user_admin ||--o{ user_permission : "user_id"
-    user_admin ||--o| ads_service_provider : "user_id"
-    ads_service_provider ||--o{ ads_service_provider_review : "ads_service_provider_id"
+  range_server ||--o{ server : range_server_id
+  range_server ||--o{ sales_order : range_server_id
+  collection ||--o{ flow : collection_id
+  flow ||--o{ flow_step : flow_id
+  flow_step ||--o{ flow_step_image : flow_step_id
+  collection ||--o{ task : collection_id
+  customer ||--o{ sales_order : customer_id
+  customer ||--o{ game_account : customer_id
+  sales_order ||--o{ task : sales_order_id
+  sales_order ||--o{ game_account : sales_order_id
+  game_account ||--o{ game_details_account : game_account_id
+  game_account ||--o{ game_account_image : game_account_id
+  game_account ||--o{ task : game_account_id
+  device ||--o{ task : device_id
+  task ||--o{ debug_image : task_id
+  task ||--o{ order_task_log : task_id
+  user_admin ||--o{ sales_order : user_admin_id
+  user_admin ||--o{ device : user_admin_id
+  user_admin ||--o{ customer : created_by_user_id
+  user_admin ||--o{ game_account : created_by_user_id
+  user_admin }o--|| permission : permission_id
+  user_admin ||--o{ user_permission : user_id
+  permission ||--o{ user_permission : permission_id
+  permission ||--o{ permission_function_grant : permission_id
+  permission_function ||--o{ permission_function_grant : permission_function_id
+  user_admin ||--o| ads_service_provider : user_id
+  ads_service_provider ||--o{ ads_service_provider_review : provider_id
+  user_admin ||--o{ marketplace_listing : created_by_user_id
+  marketplace_listing ||--o{ marketplace_listing_image : listing_id
+  marketplace_listing ||--o{ marketplace_listing_proposal : listing_id
+  user_admin ||--|| wallet : user_id
+  wallet ||--o{ wallet_transaction : wallet_id
+  user_admin ||--o{ user_notification : user_id
+  user_admin ||--o{ chat_read_status : user_id
+  user_admin ||--o{ email_confirmation_token : user_id
+  user_admin ||--o{ password_reset_token : user_id
 ```
+
+> **Escopo atual:** 35 tabelas das entidades JPA do Core. Removidas do modelo atual: `flow_transition` (V10) e `marketplace_listing_question` (V28).
 
 > **Releases:** CUSTOMER/SERVICE_PROVIDER e marketplace em [releases/r03-marketlab/DATABASE.md](../releases/r03-marketlab/DATABASE.md); OAuth em [releases/r04-producao-identidade/DATABASE.md](../releases/r04-producao-identidade/DATABASE.md).
 
@@ -410,11 +466,16 @@ graph LR
 
 | Módulo | Tabelas |
 |--------|---------|
-| **Catálogo de Jogo** | `range_server`, `server`, `game_account`, `game_details_account` |
+| **Catálogo de Jogo** | `range_server`, `server`, `game_account`, `game_details_account`, `game_account_image` |
 | **Automação (Flows)** | `collection`, `flow`, `flow_step`, `flow_step_image` |
 | **CRM** | `customer`, `sales_order` |
 | **Execução** | `task`, `device`, `debug_image`, `order_task_log` |
 | **Auth/RBAC** | `user_admin`, `permission`, `permission_function`, `permission_function_grant`, `user_permission` |
+| **ProviderLAB** | `ads_service_provider`, `ads_service_provider_review` |
+| **MarketLAB** | `marketplace_listing`, `marketplace_listing_image`, `marketplace_listing_proposal`, `marketplace_seller_review` |
+| **Wallet** | `wallet_settings`, `wallet`, `wallet_transaction` |
+| **Identidade / notificações** | `email_confirmation_token`, `password_reset_token`, `user_notification`, `chat_read_status` |
+| **Plataforma** | `site_config`, `lab_access_request` |
 
 ---
 

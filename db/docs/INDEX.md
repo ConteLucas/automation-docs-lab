@@ -2,7 +2,7 @@
 
 Documentação em `automation-docs-lab/db/docs`. SQL e seeds em `automation-db-lab`.
 
-**Última atualização:** 2026-06-20
+**Última atualização:** 2026-06-25
 
 ---
 
@@ -23,7 +23,7 @@ Espelho S3: [../../automation-docs-lab/FLOW-SYNC-E-S3.md](../../automation-docs-
 
 | Documento | Conteúdo |
 |-----------|----------|
-| [CORE-DATABASE-TABLES.md](CORE-DATABASE-TABLES.md) | Tabelas, convenções |
+| [CORE-DATABASE-TABLES.md](CORE-DATABASE-TABLES.md) | Inventário + diagrama ER completo (35 tabelas) |
 | [CORE-DATABASE-DDL.sql](CORE-DATABASE-DDL.sql) | DDL referência |
 | [modeling/automation-ddt.drawio](modeling/automation-ddt.drawio) | Draw.io ER (5 páginas; gerar na raiz: `./generate-ddt-drawio.sh`) |
 

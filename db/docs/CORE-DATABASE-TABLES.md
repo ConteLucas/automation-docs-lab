@@ -2,7 +2,9 @@
 
 Schema only. Business rules, API, batch and concurrency come later.
 
-**Implementação:** DDL MySQL em `CORE-DATABASE-DDL.sql`. Fluxo criação de ordem → geração de tasks → device processa em `CORE-FLOW-IMPLEMENTATION.md`.
+**Fonte da verdade (schema atual):** entidades JPA em `automation-core-lab/.../persistence/entity/` (`ddl-auto` no Core). Migrations em `automation-db-lab/sql/core/V*.sql`. DDL de referência legado: `CORE-DATABASE-DDL.sql` (parcial).
+
+**Diagrama flow L1–L4 (detalhe):** [FLOW-DB-DIAGRAM.md](FLOW-DB-DIAGRAM.md).
 
 **Naming convention (English, consistent):**
 
@@ -362,231 +364,342 @@ Tabela de junção **user** (user_admin) ↔ **permission** (N:N). Um user tem N
 
 ---
 
-## Relationship summary
+## Inventário de tabelas (35 — Jun 2026)
 
-All tables have **created_at** and **updated_at** (TIMESTAMP NOT NULL) unless noted.
+Espelha as entidades JPA do Core. `created_at` / `updated_at` em quase todas (exceto onde indicado).
 
-```
-range_server
-  (range_key ALL, range_1, … + value; defines how many task rows per sales_order; created_at, updated_at)
+| Módulo | Tabelas |
+|--------|---------|
+| **Catálogo de jogo** | `range_server`, `server`, `game_account`, `game_details_account`, `game_account_image` |
+| **Flows L1–L4** | `collection`, `flow`, `flow_step`, `flow_step_image` |
+| **CRM / pedidos** | `customer`, `sales_order` |
+| **Execução (Macro)** | `task`, `device`, `debug_image`, `order_task_log` |
+| **Auth / RBAC** | `user_admin`, `permission`, `permission_function`, `permission_function_grant`, `user_permission` |
+| **ProviderLAB** | `ads_service_provider`, `ads_service_provider_review` |
+| **MarketLAB** | `marketplace_listing`, `marketplace_listing_image`, `marketplace_listing_proposal`, `marketplace_seller_review` |
+| **Wallet** | `wallet_settings`, `wallet`, `wallet_transaction` |
+| **Identidade / notificações** | `email_confirmation_token`, `password_reset_token`, `user_notification`, `chat_read_status` |
+| **Plataforma** | `site_config`, `lab_access_request` |
 
-server
-  (65 rows: server_number s1–s65, image_path; each server belongs to a range)
-  └── range_server_id → range_server.id
-
-flow_step
-  (flow_key + step_number = step of flow; e.g. LOGIN + 1, LOGIN + 2; created_at, updated_at)
-  └── flow_step_image (flow_step_id)
-  └── task (flow_step_id = current step)
-
-flow_step_image
-  (templates per step: flow_step_id, image_path or image_data, coordinates, width, height)
-
-game_details_account
-  (in-game character: nick, server, xp, level; created_at, updated_at)
-
-game_account
-  (login único, password AES-GCM em prod; uma conta pode ter N game_details_account)
-  └── game_details_account (game_account_id) 1:N, UNIQUE(game_account_id, server)
-
-customer
-  (name, contact, pix, profile REVENDEDOR/COMPRADOR, purchase counters, description)
-  └── sales_order (customer_id)
-
-sales_order
-  (no device_id, no game_account_id; status_order; tasks_total/tasks_completed = progress 0/8; ao criar, escolhe 1 device e gera N tasks com mesmo device_id)
-  └── customer_id → customer.id
-  └── range_server_id → range_server.id
-  └── task (sales_order_id)
-
-task
-  (sales_order + game_account + server_value + device_id; device_id atribuído na criação; todas as tasks da mesma ordem = mesmo device; status_task PROCESSING = não troca device)
-  └── game_account_id → game_account.id
-  └── flow_step_id → flow_step.id
-  └── device_id → device.id (NOT NULL; definido ao gerar as tasks)
-  └── debug_image (task_id)
-  └── order_task_log (task_id)
-
-debug_image
-  (só task_id; pedido via task.sales_order_id; correlacionar com order_task_log por task_id + created_at)
-
-order_task_log
-  (erros críticos que pararam o serviço; task_id obrigatório; log_file_path; sem FK para debug_image)
-
-device
-  (id = PK; identifier = external id; status ACTIVE | INACTIVE | DEPRECATED)
-  └── task (device_id)
-
-user (tabela user_admin)
-  (login, password_hash, name, email, active; usuários que acessam o sistema)
-  └── user_permission (user_id, permission_id) N:N
-
-permission (role)
-  (name = ADM, DEV, MANAGER, SELLER)
-  └── permission_function_grant (permission_id, permission_function_id) N:N
-  └── user_permission (permission_id, user_id) N:N
-
-permission_function
-  (code = VIEW_ORDERS, VIEW_CUSTOMERS, CREATE_CUSTOMERS, …)
-  └── permission_function_grant (permission_function_id) N:N
-
-permission_function_grant
-  (permission_id, permission_function_id) UNIQUE; matriz role × função
-
-user_permission
-  (user_id, permission_id) UNIQUE; junção user ↔ permission (role)
-```
+**Removidas:** `flow_transition` (V10 — rota GOTO virou coluna em `flow_step_image`); `marketplace_listing_question` (V28 — perguntas só no S3).
 
 ---
 
-## ER diagram (Mermaid)
+## ER diagram — escopo completo (Mermaid)
 
-View on GitHub, VS Code (Mermaid extension), or [mermaid.live](https://mermaid.live):
+Renderiza no GitHub, VS Code (extensão Mermaid) ou [mermaid.live](https://mermaid.live).
 
 ```mermaid
 erDiagram
-    range_server {
-        bigint id
-        string range_key
-        int value
-        timestamp created_at
-        timestamp updated_at
-    }
+  range_server {
+    bigint id PK
+    varchar range_key UK
+    int value
+    varchar description
+  }
+  server {
+    bigint id PK
+    varchar server_number UK
+    bigint range_server_id FK
+    varchar image_path
+    varchar name
+  }
+  collection {
+    bigint id PK
+    varchar collection_key UK
+    varchar name_collection
+    varchar default_flow_key
+    int display_order
+    varchar version
+    varchar content_hash
+    boolean is_original
+  }
+  flow {
+    bigint id PK
+    bigint collection_id FK
+    varchar flow_key
+    varchar name
+    int display_order
+    varchar version
+    varchar content_hash
+  }
+  flow_step {
+    bigint id PK
+    bigint flow_id FK
+    int step_number
+    varchar step_key
+    varchar flow_key
+    varchar version
+    varchar content_hash
+  }
+  flow_step_image {
+    bigint id PK
+    bigint flow_step_id FK
+    int step_img_number
+    varchar image_path
+    varchar worker_action
+    varchar effect
+    varchar transition_flow_key
+    int transition_from_step_number
+    varchar version
+    varchar content_hash
+  }
+  game_account {
+    bigint id PK
+    varchar login UK
+    varchar password
+    bigint customer_id FK
+    bigint sales_order_id FK
+    varchar account_status
+    varchar game
+    boolean draft
+    boolean marketplace_featured
+    decimal price
+    boolean price_on_request
+  }
+  game_details_account {
+    bigint id PK
+    bigint game_account_id FK
+    varchar nick
+    varchar server
+    int level
+    int xp
+  }
+  game_account_image {
+    bigint id PK
+    bigint game_account_id FK
+    varchar image_path
+    int sort_order
+  }
+  customer {
+    bigint id PK
+    varchar name
+    varchar profile
+    bigint created_by_user_id
+    timestamp deleted_at
+  }
+  sales_order {
+    bigint id PK
+    bigint customer_id FK
+    bigint user_admin_id FK
+    bigint range_server_id FK
+    varchar status_order
+    varchar order_type
+    int accounts_count
+    int tasks_total
+    int tasks_completed
+  }
+  task {
+    bigint id PK
+    bigint sales_order_id FK
+    bigint game_account_id FK
+    bigint collection_id FK
+    bigint device_id FK
+    varchar server_value
+    varchar status_task
+  }
+  device {
+    bigint id PK
+    varchar identifier UK
+    varchar status
+    varchar alias
+    bigint user_admin_id FK
+    timestamp deleted_at
+  }
+  debug_image {
+    bigint id PK
+    bigint task_id FK
+    varchar image_path
+    json detection_context
+  }
+  order_task_log {
+    bigint id PK
+    bigint task_id FK
+    varchar log_level
+    text message
+    varchar log_file_path
+  }
+  user_admin {
+    bigint id PK
+    varchar login UK
+    varchar password_hash
+    varchar email
+    boolean email_verified
+    bigint permission_id FK
+    varchar oauth_provider
+    varchar avatar_path
+    bigint manager_user_id
+    timestamp deleted_at
+  }
+  permission {
+    bigint id PK
+    varchar name UK
+  }
+  permission_function {
+    bigint id PK
+    varchar code UK
+    varchar description
+  }
+  permission_function_grant {
+    bigint permission_id FK
+    bigint permission_function_id FK
+  }
+  user_permission {
+    bigint user_id FK
+    bigint permission_id FK
+  }
+  ads_service_provider {
+    bigint id PK
+    bigint user_id FK
+    varchar game_slug
+    varchar display_name
+    text services_json
+    boolean active
+    boolean featured
+  }
+  ads_service_provider_review {
+    bigint id PK
+    bigint provider_id FK
+    bigint reviewer_user_id FK
+    int rating
+    text comment
+  }
+  marketplace_listing {
+    bigint id PK
+    bigint created_by_user_id FK
+    varchar game_slug
+    decimal price
+    boolean draft
+    boolean featured
+    varchar status
+  }
+  marketplace_listing_image {
+    bigint id PK
+    bigint listing_id FK
+    varchar image_path
+    int sort_order
+  }
+  marketplace_listing_proposal {
+    bigint id PK
+    bigint listing_id FK
+    bigint buyer_user_id FK
+    decimal offered_price
+  }
+  marketplace_seller_review {
+    bigint id PK
+    bigint seller_user_id FK
+    bigint reviewer_user_id FK
+    bigint listing_id
+    int rating
+    text comment
+  }
+  wallet_settings {
+    bigint id PK
+    int price_per_server_cents
+    varchar default_range_key
+  }
+  wallet {
+    bigint id PK
+    bigint user_id FK_UK
+    bigint balance_cents
+  }
+  wallet_transaction {
+    bigint id PK
+    bigint wallet_id FK
+    varchar type
+    bigint amount_cents
+    bigint balance_after_cents
+    varchar reference_type
+    bigint reference_id
+  }
+  user_notification {
+    bigint id PK
+    bigint user_id FK
+    varchar type
+    varchar title
+    text body
+    json payload
+    timestamp read_at
+  }
+  chat_read_status {
+    bigint id PK
+    bigint user_id FK
+    varchar channel
+    bigint context_id
+    bigint peer_user_id
+    timestamp read_at
+  }
+  email_confirmation_token {
+    bigint id PK
+    bigint user_id FK
+    varchar token UK
+    timestamp expires_at
+  }
+  password_reset_token {
+    bigint id PK
+    bigint user_id FK
+    varchar token UK
+    timestamp expires_at
+  }
+  site_config {
+    varchar config_key PK
+    text config_value
+  }
+  lab_access_request {
+    bigint id PK
+    varchar lab
+    varchar login
+    varchar status
+    bigint reviewed_by_user_id
+    bigint created_user_id
+  }
 
-    server {
-        bigint id
-        string server_number
-        bigint range_server_id
-        string image_path
-        string name
-    }
-
-    flow_step {
-        bigint id
-        string flow_key
-        int step_number
-        string name
-        timestamp created_at
-        timestamp updated_at
-    }
-
-    flow_step_image {
-        bigint id
-        bigint flow_step_id
-        string image_path
-        blob image_data
-        json coordinates
-        int width
-        int height
-        timestamp created_at
-        timestamp updated_at
-    }
-
-    game_details_account {
-        bigint id
-        string nick
-        string server
-        int xp
-        int level
-        bigint game_account_id
-        timestamp created_at
-        timestamp updated_at
-    }
-
-    game_account {
-        bigint id
-        string login
-        string password
-        timestamp created_at
-        timestamp updated_at
-    }
-
-    customer {
-        bigint id
-        string name
-        string contact_number
-        string pix_key
-        string profile
-        int total_purchases
-        int closed_purchases
-        int open_purchases
-        int cancelled_purchases
-        text description
-        timestamp created_at
-        timestamp updated_at
-    }
-
-    sales_order {
-        bigint id
-        bigint customer_id
-        bigint range_server_id
-        string description
-        string status_order
-        string priority
-        string order_type
-        int accounts_count
-        string server_scope
-        int tasks_total
-        int tasks_completed
-        timestamp created_at
-        timestamp updated_at
-    }
-
-    task {
-        bigint id
-        bigint sales_order_id
-        bigint game_account_id
-        string server_value
-        bigint flow_step_id
-        string status_task
-        bigint device_id
-        timestamp created_at
-        timestamp updated_at
-    }
-
-    debug_image {
-        bigint id
-        bigint task_id
-        string image_path
-        timestamp created_at
-        timestamp updated_at
-    }
-
-    order_task_log {
-        bigint id
-        bigint task_id
-        string log_level
-        string message
-        string log_file_path
-        timestamp created_at
-        timestamp updated_at
-    }
-
-    device {
-        bigint id
-        string identifier
-        string status
-        string api_key_hash
-        timestamp created_at
-        timestamp updated_at
-    }
-
-    game_account ||--o{ game_details_account : "game_account_id"
-    range_server ||--o{ server : "range_server_id"
-    flow_step ||--o{ flow_step_image : "flow_step_id"
-    customer ||--o{ sales_order : "customer_id"
-    range_server ||--o{ sales_order : "range_server_id"
-    sales_order ||--o{ task : "sales_order_id"
-    game_account ||--o{ task : "game_account_id"
-    flow_step ||--o{ task : "flow_step_id"
-    device ||--o{ task : "device_id"
-    task ||--o{ debug_image : "task_id"
-    task ||--o{ order_task_log : "task_id"
+  range_server ||--o{ server : range_server_id
+  range_server ||--o{ sales_order : range_server_id
+  collection ||--o{ flow : collection_id
+  flow ||--o{ flow_step : flow_id
+  flow_step ||--o{ flow_step_image : flow_step_id
+  collection ||--o{ task : collection_id
+  customer ||--o{ sales_order : customer_id
+  customer ||--o{ game_account : customer_id
+  sales_order ||--o{ task : sales_order_id
+  sales_order ||--o{ game_account : sales_order_id
+  game_account ||--o{ game_details_account : game_account_id
+  game_account ||--o{ game_account_image : game_account_id
+  game_account ||--o{ task : game_account_id
+  device ||--o{ task : device_id
+  task ||--o{ debug_image : task_id
+  task ||--o{ order_task_log : task_id
+  user_admin ||--o{ sales_order : user_admin_id
+  user_admin ||--o{ device : user_admin_id
+  user_admin ||--o{ customer : created_by_user_id
+  user_admin ||--o{ game_account : created_by_user_id
+  user_admin }o--|| permission : permission_id
+  user_admin ||--o{ user_permission : user_id
+  permission ||--o{ user_permission : permission_id
+  permission ||--o{ permission_function_grant : permission_id
+  permission_function ||--o{ permission_function_grant : permission_function_id
+  user_admin ||--o| ads_service_provider : user_id
+  ads_service_provider ||--o{ ads_service_provider_review : provider_id
+  user_admin ||--o{ marketplace_listing : created_by_user_id
+  marketplace_listing ||--o{ marketplace_listing_image : listing_id
+  marketplace_listing ||--o{ marketplace_listing_proposal : listing_id
+  user_admin ||--|| wallet : user_id
+  wallet ||--o{ wallet_transaction : wallet_id
+  user_admin ||--o{ user_notification : user_id
+  user_admin ||--o{ chat_read_status : user_id
+  user_admin ||--o{ email_confirmation_token : user_id
+  user_admin ||--o{ password_reset_token : user_id
 ```
 
+**Legenda:** `||--o{` = 1→N · `||--||` = 1→1 · `}o--||` = N→1 (FK no lado direito) · `||--o|` = 1→0..1.
 
-
-**Legend:** `||--o{` = one row on the left can have many on the right. sales_order spawns N tasks; at creation, one device is chosen and all N tasks get the same device_id. status_order (sales_order), status_task (task). **game_account** 1:N **game_details_account** (game_account_id em game_details_account); UNIQUE(game_account_id, server). game_account "available" = exists game_details_account with level < target (no flag).
+**Notas:**
+- **Flows:** hierarquia `collection` → `flow` → `flow_step` → `flow_step_image`; versão/hash em cada nível (V10); binários PNG no S3.
+- **Task:** liga `collection_id` (L1), não `flow_step_id`; `device_id` preenchido pelo worker (nullable no claim).
+- **Chat:** mensagens no S3; BD só `chat_read_status` para cursor de leitura.
+- **Wallet:** `wallet_settings` é singleton (`id = 1`); saldo em `wallet` (`id` próprio, `user_id` único); transações apontam para `wallet_transaction.wallet_id`.
+- **Seções §1–§15 abaixo:** definições textuais legadas (pré-L1/L4 e pré-MarketLAB); use o diagrama acima + entidades JPA para o schema atual.
 
 ---
 
