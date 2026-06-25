@@ -37,7 +37,7 @@ Frontend React — pedidos, flows, devices, admin.
 
 ## Por objetivo
 
-**Editar flows** → [DIAGRAMA-FLOW-TECNICO.md](DIAGRAMA-FLOW-TECNICO.md) → [FLOW-CONTRACT.md](../../automation-db-lab/docs/FLOW-CONTRACT.md)
+**Editar flows** → [DIAGRAMA-FLOW-TECNICO.md](DIAGRAMA-FLOW-TECNICO.md) → [FLOW-CONTRACT.md](../db/docs/FLOW-CONTRACT.md)
 
 **Deploy frontend** → [PRODUCTION.md](PRODUCTION.md) → [../infra/docs/DEPLOY-DEV.md](../infra/docs/DEPLOY-DEV.md)
 

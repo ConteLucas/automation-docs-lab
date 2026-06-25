@@ -70,4 +70,4 @@ timeline
 | Bot | [bot/INDEX.md](../bot/INDEX.md) |
 | Web | [web/INDEX.md](../web/INDEX.md) |
 | Infra | [infra/INDEX.md](../infra/INDEX.md) |
-| DB | [automation-db-lab/docs/INDEX.md](../../automation-db-lab/docs/INDEX.md) |
+| DB | [db/docs/INDEX.md](../db/docs/INDEX.md) |

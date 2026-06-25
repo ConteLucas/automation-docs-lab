@@ -403,7 +403,7 @@ graph LR
 | Web CRM | [web/INDEX.md](web/INDEX.md) | `automation-web-lab` |
 | Infra AWS | [infra/INDEX.md](infra/INDEX.md) | `automation-infra-lab` |
 | Device Lab | [device/INDEX.md](device/INDEX.md) | `automation-device-lab` |
-| Banco / flows | [../automation-db-lab/docs/INDEX.md](../automation-db-lab/docs/INDEX.md) | `automation-db-lab` |
+| Banco / flows | [db/docs/INDEX.md](db/docs/INDEX.md) | `automation-docs-lab/db` + SQL em `automation-db-lab` |
 
 | Transversal | Documento |
 |-------------|-----------|

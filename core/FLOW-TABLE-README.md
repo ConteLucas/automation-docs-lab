@@ -13,7 +13,7 @@ Se você **não vê** a tabela `flow` no banco, crie assim:
 
 ## Definição
 
-- **DDL:** `automation-db-lab/docs/CORE-DATABASE-DDL.sql` e `automation-db-lab/sql/`
+- **DDL:** `automation-docs-lab/db/docs/CORE-DATABASE-DDL.sql` e `automation-db-lab/sql/`
 - **Migração:** `migration-add-flow-collection.sql`.
 - **Entidade JPA:** `FlowEntity` em `com.automation.core.adapter.out.persistence.entity`.
 

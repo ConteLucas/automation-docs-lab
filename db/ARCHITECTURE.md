@@ -432,20 +432,22 @@ graph LR
 ## Estrutura do Repositório
 
 ```
-automation-db-lab/
+automation-docs-lab/db/
+├── ARCHITECTURE.md              # este arquivo
 ├── docs/
-│   ├── ARCHITECTURE.md        # este arquivo
+│   ├── INDEX.md
 │   ├── CORE-DATABASE-TABLES.md  # definição canônica das tabelas
-│   ├── CORE-DATABASE-DDL.sql  # DDL de referência
-│   ├── FLOW-CONTRACT.md       # contrato da tabela flow
+│   ├── CORE-DATABASE-DDL.sql    # DDL de referência
+│   ├── FLOW-CONTRACT.md         # contrato L1–L4
 │   └── modeling/
-│       └── automation-ddt.drawio  # diagrama visual
+│       └── automation-ddt.drawio  # diagrama visual (./generate-ddt-drawio.sh)
+automation-db-lab/
 ├── sql/
 │   ├── core/
 │   │   ├── massa.sql          # dados iniciais (dev)
 │   │   ├── init.sql           # script inicial
 │   │   ├── schema-only.sql    # apenas DDL
-│   │   └── V2-V11__*.sql      # migrations históricas
+│   │   └── V2-V30__*.sql      # migrations históricas
 │   ├── migrations/            # alterações pontuais
 │   └── reports/               # queries de relatório (read-only)
 └── seeds/

@@ -31,7 +31,7 @@ Documentação centralizada por serviço em **`automation-docs-lab`**. Não comm
 | Web UI (React) | [web/INDEX.md](web/INDEX.md) | `automation-web-lab` |
 | Infra / deploy AWS | [infra/INDEX.md](infra/INDEX.md) | `automation-infra-lab` |
 | Device Lab desktop | [device/INDEX.md](device/INDEX.md) | `automation-device-lab` |
-| Banco / flows / seeds | [../automation-db-lab/docs/INDEX.md](../automation-db-lab/docs/INDEX.md) | `automation-db-lab` |
+| Banco / flows / seeds | [db/docs/INDEX.md](db/docs/INDEX.md) | docs em `automation-docs-lab`; SQL/seeds em `automation-db-lab` |
 
 Scripts operacionais (compose, deploy, sync S3): **`automation-configs-lab`** — ver [infra/docs/DEPLOY-DEV.md](infra/docs/DEPLOY-DEV.md).
 

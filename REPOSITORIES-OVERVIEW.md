@@ -21,7 +21,7 @@ Organization: automation-ddt (monorepo automation-learn)
 📁 backup/bot/                  [Backups do Bot: v3, v4, v5]
 ```
 
-**Documentação:** [README.md](README.md) · [TECH-STORIES.md](TECH-STORIES.md) · [docs/core/CORE-DATABASE-TABLES.md](docs/core/CORE-DATABASE-TABLES.md) · [scripts/massas/README.MD](scripts/massas/README.MD)
+**Documentação:** [README.md](README.md) · [TECH-STORIES.md](TECH-STORIES.md) · [db/docs/CORE-DATABASE-TABLES.md](db/docs/CORE-DATABASE-TABLES.md) · [scripts/massas/README.MD](scripts/massas/README.MD)
 
 ---
 
@@ -172,7 +172,7 @@ automation-core-ddt/
 - Persistência JPA/Hibernate; transações e integridade referencial.
 
 #### **3. Documentação e dados iniciais:**
-- Schema e ER: [docs/core/CORE-DATABASE-TABLES.md](docs/core/CORE-DATABASE-TABLES.md)
+- Schema e ER: [db/docs/CORE-DATABASE-TABLES.md](db/docs/CORE-DATABASE-TABLES.md)
 - Massas (ordem de carga): [scripts/massas/README.MD](scripts/massas/README.MD) — permission → range_server → server → customer → game_account → game_details_account → …
 
 ### **Endpoints principais:**
@@ -1467,7 +1467,7 @@ resource "aws_db_instance" "automation_db" {
 ## 🎯 Ordem de Implementação Recomendada
 
 ### **Fase 1: MVP (2-4 semanas)**
-1. ✅ automation-core-ddt - APIs REST (range_server, server, game_account, game_details_account, etc.) + batch; ver [CORE-DATABASE-TABLES.md](docs/core/CORE-DATABASE-TABLES.md) e [scripts/massas/README.MD](scripts/massas/README.MD)
+1. ✅ automation-core-ddt - APIs REST (range_server, server, game_account, game_details_account, etc.) + batch; ver [CORE-DATABASE-TABLES.md](db/docs/CORE-DATABASE-TABLES.md) e [scripts/massas/README.MD](scripts/massas/README.MD)
 2. ✅ automation-bot-ddt - App Android (backups em backup/bot/)
 3. 🆕 automation-contracts - Definir specs OpenAPI (opcional)
 

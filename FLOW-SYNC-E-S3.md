@@ -175,6 +175,6 @@ S3_DEPLOY_ENV=PROD   # ou LOCAL, HMG
 |---------|-----------|
 | Core | [core/INDEX.md](core/INDEX.md) · [core/ARCHITECTURE.md](core/ARCHITECTURE.md) |
 | Bot | [bot/INDEX.md](bot/INDEX.md) · [bot/guia-sync-manifests-s3.md](bot/guia-sync-manifests-s3.md) |
-| BD / contrato | [../automation-db-lab/docs/INDEX.md](../automation-db-lab/docs/INDEX.md) |
+| BD / contrato | [db/docs/INDEX.md](db/docs/INDEX.md) |
 | Infra / S3 | [infra/INDEX.md](infra/INDEX.md) · [infra/docs/env-images-s3.md](infra/docs/env-images-s3.md) |
 | Web (editor flows) | [web/DIAGRAMA-FLOW-TECNICO.md](web/DIAGRAMA-FLOW-TECNICO.md) |

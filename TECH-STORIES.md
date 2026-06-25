@@ -39,7 +39,7 @@ Construir uma plataforma de automação Android distribuída, onde:
 - **automation-core-ddt:** Spring Boot 3 + JPA/Hibernate, PostgreSQL. Entidades: `range_server` (com `description`), `server` (65 servidores, vinculados a ranges), `game_account` (login único), `game_details_account` (1:N por conta, UNIQUE por conta+server), além de `customer`, `device`, `sales_order`, `task`, etc. APIs REST documentadas no Swagger; batch de inserção via `/api/*/batch`.
 - **Massas:** Dados iniciais em `scripts/massas/` (JSON) para carga na ordem: permission → range_server → server → customer → game_account → game_details_account. Ver [scripts/massas/README.MD](scripts/massas/README.MD).
 - **automation-bot-ddt:** App Android (Kotlin); backup de versões em `backup/bot/` (v3, v4, v5). v5 reflete refatoração 1:N game_account ↔ game_details_account e login único.
-- **Documentação:** [docs/core/CORE-DATABASE-TABLES.md](docs/core/CORE-DATABASE-TABLES.md) (schema e relacionamentos), [docs/REPOSITORIES-OVERVIEW.md](docs/REPOSITORIES-OVERVIEW.md) (visão dos repositórios).
+- **Documentação:** [db/docs/CORE-DATABASE-TABLES.md](db/docs/CORE-DATABASE-TABLES.md) (schema e relacionamentos), [docs/REPOSITORIES-OVERVIEW.md](docs/REPOSITORIES-OVERVIEW.md) (visão dos repositórios).
 
 ---
 

@@ -454,7 +454,7 @@ Mesma lógica do DBeaver: **SSH para a EC2** + **host = IP do container** + port
 
 Schema gerenciado pelo Hibernate (`ddl-auto: update` no lab). Referência completa:
 
-`automation-db-lab/docs/CORE-DATABASE-TABLES.md`
+`automation-docs-lab/db/docs/CORE-DATABASE-TABLES.md`
 
 
 | Tabela                    | Conteúdo                           |

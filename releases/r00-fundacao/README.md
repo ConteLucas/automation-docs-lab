@@ -34,7 +34,7 @@ Estado **atual** do ecossistema: [../../ARCHITECTURE.md](../../ARCHITECTURE.md).
 
 ## Banco de dados
 
-Tabelas núcleo introduzidas nesta fase: ver [DATABASE.md](DATABASE.md) e definição completa em [automation-db-lab/docs/CORE-DATABASE-TABLES.md](../../../automation-db-lab/docs/CORE-DATABASE-TABLES.md).
+Tabelas núcleo introduzidas nesta fase: ver [DATABASE.md](DATABASE.md) e definição completa em [CORE-DATABASE-TABLES.md](../../db/docs/CORE-DATABASE-TABLES.md).
 
 ---
 

@@ -27,7 +27,7 @@ Backend Spring Boot — tasks, flows, storage, worker sync.
 | [FLOW-IS-ORIGINAL.md](FLOW-IS-ORIGINAL.md) | Flag `is_original` (legado) |
 | [FLOW-RELEVANCIA-E-ORIGINAL-PROPOSAL.md](FLOW-RELEVANCIA-E-ORIGINAL-PROPOSAL.md) | Proposta relevância |
 
-Contrato BD ↔ JSON: [../automation-db-lab/docs/FLOW-CONTRACT.md](../automation-db-lab/docs/FLOW-CONTRACT.md)
+Contrato BD ↔ JSON: [../db/docs/FLOW-CONTRACT.md](../db/docs/FLOW-CONTRACT.md)
 
 ---
 
@@ -46,7 +46,7 @@ Contrato BD ↔ JSON: [../automation-db-lab/docs/FLOW-CONTRACT.md](../automation
 | Documento | Conteúdo |
 |-----------|----------|
 | [SECURITY-PRODUCTION.md](SECURITY-PRODUCTION.md) | JWT, device key, AES contas |
-| [CORE-DATABASE-TABLES.md](../../automation-db-lab/docs/CORE-DATABASE-TABLES.md) | Modelo relacional (canónico) |
+| [CORE-DATABASE-TABLES.md](../db/docs/CORE-DATABASE-TABLES.md) | Modelo relacional (canónico) |
 
 ---
 
